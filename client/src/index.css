@@ -8,6 +8,11 @@
 }
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll; /* Ensures scrolling is still possible */
+  scrollbar-width: none; /* For Firefox */
+}
+html::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Edge */
 }
 
 /* * {
