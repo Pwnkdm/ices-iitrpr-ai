@@ -2,6 +2,8 @@ import { Box, Typography } from "@mui/material";
 import HeroPage from "./Hero/HeroPage";
 import Curriculum from "./Curriculam";
 import FAQs from "./FAQs";
+import { FeeStructure } from './FeeStructure'; 
+
 
 const HomePage = () => {
   return (
@@ -20,14 +22,9 @@ const HomePage = () => {
       </Box>
 
       {/* Fees Section */}
-      <Box
-        id="fees"
-        sx={{ marginTop: 10, padding: 4, backgroundColor: "#f9f9f9" }}
-      >
-        <Typography variant="h4">Fees</Typography>
-        <Typography variant="body1">
-          Remove Typography Add Component here
-        </Typography>
+
+      <Box id="fees" sx={{ marginTop: 10, backgroundColor: '#f9f9f9' }}>
+        <FeeStructure />
       </Box>
 
       {/* FAQs Section */}
