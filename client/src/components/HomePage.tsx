@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import HeroPage from "./Hero/HeroPage";
 import Curriculum from "./Curriculam";
+import FAQs from "./FAQs";
 
 const HomePage = () => {
   return (
@@ -30,14 +31,8 @@ const HomePage = () => {
       </Box>
 
       {/* FAQs Section */}
-      <Box
-        id="faqs"
-        sx={{ marginTop: 10, padding: 4, backgroundColor: "#f9f9f9" }}
-      >
-        <Typography variant="h4">FAQs</Typography>
-        <Typography variant="body1">
-          Remove Typography Add Component here
-        </Typography>
+      <Box id="faqs" sx={{ marginTop: 10, padding: 0 }}>
+        <FAQs />
       </Box>
 
       {/* Event Section */}
