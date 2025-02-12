@@ -1,17 +1,48 @@
+@import "tailwindcss";
+
+/* Default CSS for all components */
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
+  /* font-family: "Sora", serif; */
+  font-optical-sizing: auto;
+  font-style: normal;
 }
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll; /* Ensures scrolling is still possible */
+  scrollbar-width: none; /* For Firefox */
+}
+html::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Edge */
+}
+
+/* * {
+background: hsla(0, 0%, 3%, 1);
+
+background: linear-gradient(45deg, hsla(0, 0%, 3%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
+
+background: -moz-linear-gradient(45deg, hsla(0, 0%, 3%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
+
+background: -webkit-linear-gradient(45deg, hsla(0, 0%, 3%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#080808", endColorstr="#C3E1FC", GradientType=1 );
+} */
+
+/* Default CSS for all components- END */
+
+/* Navbar Css */
+.nav-btn.MuiButton-root {
+  color: #ffffff;
+  background: none;
+  font-weight: 600;
+}
+
+.nav-btn.MuiButton-root:hover {
+  background-color: lightblue;
+}
+
+/* Navbar Css- END */
 
 a {
   /* font-weight: 500;
@@ -22,9 +53,39 @@ a:hover {
   /* color: #535bf2; */
 }
 
-body {
-  margin: 0;
-  min-width: 100vw;
-  min-height: 100vh;
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
