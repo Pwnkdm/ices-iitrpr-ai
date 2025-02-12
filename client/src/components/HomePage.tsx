@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import HeroPage from "./Hero/HeroPage";
+import Curriculum from "./Curriculam";
 
 const HomePage = () => {
   return (
@@ -13,14 +14,8 @@ const HomePage = () => {
       </Box>
 
       {/* Curriculum Section */}
-      <Box
-        id="curriculum"
-        sx={{ marginTop: 10, padding: 4, backgroundColor: "#f9f9f9" }}
-      >
-        <Typography variant="h4">Curriculum</Typography>
-        <Typography variant="body1">
-          Remove Typography Add Component here
-        </Typography>
+      <Box id="curriculum" sx={{ marginTop: 10, padding: 0 }}>
+        <Curriculum />
       </Box>
 
       {/* Fees Section */}
