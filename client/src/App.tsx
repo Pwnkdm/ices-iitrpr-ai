@@ -1,7 +1,12 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar.tsx";
-import HomePage from "./components/Homepage.tsx";
+import HomePage from "./components/HomePage.tsx";
 import { useEffect } from "react";
 
 const ScrollToHash = () => {
@@ -13,7 +18,8 @@ const ScrollToHash = () => {
         const element = document.querySelector(hash);
         if (element) {
           const offset = 100; // Adjust this value based on the height of your Navbar
-          const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+          const elementPosition =
+            element.getBoundingClientRect().top + window.scrollY;
           const offsetPosition = elementPosition - offset;
 
           window.scrollTo({
