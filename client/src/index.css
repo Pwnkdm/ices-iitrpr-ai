@@ -6,6 +6,9 @@
   font-optical-sizing: auto;
   font-style: normal;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 /* * {
 background: hsla(0, 0%, 3%, 1);
