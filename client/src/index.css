@@ -8,10 +8,15 @@
 }
 
 /* * {
-  background: hsla(332, 57%, 69%, 1);
-background: linear-gradient(90deg, hsla(332, 57%, 69%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
-background: -moz-linear-gradient(90deg, hsla(332, 57%, 69%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#DD83AD", endColorstr="#C3E1FC", GradientType=1 );
+background: hsla(0, 0%, 3%, 1);
+
+background: linear-gradient(45deg, hsla(0, 0%, 3%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
+
+background: -moz-linear-gradient(45deg, hsla(0, 0%, 3%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
+
+background: -webkit-linear-gradient(45deg, hsla(0, 0%, 3%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#080808", endColorstr="#C3E1FC", GradientType=1 );
 } */
 
 /* Default CSS for all components- END */
@@ -20,6 +25,7 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#DD83AD", en
 .nav-btn.MuiButton-root {
   color: #ffffff;
   background: none;
+  font-weight: 600;
 }
 
 .nav-btn.MuiButton-root:hover {
