@@ -1,0 +1,83 @@
+.feeScomponent_Parent{
+    background: #000 !important;
+    color: #fff;
+    padding: 0;
+    margin: auto;
+    width: 100%;
+    border: 5px solid rgb(209, 153, 51);
+}
+
+.feeHeading{
+    font-size: 64px;
+    
+    text-align: center;
+    padding: 10px 0px;
+    margin-bottom: 20px;
+    width: 100%;
+    
+}
+.feeHeading > span{
+    background: linear-gradient(90deg, #637AFF 33.5%, #eb1636 74%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: normal;
+    text-align: center;
+}
+
+
+.feesTableHeadingRows{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 800px;
+    height: 350px;
+    background-color: rgb(72, 72, 72);
+    border-radius: 15px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+
+
+}
+
+.rows-eachFees{
+    display: flex;
+    border: 1px solid rgba(172, 175, 172, 0.829);
+    width: 600px;
+    font-size: 28px;
+    border-radius: 5px;
+}
+
+.columnOne{
+    padding: 12px;
+    width: 65%;
+}
+
+.columnOne > span, .feeSubHeading{
+    font-size: 16px;
+    font-weight: 500;
+    --tw-text-opacity: 1;
+    color: rgb(255 219 102 / var(--tw-text-opacity));
+}
+
+.feetermparent{
+    border: none;
+    padding-left: 10px;
+}
+
+.feesTerms{
+    --tw-text-opacity: 1;
+    color: rgb(255 219 102 / var(--tw-text-opacity));
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.columnTwo{
+    align-self: center;
+    margin-left: 10px;
+    width: 35%;
+    font:bolder;
+    
+}
