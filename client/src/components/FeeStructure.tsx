@@ -7,6 +7,7 @@ export const FeeStructure: React.FC = () => {
           <div className='feeHeading'>
               <span>Fee</span> Structure
           </div>
+          <br></br>
             <div className='feesTableHeadingRows'>
                     <div className='rows-eachFees'>
                       <div className="columnOne">

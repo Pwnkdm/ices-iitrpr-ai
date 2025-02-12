@@ -4,7 +4,7 @@ import { FeeStructure } from './FeeStructure';
 
 const HomePage = () => {
   return (
-    <Box sx={{ minHeight: '200vh'}}>
+    <Box sx={{ minHeight: '200vh', width:'100'}}>
       {/* Curriculum Section */}
       <Box id="curriculum" sx={{ marginTop: 10, padding: 4, backgroundColor: '#f9f9f9' }}>
         <Typography variant="h4">Curriculum</Typography>

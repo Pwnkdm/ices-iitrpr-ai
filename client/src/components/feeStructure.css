@@ -2,14 +2,15 @@
     background: #000 !important;
     color: #fff;
     padding: 0;
+    padding-bottom: 15px;
     margin: auto;
     width: 100%;
+    min-width: 350px;
     border: 5px solid rgb(209, 153, 51);
 }
 
 .feeHeading{
-    font-size: 64px;
-    
+    font-size: 64px;    
     text-align: center;
     padding: 10px 0px;
     margin-bottom: 20px;
@@ -63,7 +64,7 @@
 }
 
 .feetermparent{
-    border: none;
+    border: none !important;
     padding-left: 10px;
 }
 
@@ -80,4 +81,59 @@
     width: 35%;
     font:bolder;
     
+}
+
+
+@media (max-width: 855px) {
+    .feesTableHeadingRows{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        width: 550px;
+        height: 260px;    
+    }
+    
+    .rows-eachFees{
+        display: flex;
+        border: 1px solid rgba(172, 175, 172, 0.829);
+        width: 80%;
+        font-size: 20px;
+        border-radius: 5px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .feesTableHeadingRows{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        width: 95%;
+        height: 260px;    
+    }
+
+    .rows-eachFees{
+        display: flex;
+        border: 1px solid rgba(172, 175, 172, 0.829);
+        width: 95%;
+        font-size: 18px;
+        border-radius: 5px;
+    }
+
+    .columnTwo{
+        align-self: center;
+        margin-left: 10px;
+        width: 45%;
+        font:bolder;
+        
+    }
+
+    .columnOne{
+        padding: 12px;
+        width: 55%;
+    }
 }
