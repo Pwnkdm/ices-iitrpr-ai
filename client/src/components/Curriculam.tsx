@@ -25,6 +25,7 @@ const Curriculum: React.FC = () => {
         "AI Ethics and Impact on society",
         "Aptitude & Mathematics Fundamentals",
         "Data Handling",
+        
       ],
     },
     {
