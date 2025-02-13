@@ -16,6 +16,8 @@ const Curriculum: React.FC = () => {
   const [mainTabValue, setMainTabValue] = React.useState(0);
   const [subTabValue, setSubTabValue] = React.useState(0);
 
+
+
   // Handle main tab change
   const handleMainTabChange = (
     _event: React.SyntheticEvent,
@@ -292,7 +294,7 @@ const Curriculum: React.FC = () => {
                       py: 1,
                       background:
                         "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(230, 230, 230, 0.3) 0%, rgba(200, 200, 200, 0.2) 27.11%, rgba(180, 180, 180, 0.15) 100%)",
-                        borderRadius: 2
+                      borderRadius: 2,
                     }}
                   >
                     {/* Bullet Icon */}
@@ -341,11 +343,36 @@ const Curriculum: React.FC = () => {
             onChange={handleSubTabChange}
             variant="scrollable"
             scrollButtons="auto"
-            sx={{ borderBottom: "1px solid #ddd", mb: 4 }}
+            sx={{
+              mb: 4,
+              pb: 2,
+              "& .MuiTabs-indicator": {
+                display: "none",
+                outline: "none",
+              },
+              "& .MuiTab-root": {
+                color: "#000", // Change the default tab text color
+                background: "#fff",
+                outline: "none",
+                fontWeight: "600",
+                marginX: "5px",
+
+                "&.Mui-selected": {
+                  color: "#fff", // Color when tab is selected
+                  background:
+                    "linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)",
+                  outline: "none",
+                  fontWeight: "600",
+                },
+                "&:hover": {
+                  fontWeight: "700",
+                },
+              },
+            }}
           >
             {electiveNosContent.map((item, index) => (
               <Tab
-                sx={{ color: "white" }}
+                sx={{ borderRadius: 2 }}
                 key={index}
                 label={item.title}
                 wrapped
@@ -354,15 +381,73 @@ const Curriculum: React.FC = () => {
           </Tabs>
 
           {/* Sub-Tab Content for Elective NOS */}
-          <Box sx={{ border: "10px solid green" }}>
-            <Typography variant="h5" gutterBottom>
+          <Box
+            sx={{
+              boxShadow: "4px 10px 50px 0px rgba(24, 28, 31, 0.50)",
+              background:
+                "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(207, 207, 207, 0.16) 0%, rgba(119, 117, 117, 0.21) 27.11%, rgba(75, 71, 71, 0.30) 100%)",
+              padding: 4,
+              borderRadius: 2,
+            }}
+          >
+            {/* Title */}
+            <Typography
+              variant="h5"
+              gutterBottom
+              sx={{
+                fontWeight: "bold",
+                color: "rgb(255 219 102)",
+                textAlign: "center",
+                mb: 3,
+              }}
+            >
               {electiveNosContent[subTabValue].title}
             </Typography>
+
+            {/* List of Points */}
             <List>
               {electiveNosContent[subTabValue].points.map((point, index) => (
-                <ListItem key={index}>
-                  <ListItemText primary={point} />
-                </ListItem>
+                <React.Fragment key={index}>
+                  <ListItem
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      py: 1,
+                      background:
+                        "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(230, 230, 230, 0.3) 0%, rgba(200, 200, 200, 0.2) 27.11%, rgba(180, 180, 180, 0.15) 100%)",
+                      borderRadius: 2,
+                    }}
+                  >
+                    {/* Bullet Icon */}
+                    <Box
+                      sx={{
+                        width: "20px",
+                        height: "20px",
+                        //bgcolor: "#007bff",
+                        borderRadius: "50%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        mr: 2,
+                      }}
+                    >
+                      <AutoAwesome sx={{ fontSize: 16, color: "lightcorel" }} />
+                    </Box>
+                    {/* Point Text */}
+                    <ListItemText
+                      primary={point}
+                      primaryTypographyProps={{
+                        variant: "body1",
+                        sx: { color: "#fff", fontWeight: "medium" },
+                      }}
+                    />
+                  </ListItem>
+                  {/* Divider Between Points */}
+                  {index !==
+                    electiveNosContent[subTabValue].points.length - 1 && (
+                    <Divider sx={{ my: 1 }} />
+                  )}
+                </React.Fragment>
               ))}
             </List>
           </Box>
