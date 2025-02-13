@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import CourseCard from "./courseCard";
 import SimpleCard from "./SimpleCard";
+import { Cover } from "../ui/Cover";
+import { ImageCarousal } from "./imageCarousal";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -82,9 +84,13 @@ const HeroPage = () => {
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
+              // className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
             >
-              <h3 className="text-white font-bold text-xl">Eligibility</h3>
+              <h3 className="text-white font-bold text-xl">
+                <Cover className="px-8 py-2 rounded-lg shadow-lg">
+                  ELIGIBILITY
+                </Cover>
+              </h3>
             </motion.div>
           </div>
 
@@ -127,8 +133,9 @@ const HeroPage = () => {
           </div>
 
           <div>
-            <SimpleCard />
-            <CourseCard />
+            <ImageCarousal />
+            {/* <SimpleCard /> */}
+            {/* <CourseCard /> */}
           </div>
 
           {/* CTA Section */}

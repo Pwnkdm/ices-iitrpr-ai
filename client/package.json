@@ -14,11 +14,17 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.4",
     "@mui/material": "^6.4.3",
+    "@tabler/icons-react": "^3.30.0",
     "@tailwindcss/vite": "^4.0.6",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
+    "clsx": "^2.1.1",
     "motion": "^12.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",
+    "tailwind-merge": "^3.0.1",
     "tailwindcss": "^4.0.6"
   },
   "devDependencies": {
