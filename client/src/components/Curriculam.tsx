@@ -7,6 +7,8 @@ import {
   ListItem,
   ListItemText,
   Divider,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import React from "react";
 import "./curriculam.css";
@@ -16,7 +18,10 @@ const Curriculum: React.FC = () => {
   const [mainTabValue, setMainTabValue] = React.useState(0);
   const [subTabValue, setSubTabValue] = React.useState(0);
 
-
+  // Add theme and breakpoint hooks
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   // Handle main tab change
   const handleMainTabChange = (
@@ -155,10 +160,13 @@ const Curriculum: React.FC = () => {
   ];
 
   return (
-    <Box className="wrapper" sx={{ width: "100%", color: "white", p: 4 }}>
+    <Box
+      className="wrapper"
+      sx={{ width: "100%", color: "white", p: isMobile ? 2 : 4 }}
+    >
       {/* Main Title */}
       <Typography
-        variant="h4"
+        variant={isMobile ? "h5" : "h4"}
         component="h1"
         gutterBottom
         textAlign={"center"}
@@ -172,7 +180,9 @@ const Curriculum: React.FC = () => {
       <Tabs
         value={mainTabValue}
         onChange={handleMainTabChange}
-        centered
+        orientation={isMobile ? "vertical" : "horizontal"}
+        centered={!isMobile}
+        variant={isMobile ? "scrollable" : "standard"}
         sx={{
           borderBottom: "2px solid #ddd",
           mb: 4,
@@ -187,6 +197,9 @@ const Curriculum: React.FC = () => {
             background: "#fff",
             outline: "none",
             fontWeight: "600",
+            minWidth: isMobile ? "100%" : "auto",
+            fontSize: isMobile ? "0.875rem" : "1rem",
+            padding: isMobile ? "12px 16px" : "16px 24px",
 
             "&.Mui-selected": {
               color: "#fff", // Color when tab is selected
@@ -215,16 +228,33 @@ const Curriculum: React.FC = () => {
 
       {/* Sub-Tabs and Content */}
       {mainTabValue === 0 && (
-        <Box width="70%" margin={"auto"}>
+        <Box
+          width={isMobile ? "100%" : isTablet ? "90%" : "80%"}
+          margin={"auto"}
+        >
           {/* Sub-Tabs for Common NOS */}
           <Tabs
             value={subTabValue}
             onChange={handleSubTabChange}
             variant="scrollable"
             scrollButtons="auto"
+            allowScrollButtonsMobile
+            orientation={isMobile ? "vertical" : "horizontal"}
             sx={{
-              mb: 4,
+              mb: isMobile ? 2 : 4,
               pb: 2,
+              maxWidth: "100%",
+              "& .MuiTabs-scrollButtons": {
+                color: "white",
+                "&.Mui-disabled": {
+                  opacity: 0.3,
+                },
+              },
+              "& .MuiTabs-flexContainer": {
+                gap: 1,
+                flexWrap: isMobile ? "nowrap" : "wrap",
+                justifyContent: isMobile ? "flex-start" : "center",
+              },
               "& .MuiTabs-indicator": {
                 display: "none",
                 outline: "none",
@@ -234,7 +264,13 @@ const Curriculum: React.FC = () => {
                 background: "#fff",
                 outline: "none",
                 fontWeight: "600",
-                marginX: "5px",
+                marginX: "2px",
+                minHeight: isMobile ? "auto" : "48px",
+                minWidth: isMobile ? "100%" : "200px",
+                fontSize: isMobile ? "0.875rem" : "0.9rem",
+                padding: "8px 16px",
+                whiteSpace: "normal",
+                wordBreak: "break-word",
 
                 "&.Mui-selected": {
                   color: "#fff", // Color when tab is selected
@@ -251,7 +287,7 @@ const Curriculum: React.FC = () => {
           >
             {commonNosContent.map((item, index) => (
               <Tab
-                sx={{ borderRadius: 2 }}
+                sx={{ borderRadius: 2, textAlign: "center", lineHeight: "1.2" }}
                 key={index}
                 label={item.title}
                 wrapped
@@ -265,7 +301,7 @@ const Curriculum: React.FC = () => {
               boxShadow: "4px 10px 50px 0px rgba(24, 28, 31, 0.50)",
               background:
                 "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(207, 207, 207, 0.16) 0%, rgba(119, 117, 117, 0.21) 27.11%, rgba(75, 71, 71, 0.30) 100%)",
-              padding: 4,
+              padding: isMobile ? 2 : 4,
               borderRadius: 2,
             }}
           >
@@ -336,16 +372,32 @@ const Curriculum: React.FC = () => {
       )}
 
       {mainTabValue === 1 && (
-        <Box width="80%" margin={"auto"}>
+        <Box
+          width={isMobile ? "100%" : isTablet ? "90%" : "80%"}
+          margin={"auto"}
+        >
           {/* Sub-Tabs for Elective NOS */}
           <Tabs
             value={subTabValue}
             onChange={handleSubTabChange}
             variant="scrollable"
             scrollButtons="auto"
+            allowScrollButtonsMobile
+            orientation={isMobile ? "vertical" : "horizontal"}
             sx={{
-              mb: 4,
+              mb: isMobile ? 2 : 4,
               pb: 2,
+              "& .MuiTabs-scrollButtons": {
+                color: "white",
+                "&.Mui-disabled": {
+                  opacity: 0.3,
+                },
+              },
+              "& .MuiTabs-flexContainer": {
+                gap: 1,
+                flexWrap: isMobile ? "nowrap" : "wrap",
+                justifyContent: isMobile ? "flex-start" : "center",
+              },
               "& .MuiTabs-indicator": {
                 display: "none",
                 outline: "none",
@@ -355,7 +407,13 @@ const Curriculum: React.FC = () => {
                 background: "#fff",
                 outline: "none",
                 fontWeight: "600",
-                marginX: "5px",
+                marginX: "2px",
+                minHeight: isMobile ? "auto" : "48px",
+                minWidth: isMobile ? "100%" : "200px", // Fixed width for better alignment
+                fontSize: isMobile ? "0.875rem" : "0.9rem",
+                padding: "8px 16px",
+                whiteSpace: "normal", // Allow text to wrap
+                wordBreak: "break-word",
 
                 "&.Mui-selected": {
                   color: "#fff", // Color when tab is selected
@@ -372,7 +430,7 @@ const Curriculum: React.FC = () => {
           >
             {electiveNosContent.map((item, index) => (
               <Tab
-                sx={{ borderRadius: 2 }}
+                sx={{ borderRadius: 2, textAlign: "center", lineHeight: "1.2" }}
                 key={index}
                 label={item.title}
                 wrapped
@@ -386,7 +444,7 @@ const Curriculum: React.FC = () => {
               boxShadow: "4px 10px 50px 0px rgba(24, 28, 31, 0.50)",
               background:
                 "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(207, 207, 207, 0.16) 0%, rgba(119, 117, 117, 0.21) 27.11%, rgba(75, 71, 71, 0.30) 100%)",
-              padding: 4,
+              padding: isMobile ? 2 : 4,
               borderRadius: 2,
             }}
           >
