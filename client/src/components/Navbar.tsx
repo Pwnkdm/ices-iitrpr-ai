@@ -57,11 +57,15 @@ const Navbar = () => {
             loading="lazy"
           />
           <img
-            src={`https://iceskills.in/wp-content/themes/ices/images/ices.png`}
+             src="/assets/ices_logo.png"
             alt="iit-logo"
             width={60}
             height={60}
             loading="lazy"
+            style={{
+              // borderRadius: "10%", 
+              objectFit: "cover",
+            }}
           />
         </Box>
         {/* Navigation Links for Larger Screens */}
