@@ -1,5 +1,6 @@
 import { Box, Tab, Tabs, Typography, List, ListItem, ListItemText } from "@mui/material";
 import React from "react";
+import './curriculam.css'
 
 const Curriculum: React.FC = () => {
   const [mainTabValue, setMainTabValue] = React.useState(0);
@@ -38,7 +39,7 @@ const Curriculum: React.FC = () => {
       ],
     },
     {
-      title: "Build Blocks of Artificial Intelligence Specializations",
+      title: "Building Blocks of Artificial Intelligence",
       points: [
         "Fundamentals of Machine Learning (ML)",
         "Basics of Deep Learning",
@@ -137,21 +138,52 @@ const Curriculum: React.FC = () => {
   ];
 
   return (
-    <Box sx={{ width: "100%", bgcolor: "background.paper", p: 4 }}>
+    <Box className= "wrapper" sx={{ width: "100%", color:"white", p: 4 }}>
       {/* Main Title */}
       <Typography variant="h4" component="h1" gutterBottom textAlign={"center"} fontWeight={600}>
         Topics You'll Be Learning
       </Typography>
+      <br></br>
 
       {/* Main Tabs */}
       <Tabs
         value={mainTabValue}
         onChange={handleMainTabChange}
         centered
-        sx={{ borderBottom: "1px solid #ddd", mb: 4 }}
+        sx={{
+          borderBottom: "2px solid #ddd", mb: 4,pb:2 ,
+          '& .MuiTabs-indicator': {
+            // backgroundColor: '#fff', // Change the tab indicator color
+            display: "none",
+            outline:"none",
+          },
+          '& .MuiTab-root': {
+            color: '#000', // Change the default tab text color
+            background:"#fff",
+            outline:"none",
+            fontWeight: '600',
+            
+
+            '&.Mui-selected': {
+              color: '#fff', // Color when tab is selected
+              background: 'linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)',
+              outline:"none",
+              fontWeight: '500',
+            
+            },
+            '&:hover': {
+              fontWeight: '700',
+              
+            },
+            
+          },
+        }}
+
+
+
       >
-        <Tab label="Artificial Intelligence - Common NOS (300 Hours)" />
-        <Tab label="Elective NOS Subjects (300 Hours)" />
+        <Tab className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg" sx={{border: "1px solid", mx: 2,borderRadius:10, color:"white"}} label="Artificial Intelligence - Common NOS (300 Hours)" />
+        <Tab className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg" sx={{border: "1px solid",borderRadius:10, color:"white"}} label="Elective NOS Subjects (300 Hours)" />
       </Tabs>
 
       {/* Sub-Tabs and Content */}
@@ -163,21 +195,49 @@ const Curriculum: React.FC = () => {
             onChange={handleSubTabChange}
             variant="scrollable"
             scrollButtons="auto"
-            sx={{ borderBottom: "1px solid #ddd", mb: 4 }}
+            
+
+            sx={{
+               mb: 4,pb:2,
+              '& .MuiTabs-indicator': {
+                display: "none",
+                outline:"none",
+              },
+              '& .MuiTab-root': {
+                color: '#000', // Change the default tab text color
+                background:"#fff",
+                outline:"none",
+                fontWeight: '600',
+                marginX: "5px",
+    
+                '&.Mui-selected': {
+                  color: '#fff', // Color when tab is selected
+                  background: 'linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)',
+                  outline:"none",
+                  fontWeight: '600',
+                
+                },
+                '&:hover': {
+                  fontWeight: '700',
+                  
+                },
+                
+              },
+            }}
           >
             {commonNosContent.map((item, index) => (
-              <Tab key={index} label={item.title} wrapped />
+              <Tab sx={{ borderRadius: 2}} key={index} label={item.title} wrapped />
             ))}
           </Tabs>
 
           {/* Sub-Tab Content for Common NOS */}
-          <Box>
+          <Box sx={{color:"white", padding:"10px"}}>
             <Typography variant="h5" gutterBottom>
               {commonNosContent[subTabValue].title}
             </Typography>
             <List>
               {commonNosContent[subTabValue].points.map((point, index) => (
-                <ListItem key={index}>
+                <ListItem key={index} >
                   <ListItemText primary={point} />
                 </ListItem>
               ))}
@@ -187,7 +247,7 @@ const Curriculum: React.FC = () => {
       )}
 
       {mainTabValue === 1 && (
-        <Box width="80%" margin={"auto"}>
+        <Box width="80%" margin={"auto"} >
           {/* Sub-Tabs for Elective NOS */}
           <Tabs
             value={subTabValue}
@@ -195,14 +255,15 @@ const Curriculum: React.FC = () => {
             variant="scrollable"
             scrollButtons="auto"
             sx={{ borderBottom: "1px solid #ddd", mb: 4 }}
+
           >
             {electiveNosContent.map((item, index) => (
-              <Tab key={index} label={item.title} wrapped />
+              <Tab sx={{color:"white"}} key={index} label={item.title} wrapped />
             ))}
           </Tabs>
 
           {/* Sub-Tab Content for Elective NOS */}
-          <Box>
+          <Box sx={{border: "10px solid green"}}>
             <Typography variant="h5" gutterBottom>
               {electiveNosContent[subTabValue].title}
             </Typography>
