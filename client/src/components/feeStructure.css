@@ -16,8 +16,16 @@
     width: 100%;
     
 }
-.feeHeading > span{
+.feeHeading > span:nth-child(1){
     background: linear-gradient(90deg, #637AFF 33.5%, #eb1636 74%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: normal;
+    text-align: center;
+}
+.feeHeading > span:nth-child(2){
+    background: linear-gradient(90deg,  #f0d6dacc 15%, #637AFF 70.5%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -33,7 +41,7 @@
     justify-content: center;
     margin: auto;
     width: 800px;
-    height: 350px;
+    height: 450px;
     background-color: rgb(72, 72, 72);
     border-radius: 15px;
     padding-bottom: 50px;
@@ -91,7 +99,7 @@
         justify-content: center;
         margin: auto;
         width: 550px;
-        height: 260px;    
+        height: 360px;    
     }
     
     .rows-eachFees{
@@ -112,7 +120,7 @@
         justify-content: center;
         margin: auto;
         width: 95%;
-        height: 260px;    
+        height: 360px;    
     }
 
     .rows-eachFees{

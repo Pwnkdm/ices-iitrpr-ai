@@ -5,7 +5,7 @@ export const FeeStructure: React.FC = () => {
   return (
     <div className='feeScomponent_Parent'>
           <div className='feeHeading'>
-              <span>Fee</span> Structure
+              <span>Fee</span> <span> Structure</span>
           </div>
           <br></br>
             <div className='feesTableHeadingRows'>
