@@ -177,54 +177,99 @@ const Curriculum: React.FC = () => {
       <br></br>
 
       {/* Main Tabs */}
-      <Tabs
-        value={mainTabValue}
-        onChange={handleMainTabChange}
-        orientation={isMobile ? "vertical" : "horizontal"}
-        centered={!isMobile}
-        variant={isMobile ? "scrollable" : "standard"}
+      <Box
         sx={{
-          borderBottom: "2px solid #ddd",
+          width: "100%",
           mb: 4,
-          pb: 2,
-          "& .MuiTabs-indicator": {
-            // backgroundColor: '#fff', // Change the tab indicator color
-            display: "none",
-            outline: "none",
-          },
-          "& .MuiTab-root": {
-            color: "#000", // Change the default tab text color
-            background: "#fff",
-            outline: "none",
-            fontWeight: "600",
-            minWidth: isMobile ? "100%" : "auto",
-            fontSize: isMobile ? "0.875rem" : "1rem",
-            padding: isMobile ? "12px 16px" : "16px 24px",
-
-            "&.Mui-selected": {
-              color: "#fff", // Color when tab is selected
-              background:
-                "linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)",
-              outline: "none",
-              fontWeight: "500",
-            },
-            "&:hover": {
-              fontWeight: "700",
-            },
-          },
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <Tab
-          className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
-          sx={{ border: "1px solid", mx: 2, borderRadius: 10, color: "white" }}
-          label="Artificial Intelligence - Common NOS (300 Hours)"
-        />
-        <Tab
-          className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
-          sx={{ border: "1px solid", borderRadius: 10, color: "white" }}
-          label="Elective NOS Subjects (300 Hours)"
-        />
-      </Tabs>
+        <Tabs
+          value={mainTabValue}
+          onChange={handleMainTabChange}
+          orientation={isMobile ? "vertical" : "horizontal"}
+          variant="scrollable"
+          scrollButtons="auto"
+          allowScrollButtonsMobile
+          sx={{
+            width: isMobile ? "100%" : "auto",
+            borderBottom: "2px solid #ddd",
+            mb: 2,
+            pb: 2,
+            "& .MuiTabs-scrollButtons": {
+              color: "white",
+              "&.Mui-disabled": {
+                opacity: 0.3,
+              },
+            },
+            "& .MuiTabs-flexContainer": {
+              gap: 2,
+              flexWrap: isMobile ? "nowrap" : "wrap",
+              justifyContent: "center",
+            },
+            "& .MuiTabs-indicator": {
+              // backgroundColor: '#fff', // Change the tab indicator color
+              display: "none",
+              outline: "none",
+            },
+            "& .MuiTab-root": {
+              borderRadius: 2,
+              border: "1px solid",
+              color: "white",
+              background: "rgba(255, 255, 255, 0.1)",
+              transition: "all 0.3s ease",
+              minWidth: isMobile ? "100%" : "300px",
+              minHeight: isMobile ? "auto" : "48px",
+              padding: isMobile ? "12px" : "16px 24px",
+              margin: isMobile ? "4px 0" : "0 8px",
+              fontSize: isMobile ? "0.875rem" : "1rem",
+
+              "&.Mui-selected": {
+                color: "#fff", // Color when tab is selected
+                background:
+                  "linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)",
+                outline: "none",
+                fontWeight: "600",
+              },
+              "&:hover": {
+                fontWeight: "700",
+                background: "rgba(255, 255, 255, 0.2)",
+          transform: "translateY(-2px)",
+              },
+            },
+          }}
+        >
+          <Tab
+            className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
+            label={
+              <Typography 
+                sx={{ 
+                  whiteSpace: "normal",
+                  textAlign: "center",
+                  lineHeight: 1.3
+                }}
+              >
+                Artificial Intelligence - Common NOS (300 Hours)
+              </Typography>
+            }
+          />
+          <Tab
+            className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
+            label={
+              <Typography 
+                sx={{ 
+                  whiteSpace: "normal",
+                  textAlign: "center",
+                  lineHeight: 1.3
+                }}
+              >
+                Elective NOS (300 Hours)
+              </Typography>
+            }
+          />
+        </Tabs>
+      </Box>
 
       {/* Sub-Tabs and Content */}
       {mainTabValue === 0 && (
