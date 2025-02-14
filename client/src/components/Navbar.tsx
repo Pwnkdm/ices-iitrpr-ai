@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <AppBar
       position="fixed"
-      sx={{ backgroundColor: "#000000", zIndex: 1000, pt: 1, pb: 1 }}
+      sx={{ backgroundColor: "#28282B", zIndex: 1000, pt: 1, pb: 1 }}
     >
       <Toolbar
         sx={{
@@ -53,7 +53,7 @@ const Navbar = () => {
           onClick={handleLogoClick}
         >
           <img
-            src={`https://cdn.masaischool.com/masai-website/iit_ropar_log_2b73a85a72.webp`}
+            src="/assets/iit_rpr_logo.png"
             alt="iit-logo"
             width={60}
             height={60}
