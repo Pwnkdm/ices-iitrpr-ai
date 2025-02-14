@@ -28,7 +28,7 @@ const FAQs: React.FC = () => {
       sx={{
         py: 10,
         px: 2,
-        background: "linear-gradient(to right, #0000, #1e1e1e)", // Dark gradient
+        background: "#0000", // Dark gradient
         minHeight: "100vh",
       }}
     >
