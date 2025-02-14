@@ -2,12 +2,18 @@ import { Box, Typography } from "@mui/material";
 import HeroPage from "./Hero/HeroPage";
 import Curriculum from "./Curriculam";
 import FAQs from "./FAQs";
-import { FeeStructure } from './FeeStructure'; 
-
+import { FeeStructure } from "./FeeStructure";
 
 const HomePage = () => {
   return (
-    <Box sx={{ minHeight: "200vh", padding: 0, paddingTop: 10 }}>
+    <Box
+      sx={{
+        minHeight: "200vh",
+        padding: 0,
+        paddingTop: 10,
+        background: "#000",
+      }}
+    >
       {/* Why This Course Section */}
       <Box
         id="why-this-course"
@@ -23,7 +29,7 @@ const HomePage = () => {
 
       {/* Fees Section */}
 
-      <Box id="fees" sx={{ marginTop: 10, backgroundColor: '#f9f9f9' }}>
+      <Box id="fees" sx={{ marginTop: 10, backgroundColor: "#f9f9f9" }}>
         <FeeStructure />
       </Box>
 
