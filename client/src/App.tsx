@@ -36,13 +36,15 @@ const ScrollToHash = () => {
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <ScrollToHash />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Navbar />
+        <ScrollToHash />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
