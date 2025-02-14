@@ -1,0 +1,27 @@
+.css-1wxkzlj-MuiTabs-flexContainer{
+  justify-content: center;
+}
+
+.wrapper {
+    animation: scroll 200s linear infinite;
+    background: url("https://images.unsplash.com/photo-1465146633011-14f8e0781093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3450&q=80"),
+      #111111;
+    color: #eee;
+    width: 100%;
+   
+  }
+  
+  @keyframes scroll {
+    100% {
+      background-position: 0px -400%;
+    }
+  }
+  
+  /* Fallback if the operatring system prefers reduced motion*/
+  @media (prefers-reduced-motion) {
+    .wrapper {
+      animation: scroll 1s linear infinite;
+    }
+  }
+  
+  

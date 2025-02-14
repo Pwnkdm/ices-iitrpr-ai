@@ -29,7 +29,10 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: "#000000",zIndex: 1000, pt: 1, pb: 1 }}>
+    <AppBar
+      position="fixed"
+      sx={{ backgroundColor: "#000000", zIndex: 1000, pt: 1, pb: 1 }}
+    >
       <Toolbar
         sx={{
           width: "70%",
@@ -40,14 +43,14 @@ const Navbar = () => {
       >
         {/* Logo or Brand Name */}
         <Box
-         sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 2,
-          paddingLeft: 2,
-          cursor: "pointer",
-        }}
-        onClick={handleLogoClick} 
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2,
+            paddingLeft: 2,
+            cursor: "pointer",
+          }}
+          onClick={handleLogoClick}
         >
           <img
             src={`https://cdn.masaischool.com/masai-website/iit_ropar_log_2b73a85a72.webp`}
@@ -55,29 +58,60 @@ const Navbar = () => {
             width={60}
             height={60}
             loading="lazy"
+            style={{
+              // borderRadius: "10%",
+              objectFit: "cover",
+            }}
           />
           <img
-            src={`https://iceskills.in/wp-content/themes/ices/images/ices.png`}
+            src="/assets/handshake.png"
             alt="iit-logo"
             width={60}
             height={60}
             loading="lazy"
+            style={{
+              // borderRadius: "10%",
+              objectFit: "fill",
+              color: "white"
+            }}
+          />
+          <img
+            src="/assets/ices_logo.png"
+            alt="iit-logo"
+            width={60}
+            height={60}
+            loading="lazy"
+            style={{
+              // borderRadius: "10%",
+              objectFit: "cover",
+            }}
           />
         </Box>
         {/* Navigation Links for Larger Screens */}
         <Box
           sx={{ display: { xs: "none", md: "flex" }, gap: 3, paddingRight: 2 }}
         >
-          <Button component={Link} to="/#curriculum" className="nav-btn">Curriculum</Button>
-          <Button component={Link} to="/#why-this-course" className="nav-btn">Why This Course</Button>
-          <Button component={Link} to="/#fees" className="nav-btn">FEES</Button>
-          <Button component={Link} to="/#faqs" className="nav-btn">FAQs</Button>
-          <Button component={Link} to="/#event" className="nav-btn">Event</Button>
+          <Button component={Link} to="/#curriculum" className="nav-btn">
+            Curriculum
+          </Button>
+          <Button component={Link} to="/#why-this-course" className="nav-btn">
+            Why This Course
+          </Button>
+          <Button component={Link} to="/#fees" className="nav-btn">
+            FEES
+          </Button>
+          <Button component={Link} to="/#faqs" className="nav-btn">
+            FAQs
+          </Button>
+          <Button component={Link} to="/#event" className="nav-btn">
+            Event
+          </Button>
           <Button
             component={Link}
             to="/#register-for-test"
             sx={{
-              backgroundColor: "white",
+              background:
+                "linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)",
               color: "#000000",
               borderRadius: 2,
               p: 1,
@@ -115,22 +149,44 @@ const Navbar = () => {
           }}
         >
           <MenuItem onClick={handleMenuClose}>
-            <Button component={Link} to="/#curriculum" sx={{ color: 'black' }}>CURRICULUM</Button>
+            <Button component={Link} to="/#curriculum" sx={{ color: "black" }}>
+              CURRICULUM
+            </Button>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Button component={Link} to="/#why-this-course" sx={{ color: 'black' }}>WHY THIS COURSE</Button>
+            <Button
+              component={Link}
+              to="/#why-this-course"
+              sx={{ color: "black" }}
+            >
+              WHY THIS COURSE
+            </Button>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Button component={Link} to="/#fees" sx={{ color: 'black' }}>FEES</Button>
+            <Button component={Link} to="/#fees" sx={{ color: "black" }}>
+              FEES
+            </Button>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Button component={Link} to="/#faqs" sx={{ color: 'black' }}>FAQs</Button>
+            <Button component={Link} to="/#faqs" sx={{ color: "black" }}>
+              FAQs
+            </Button>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Button component={Link} to="/#event" sx={{ color: 'black' }}>EVENT</Button>
+            <Button component={Link} to="/#event" sx={{ color: "black" }}>
+              EVENT
+            </Button>
           </MenuItem>
           <MenuItem>
-            <Button component={Link} to="/#register-for-test" sx={{ backgroundColor: "black", color: "white" }}>
+            <Button
+              component={Link}
+              to="/#register-for-test"
+              sx={{
+                background:
+                  "linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)",
+                color: "white",
+              }}
+            >
               REGISTER FOR TEST
             </Button>
           </MenuItem>
