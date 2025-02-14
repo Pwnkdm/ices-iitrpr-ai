@@ -32,6 +32,10 @@ const Navbar = () => {
     navigate("/"); // Navigate to the home route
     window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
   };
+  const handleSignUpPage = () => {
+    navigate("/sign-up"); // Navigate to the home route
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
+  };
 
   const buttonStyle = {
     fontSize: { xs: "0.8rem", sm: "0.9rem", md: "1rem" },
@@ -153,8 +157,9 @@ const Navbar = () => {
             Event
           </Button>
           <Button
-            component={Link}
-            to="/#register-for-test"
+             onClick={handleSignUpPage}
+            // component={Link}
+            // to="/#register-for-test"
             sx={{
               ...buttonStyle,
               background:
@@ -242,8 +247,9 @@ const Navbar = () => {
           ))}
           <MenuItem sx={{ justifyContent: 'center' }}>
             <Button
-              component={Link}
-              to="/#register-for-test"
+              // component={Link}
+              // to="/#register-for-test"
+              onClick={handleSignUpPage}
               sx={{
                 background: "linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)",
                 color: "white",

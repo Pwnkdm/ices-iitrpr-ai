@@ -8,6 +8,7 @@ import "./App.css";
 import Navbar from "./components/Navbar.tsx";
 import HomePage from "./components/HomePage.tsx";
 import { useEffect } from "react";
+import { SignupPage } from "./components/SignupPage.tsx";
 
 const ScrollToHash = () => {
   const { hash } = useLocation();
@@ -36,15 +37,14 @@ const ScrollToHash = () => {
 
 function App() {
   return (
-    <>
-      <Router>
-        <Navbar />
-        <ScrollToHash />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </Router>
-    </>
+    <Router>
+      <Navbar />
+      <ScrollToHash />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/sign-up" element={<SignupPage />} />
+      </Routes>
+    </Router>
   );
 }
 
