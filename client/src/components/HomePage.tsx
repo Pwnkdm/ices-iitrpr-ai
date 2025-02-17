@@ -3,6 +3,7 @@ import HeroPage from "./Hero/HeroPage";
 import Curriculum from "./Curriculam";
 import FAQs from "./FAQs";
 import { FeeStructure } from "./FeeStructure";
+import ContactUs from "./ContactUs";
 
 const HomePage = () => {
   return (
@@ -47,6 +48,11 @@ const HomePage = () => {
         <Typography variant="body1">
           Remove Typography Add Component here
         </Typography>
+      </Box>
+
+      {/* Contact Section */}
+      <Box id="contact" sx={{ marginTop: 10, padding: 0 }}>
+        <ContactUs />
       </Box>
     </Box>
   );
