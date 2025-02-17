@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import minorinai from "../../assets/minorinai.jpeg";
+import minorinai from "../../assets/minorinai.png";
 import ncvet from "../../assets/Ncvet.png";
 
 const courseCard = () => {
@@ -42,12 +42,12 @@ const courseCard = () => {
             transition={{ delay: 0.8 + 1 * 0.2 }}
             className="flex items-start gap-2 text-gray-200"
           >
-            <span className="flex-shrink-0 mt-3 ml-3 w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+            <span className="flex-shrink-0 mt-2 ml-3 w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
               ✓
             </span>
             <p className="text-xs sm:text-sm md:text-xl font-bold text-center py-2">
-              Certificate in AI Technocrat worth 20 Credits by ICES (An Awarding
-              Body Recognized by NCVET)
+              Certificate in AI Technocrat worth 20 Credits by ICES, IIT Ropar &
+              NCVET
             </p>
           </motion.div>
         </div>
@@ -78,9 +78,8 @@ const courseCard = () => {
             <span className="flex-shrink-0 mt-3 ml-3 w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
               ✓
             </span>
-            <p className="text-xs sm:text-sm md:text-xl font-bold text-center py-2">
-              Certificate in AI Technocrat worth 20 Credits by ICES (An Awarding
-              Body Recognized by NCVET)
+            <p className="text-xs sm:text-sm md:text-xl font-bold text-center py-4 mb-2.5 ml-1">
+              Certificate in Minor in AI by IIT Ropar
             </p>
           </motion.div>
         </div>
