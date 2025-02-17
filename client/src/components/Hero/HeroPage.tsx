@@ -6,6 +6,8 @@ import { FocusCardsDemo } from "./focusCardDemo";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import checkList from "../../assets/clipboard-checklist.png";
 import YtComponent from "./YtComponent";
+import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
+import { Divider } from "@mui/material";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -49,9 +51,10 @@ const HeroPage = () => {
               className="text-white text-xl sm:text-xl md:text-3xl lg:text-4xl dark:text-white block items-center space-x-2 w-full max-w-4xl "
             >
               <span> A Certificate in</span> <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-600">
-                AI (Artificial Intelligence) TECHNOCRAT Program
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-600 font-extrabold">
+                AI-TECHNOCRAT Program
               </span>{" "}
+              <br />
               <span>
                 Approved by{" "}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
@@ -70,7 +73,42 @@ const HeroPage = () => {
           </motion.div>
         </motion.div>
 
+        <h6 className="text-white text-4xl">
+          Address by{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+            PM Sh. Narendra Modi
+          </span>{" "}
+          at the{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+            AI Action Summit, Paris
+          </span>
+        </h6>
+        <h6 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-xl text-white mb-8 leading-tight ">
+          <br />
+          <span>
+            <ModeCommentOutlinedIcon /> Decision to set up the{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+              "AI Foundation"
+            </span>{" "}
+            & the{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+              "Council for Sustainable AI"
+            </span>
+          </span>
+
+          <span className="pl-0.5">
+            {" "}
+            Make the{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+              "Global Partnership for AI"
+            </span>{" "}
+          </span>
+          <br />
+          <span className="text-sm">~ February 11, 2025</span>
+        </h6>
         {/* Vision Statement */}
+        <br />
+        <br />
         <motion.div variants={itemVariants} className="text-center mb-16">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-8 leading-tight">
             "Shaping Tomorrow, With a{" "}
@@ -84,6 +122,8 @@ const HeroPage = () => {
             "
           </h2>
         </motion.div>
+        <br />
+        <br />
 
         {/* Main Content Section */}
         <motion.div variants={itemVariants} className="relative">
