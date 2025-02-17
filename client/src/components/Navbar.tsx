@@ -124,14 +124,14 @@ const Navbar = () => {
           >
             Curriculum
           </Button>
-          <Button
+          {/* <Button
             component={Link}
             to="/#why-this-course"
             className="nav-btn"
             sx={buttonStyle}
           >
             Why This Course
-          </Button>
+          </Button> */}
           <Button
             component={Link}
             to="/#fees"
@@ -219,7 +219,7 @@ const Navbar = () => {
         >
           {[
             { label: "CURRICULUM", path: "/#curriculum" },
-            { label: "WHY THIS COURSE", path: "/#why-this-course" },
+            // { label: "WHY THIS COURSE", path: "/#why-this-course" },
             { label: "FEES", path: "/#fees" },
             { label: "FAQs", path: "/#faqs" },
             { label: "EVENT", path: "/#event" },
