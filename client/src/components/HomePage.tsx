@@ -4,6 +4,7 @@ import Curriculum from "./Curriculam";
 import FAQs from "./FAQs";
 import { FeeStructure } from "./FeeStructure";
 import ContactUs from "./ContactUs";
+import Instructors from "./Instructors";
 
 const HomePage = () => {
   return (
@@ -28,6 +29,11 @@ const HomePage = () => {
         <Curriculum />
       </Box>
 
+      {/* Instructor Section */}
+      <Box id="instructors" sx={{ marginTop: 10, padding: 0 }}>
+        <Instructors />
+      </Box>
+
       {/* Fees Section */}
 
       <Box id="fees" sx={{ marginTop: 10, backgroundColor: "#f9f9f9" }}>
@@ -40,7 +46,7 @@ const HomePage = () => {
       </Box>
 
       {/* Event Section */}
-      <Box
+      {/* <Box
         id="event"
         sx={{ marginTop: 10, padding: 4, backgroundColor: "#f9f9f9" }}
       >
@@ -48,7 +54,7 @@ const HomePage = () => {
         <Typography variant="body1">
           Remove Typography Add Component here
         </Typography>
-      </Box>
+      </Box> */}
 
       {/* Contact Section */}
       <Box id="contact" sx={{ marginTop: 10, padding: 0 }}>

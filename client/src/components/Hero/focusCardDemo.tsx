@@ -6,8 +6,8 @@ import convocation from "../../assets/Convocation.jpeg";
 import faculty from "../../assets/faculty.jpeg";
 
 import nsdc from "../../assets/NSDC.png";
-import six_trade_ai from "../../assets/six-trade-ai.png";
-import courseDuration from "../../assets/course_duration.png";
+import six_trade_ai from "../../assets/artificial_intelligence.png";
+import courseDuration from "../../assets/aicte.jpeg";
 
 export function FocusCardsDemo() {
   const cards = [
