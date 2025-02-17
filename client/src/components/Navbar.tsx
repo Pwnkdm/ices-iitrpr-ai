@@ -59,7 +59,7 @@ const Navbar = () => {
     >
       <Toolbar
         sx={{
-          width: { xs: "95%", sm: "90%", md: "80%", lg: "70%" },
+          width: { xs: "95%", sm: "90%", md: "80%", lg: "80%" },
           margin: "auto",
           display: "flex",
           justifyContent: "space-between",
@@ -82,7 +82,7 @@ const Navbar = () => {
             loading="lazy"
             style={{
               width: isMobile && isTablet ? "40px" : "60px",
-              height: isMobile && isTablet ? "40px" : "60px",
+              height: isMobile && isTablet ? "40px" : "65px",
               objectFit: "cover",
             }}
           />
@@ -91,8 +91,8 @@ const Navbar = () => {
             alt="handshake"
             loading="lazy"
             style={{
-              width: isMobile && isTablet? "40px" : "60px",
-              height: isMobile && isTablet ? "40px" : "60px",
+              width: isMobile && isTablet? "40px" : "40px",
+              height: isMobile && isTablet ? "40px" : "30px",
               objectFit: "fill",
             }}
           />
@@ -123,6 +123,14 @@ const Navbar = () => {
             sx={buttonStyle}
           >
             Curriculum
+          </Button>
+          <Button
+            component={Link}
+            to="/#instructors"
+            className="nav-btn"
+            sx={buttonStyle}
+          >
+            Instructors
           </Button>
           {/* <Button
             component={Link}
@@ -155,6 +163,14 @@ const Navbar = () => {
             sx={buttonStyle}
           >
             Event
+          </Button>
+          <Button
+            component={Link}
+            to="/#contact"
+            className="nav-btn"
+            sx={buttonStyle}
+          >
+            Contact
           </Button>
           <Button
              onClick={handleSignUpPage}
@@ -219,10 +235,12 @@ const Navbar = () => {
         >
           {[
             { label: "CURRICULUM", path: "/#curriculum" },
+            { label: "INSTRUCTORS", path: "/#instructors" },
             // { label: "WHY THIS COURSE", path: "/#why-this-course" },
             { label: "FEES", path: "/#fees" },
             { label: "FAQs", path: "/#faqs" },
             { label: "EVENT", path: "/#event" },
+            { label: "CONTACT", path: "/#contact" },
           ].map((item) => (
             <MenuItem 
               key={item.label} 
