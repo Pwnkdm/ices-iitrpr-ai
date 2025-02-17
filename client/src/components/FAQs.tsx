@@ -28,7 +28,8 @@ const FAQs: React.FC = () => {
       sx={{
         py: 10,
         px: 2,
-        background: "#0000", // Dark gradient
+        background:
+          "linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(30, 30, 30, 0.9))", // Semi-transparent gradient
         minHeight: "100vh",
       }}
     >
@@ -61,27 +62,30 @@ const FAQs: React.FC = () => {
                 borderRadius: 3,
                 overflow: "hidden",
                 transition: "all 0.3s ease-in-out",
+                backgroundColor: "rgba(255, 255, 255, 0.1)", // Transparent background for Paper
                 "&:hover": {
                   transform: "scale(1.02)",
+                  backgroundColor: "rgba(255, 255, 255, 0.15)", // Slightly darker on hover
                 },
               }}
             >
               <Accordion
                 defaultExpanded={isMobile ? false : index === 0}
                 sx={{
-                  backgroundColor: "#fff",
+                  backgroundColor: "transparent", // Transparent background for Accordion
                   boxShadow: "none",
                   "&:before": { display: "none" },
                 }}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
+                  expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
                   aria-controls={`panel-${index}-content`}
                   id={`panel-${index}-header`}
                   sx={{
-                    backgroundColor: "#f5f5f5",
+                    backgroundColor: "transparent", // Transparent background for AccordionSummary
                     fontWeight: "bold",
                     padding: "12px 16px",
+                    color: "white", // White text color
                   }}
                 >
                   <Typography
@@ -91,8 +95,11 @@ const FAQs: React.FC = () => {
                     {index + 1}. {faq.question}
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{ p: 3, backgroundColor: "#ffffff" }}>
-                  <Typography variant={isMobile ? "body2" : "body1"}>
+                <AccordionDetails sx={{ p: 3, backgroundColor: "transparent" }}>
+                  <Typography
+                    variant={isMobile ? "body2" : "body1"}
+                    sx={{ color: "white" }}
+                  >
                     {faq.answer}
                   </Typography>
                 </AccordionDetails>

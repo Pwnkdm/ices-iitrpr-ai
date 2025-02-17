@@ -55,7 +55,7 @@ export const Card = React.memo(
       {/* Title below the image */}
       <div
         className={cn(
-          "absolute bottom-0 w-full bg-black/60 text-white text-center mt-80 opacity-100 transition-opacity duration-300",
+          "absolute bottom-0 w-full bg-black/60 text-gray-300 font-bold text-center mt-80 opacity-100 transition-opacity duration-300",
           hovered === index ? "opacity-0" : "opacity-100"
         )}
       >
