@@ -4,7 +4,7 @@ import { Cover } from "../ui/cover";
 import { ColourfulText } from "../ui/colorful-text";
 import { FocusCardsDemo } from "./focusCardDemo";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
-import checkList from "../../assets/checklist_copy.jpeg";
+import checkList from "../../assets/clipboard-checklist.png";
 import YtComponent from "./YtComponent";
 
 const containerVariants = {
@@ -83,9 +83,6 @@ const HeroPage = () => {
             </span>{" "}
             "
           </h2>
-          <h4 className="text-xl sm:text-sm md:text-1xl lg:text-2xl xl:text-4xl font-bold text-white mb-8 leading-tight">
-            What's in it for you ?
-          </h4>
         </motion.div>
 
         {/* Main Content Section */}
@@ -144,7 +141,9 @@ const HeroPage = () => {
               />
             </motion.div>
           </div>
-
+          <h4 className="text-xl sm:text-sm md:text-1xl lg:text-2xl xl:text-4xl font-bold text-white mb-8 leading-tight text-center my-10">
+            What's in it for you ?
+          </h4>
           <div>
             <FocusCardsDemo />
             <CourseCard />
