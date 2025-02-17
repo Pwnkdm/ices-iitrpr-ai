@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Cover } from "../ui/cover";
 import minorinai from "../../assets/minorinai.jpeg";
 import ncvet from "../../assets/Ncvet.png";
 
@@ -13,7 +12,7 @@ const courseCard = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-800/30 backdrop-blur-sm p-4 md:p-6 rounded-lg border border-gray-700/50 shadow-lg my-20">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-800/30 backdrop-blur-sm p-4 md:p-6 rounded-lg border border-gray-700/50 shadow-lg my-30">
       <motion.div
         variants={itemVariants}
         className="text-center -mt-12 absolute left-1/2 transform -translate-x-1/2 z-20"

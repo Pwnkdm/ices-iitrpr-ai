@@ -13,7 +13,7 @@ export function FocusCardsDemo() {
   const cards = [
     {
       id: "1",
-      title: "AI Technocrat-20 Credits Equivalent to AICTE",
+      title: "AI Technocrat-20 Credits Equivalent to AICTE Internship Policy",
       src: courseDuration,
     },
     {

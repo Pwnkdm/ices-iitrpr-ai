@@ -4,7 +4,7 @@ import { Cover } from "../ui/cover";
 import { ColourfulText } from "../ui/colorful-text";
 import { FocusCardsDemo } from "./focusCardDemo";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
-import checkList from "../../assets/checklist.jpeg";
+import checkList from "../../assets/checklist_copy.jpeg";
 import YtComponent from "./YtComponent";
 
 const containerVariants = {
@@ -42,15 +42,30 @@ const HeroPage = () => {
           </h1>
 
           <h2 className="text-5xl text-blue-300 mb-4 font-bold ">Offers</h2>
-          <motion.div className="flex justify-center items-center">
+          <motion.div className="flex justify-center items-center text-center">
             <HoverBorderGradient
               containerClassName="border border-blue-500/30 p-4 text-gray-300"
               as="button"
-              className="text-white text-xl sm:text-xl md:text-3xl lg:text-4xl dark:text-white flex items-center space-x-2 w-full max-w-4xl"
+              className="text-white text-xl sm:text-xl md:text-3xl lg:text-4xl dark:text-white block items-center space-x-2 w-full max-w-4xl "
             >
-              A Certificate AI (Artificial Intelligence) Technocraft Program
-              recognized by NCVET Ministry of Skill Development &
-              Entrepreneurship aligned with NSQF
+              <span> A Certificate in</span> <br />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-600">
+                AI (Artificial Intelligence) TECHNOCRAT Program
+              </span>{" "}
+              <span>
+                Approved by{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+                  NCVET
+                </span>
+              </span>{" "}
+              <br />
+              <span>
+                Ministry of Skill Development & Entrepreneurship aligned with
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+                  {" "}
+                  NSQF
+                </span>
+              </span>
             </HoverBorderGradient>
           </motion.div>
         </motion.div>
@@ -58,8 +73,19 @@ const HeroPage = () => {
         {/* Vision Statement */}
         <motion.div variants={itemVariants} className="text-center mb-16">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-8 leading-tight">
-            Shaping Tomorrow, With a Futuristic Program for Transforming India.
+            "Shaping Tomorrow, With a{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+              Futuristic Program
+            </span>{" "}
+            for Transforming{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+              India
+            </span>{" "}
+            "
           </h2>
+          <h4 className="text-xl sm:text-sm md:text-1xl lg:text-2xl xl:text-4xl font-bold text-white mb-8 leading-tight">
+            What's in it for you ?
+          </h4>
         </motion.div>
 
         {/* Main Content Section */}
@@ -97,7 +123,7 @@ const HeroPage = () => {
                   <span className="flex-shrink-0 mt-2 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
                     ✓
                   </span>
-                  <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                  <p className="text-xl sm:text-2xl md:text-xl lg:text-2xl">
                     {item}
                   </p>
                 </motion.div>
@@ -129,7 +155,7 @@ const HeroPage = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg text-white font-bold shadow-lg hover:shadow-blue-500/20 transition-shadow duration-300"
+              className="px-8 py-3 bg-gradient-to-r from-blue-800 to-purple-600 rounded-lg text-white font-bold shadow-lg hover:shadow-blue-500/20 transition-shadow duration-300"
             >
               Start Your Journey
             </motion.button>
