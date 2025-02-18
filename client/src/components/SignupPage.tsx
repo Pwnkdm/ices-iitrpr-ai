@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 
 export const SignupPage = () => {
+  
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -30,7 +31,7 @@ export const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-console.log(formData,"form");
+    console.log(formData, "form");
 
     if (validate()) {
       try {
@@ -39,6 +40,8 @@ console.log(formData,"form");
 
         // Reset form only after successful submission
         setFormData({ username: "", email: "", phonenumber: "", countryCode: "+91" });
+
+         
       } catch (error) {
         console.error('Error:', error);
         if (error?.response) {
@@ -58,12 +61,16 @@ console.log(formData,"form");
             textAlign: "center",
             mt: 11,
             backgroundColor: "#ffffff",
-            padding: "40px",
+            padding: { xs: "20px", sm: "40px" },
             borderRadius: "10px",
             boxShadow: "1px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)",
           }}
         >
-          <Typography variant="h4" fontWeight="bold" sx={{ mb: 3, color: "#10a37f" }}>
+          <Typography variant="h4" fontWeight="bold" sx={{
+            mb: 3,
+            color: "#10a37f",
+            fontSize: { xs: "1.5rem", sm: "2rem" } // Set font size to 1.5rem for xs (below 400px)
+          }}>
             Enter the following details to continue
           </Typography>
 
@@ -105,8 +112,8 @@ console.log(formData,"form");
             </Typography>
             <Box sx={{ display: "flex", alignItems: "center", marginBottom: "0px" }}>
               {/* Country Code Selector */}
-              <FormControl sx={{ width: "30%", }} margin="normal">
-                <InputLabel>Country Code</InputLabel>
+              <FormControl sx={{ width: "27%", }} margin="normal">
+                <InputLabel sx={{ marginTop: "-6px" }}>Country Code</InputLabel>
                 <Select
                   name="countryCode"
                   value={formData.countryCode}
@@ -170,8 +177,9 @@ console.log(formData,"form");
                 // helperText={errors.phonenumber}
                 margin="normal"
                 sx={{
-                  width: "70%",
-                  marginTop: "5px",
+                  width: "73%",
+                  marginTop: "7px",
+                  marginLeft: "1px"
 
 
                 }}
@@ -199,7 +207,7 @@ console.log(formData,"form");
                 '&:hover': {
                   backgroundColor: "rgb(4 84 65)",
                 }
-              }} 
+              }}
             >
               REGISTER
             </Button>
