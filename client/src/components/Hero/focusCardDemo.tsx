@@ -18,7 +18,7 @@ export function FocusCardsDemo() {
     },
     {
       id: "2",
-      title: "300 Common NOS + 300 Hours Elective NOS of learning",
+      title: "300 Compulsory + 300 Electives of learning",
       src: Hours,
     },
     {

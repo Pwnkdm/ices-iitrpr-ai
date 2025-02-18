@@ -1,21 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
 @import "tailwindcss";
 
 :root {
-  font-family: "Poppins", serif;
+  font-family: "Sora", serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Sora", sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-y: scroll; /* Ensures scrolling is still possible */
   scrollbar-width: none; /* For Firefox */
-  font-family: "Poppins", sans-serif;
+  font-family: "Sora", sans-serif;
 }
 html::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Edge */
