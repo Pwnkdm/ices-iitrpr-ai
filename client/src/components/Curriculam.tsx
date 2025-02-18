@@ -235,7 +235,6 @@ const Curriculum: React.FC = () => {
               "&:hover": {
                 fontWeight: "700",
                 background: "rgba(255, 255, 255, 0.2)",
-          transform: "translateY(-2px)",
               },
             },
           }}
@@ -243,11 +242,12 @@ const Curriculum: React.FC = () => {
           <Tab
             className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
             label={
-              <Typography 
-                sx={{ 
+              <Typography
+                sx={{
                   whiteSpace: "normal",
                   textAlign: "center",
-                  lineHeight: 1.3
+                  lineHeight: 1.3,
+                  fontWeight: 600,
                 }}
               >
                 Compulsory (300 Hours)
@@ -257,11 +257,12 @@ const Curriculum: React.FC = () => {
           <Tab
             className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
             label={
-              <Typography 
-                sx={{ 
+              <Typography
+                sx={{
                   whiteSpace: "normal",
                   textAlign: "center",
-                  lineHeight: 1.3
+                  lineHeight: 1.3,
+                  fontWeight: 600,
                 }}
               >
                 Electives (300 Hours)
