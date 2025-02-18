@@ -39,30 +39,31 @@ const HeroPage = () => {
       >
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500 mt-10">
             <ColourfulText text="IIT-Ropar & ICES" />
           </h1>
-
-          <h2 className="text-5xl text-blue-300 mb-4 font-bold ">Offers</h2>
+          <br />
+          <h2 className="text-5xl text-blue-300 mb-4 font-bold">Offers</h2>
+         <br />
           <motion.div className="flex justify-center items-center text-center">
             <HoverBorderGradient
               containerClassName="border border-blue-500/30 p-4 text-gray-300"
               as="button"
               className="text-white text-xl sm:text-xl md:text-3xl lg:text-4xl dark:text-white block items-center space-x-2 w-full max-w-4xl "
             >
-              <span> A Certificate in</span> <br />
+              <span className="text-[28px]"> A Certificate in</span> <br />
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-600 font-extrabold">
                 AI-TECHNOCRAT Program
               </span>{" "}
               <br />
-              <span>
+              <span className="text-[28px]">
                 Approved by{" "}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
                   NCVET
                 </span>
               </span>{" "}
               <br />
-              <span>
+              <span className="text-[28px]">
                 Ministry of Skill Development & Entrepreneurship aligned with
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
                   {" "}
@@ -72,8 +73,8 @@ const HeroPage = () => {
             </HoverBorderGradient>
           </motion.div>
         </motion.div>
-
-        <h6 className="text-white text-4xl">
+        <br />
+        <h6 className="text-white text-4xl mt-15 ml-10">
           Address by{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
             PM Sh. Narendra Modi
@@ -83,7 +84,7 @@ const HeroPage = () => {
             AI Action Summit, Paris
           </span>
         </h6>
-        <h6 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-xl text-white mb-8 leading-tight ">
+        <h6 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-xl text-white mb-8 leading-tight ml-10 italic">
           <br />
           <span>
             <ModeCommentOutlinedIcon /> Decision to set up the{" "}
@@ -107,6 +108,10 @@ const HeroPage = () => {
           <span className="text-sm">~ February 11, 2025</span>
         </h6>
         {/* Vision Statement */}
+        <br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <motion.div variants={itemVariants} className="text-center mb-16">

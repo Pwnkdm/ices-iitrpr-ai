@@ -14,6 +14,7 @@ import {
   styled,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: "100%",
@@ -24,6 +25,12 @@ const StyledCard = styled(Card)(({ theme }) => ({
     transform: "translateY(-5px)",
     cursor: "pointer",
   },
+}));
+const StyledCardContent = styled(CardContent)(({ theme }) => ({
+  flexGrow: 1,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between", // Ensures spacing between top and bottom elements
 }));
 
 const facultyData = [
@@ -38,7 +45,12 @@ const facultyData = [
   {
     id: 2,
     name: "Prof. Sudarshan Iyengar",
-    title: "Head Coordinator, IIT Ropar",
+    title: (
+      <>
+        Head Coordinator{"\n"}
+        <span style={{ display: "block" }}>IIT Ropar</span>
+      </>
+    ),
     image:
       "https://cdn.masaischool.com/masai-website/Sudarshan_e73ca6492a.webp",
     video: "https://youtu.be/YHNAkPRwI0k",
@@ -49,8 +61,7 @@ const facultyData = [
     name: "Dr. Emily Williams",
     title: "Assistant Professor",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956",
-    video:
-      "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+    video: "",
     isYoutube: false,
   },
   {
@@ -58,8 +69,7 @@ const facultyData = [
     name: "Dr. Emily Williams",
     title: "Assistant Professor",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956",
-    video:
-      "https://www.pexels.com/video/a-man-talking-with-hand-gestures-4106314/",
+    video: "",
     isYoutube: false, // This URL needs to be updated to a direct video file
   },
 ];
@@ -140,7 +150,7 @@ const Instructors = () => {
         <Grid container spacing={4} mt={2}>
           {facultyData.map((faculty) => (
             <Grid item xs={12} sm={6} md={3} key={faculty.id}>
-              <StyledCard onClick={() => handleCardClick(faculty)}>
+              <StyledCard>
                 <Box
                   sx={{ position: "relative", paddingTop: "56.25%" }}
                   height={250}
@@ -167,6 +177,23 @@ const Instructors = () => {
                   <Typography variant="subtitle1" color="text.secondary">
                     {faculty.title}
                   </Typography>
+
+                  {faculty.video && (
+                    <Box
+                      display="flex"
+                      flexDirection="column-reverse"
+                      mt={2}
+                      
+                    >
+                      <Typography
+                        onClick={() => handleCardClick(faculty)}
+                        textAlign={"center"}
+                        color="red"
+                      >
+                        <SmartDisplayOutlinedIcon sx={{ fontSize: "30px" }} />
+                      </Typography>
+                    </Box>
+                  )}
                 </CardContent>
               </StyledCard>
             </Grid>
@@ -244,13 +271,14 @@ const Instructors = () => {
           )}
         </Dialog>
       </Container>
-      <h2 className="text-white text-5xl text-center">
-        Something{" "}
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
-          Informative
-        </span>
-      </h2>
-      <Container maxWidth="lg">
+
+      {/* <Container maxWidth="lg" sx={{ mt: 10 }}>
+        <h2 className="text-white text-5xl text-center">
+          Something{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+            Informative
+          </span>
+        </h2>
         <Grid container spacing={4} mt={2}>
           {facultyData.map((faculty) => (
             <Grid item xs={12} sm={6} md={3} key={faculty.id}>
@@ -298,23 +326,22 @@ const Instructors = () => {
                     </video>
                   )}
                 </Box>
-                {/* <CardContent>
+                <CardContent>
                   <Typography variant="h6" gutterBottom>
                     {faculty.name}
                   </Typography>
                   <Typography variant="subtitle1" color="text.secondary">
                     {faculty.title}
                   </Typography>
-                </CardContent> */}
+                </CardContent>
               </StyledCard>
             </Grid>
           ))}
         </Grid>
-      </Container>
+      </Container> */}
 
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ mt: 10 }}>
         <h2 className="text-white text-5xl text-center mt-10">
-          From the{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
             Leadership{" "}
           </span>

@@ -13,7 +13,8 @@ const HomePage = () => {
         minHeight: "200vh",
         padding: 0,
         paddingTop: 10,
-        background: "#000",
+        background: "#28282B",
+        //background: "linear-gradient(351deg, rgba(175,94,135,1) 0%, rgba(40,40,43,1) 36%)"
       }}
     >
       {/* Why This Course Section */}
@@ -36,7 +37,7 @@ const HomePage = () => {
 
       {/* Fees Section */}
 
-      <Box id="fees" sx={{ marginTop: 10, backgroundColor: "#f9f9f9" }}>
+      <Box id="fees" sx={{ marginTop: 10,  }}>
         <FeeStructure />
       </Box>
 
