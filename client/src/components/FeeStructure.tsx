@@ -29,7 +29,7 @@ export const FeeStructure: React.FC = () => {
                       <div className="columnTwo">INR 60,500</div>
                     </div>
                     <div className='rows-eachFees feetermparent'>
-                      <div className="feesTerms"><span>* Eligible for Skill Loan</span></div>
+                      
                     </div>
                   
             </div>
