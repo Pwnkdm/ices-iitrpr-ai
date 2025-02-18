@@ -44,7 +44,7 @@ const HeroPage = () => {
           </h1>
           <br />
           <h2 className="text-5xl text-blue-300 mb-4 font-bold">Offers</h2>
-         <br />
+          <br />
           <motion.div className="flex justify-center items-center text-center">
             <HoverBorderGradient
               containerClassName="border border-blue-500/30 p-4 text-gray-300"
@@ -141,7 +141,7 @@ const HeroPage = () => {
               // className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
               className="px-8 py-3 "
             >
-              <h3 className="text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl w-full sm:w-2xl">
+              <h3 className="text-white font-bold text-2xl sm:text-3xl md:text-2xl lg:text-4xl w-full sm:w-2xl">
                 <Cover>Eligibility</Cover>
               </h3>
             </motion.div>

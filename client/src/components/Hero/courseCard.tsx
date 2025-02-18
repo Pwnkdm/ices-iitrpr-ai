@@ -34,7 +34,7 @@ const courseCard = () => {
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="space-y-3">
+        <div className="space-y-3 border border-amber-50 p-4 mt-2 rounded">
           <motion.div
             key={1}
             initial={{ x: -20, opacity: 0 }}
@@ -42,21 +42,23 @@ const courseCard = () => {
             transition={{ delay: 0.8 + 1 * 0.2 }}
             className="flex items-start gap-2 text-gray-200"
           >
-            <span className="flex-shrink-0 mt-2 ml-3 w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+            <span className="flex-shrink-0 ml-3 w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
               ✓
             </span>
-            <p className="text-xs sm:text-sm md:text-xl font-bold text-center py-2">
-              Certificate in AI Technocrat worth 20 Credits by ICES, IIT Ropar &
-              NCVET
+            <p className="text-xs sm:text-sm md:text-xl font-bold text-center ">
+              Certificate in AI Technocrat worth 20 Credits <br /> by ICES, IIT
+              Ropar & NCVET
             </p>
           </motion.div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-        <img
-          src={ncvet}
-          alt="AI Program Visualization"
-          className="w-full h-60 sm:h-70 md:h-100 object-fill transition-transform duration-300 group-hover:scale-105"
-        />
+        <div className="mt-5">
+          <img
+            src={ncvet}
+            alt="AI Program Visualization"
+            className="w-full h-60 sm:h-70 md:h-100 object-fill transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
       </motion.div>
 
       {/* Eligibility Content */}
@@ -67,28 +69,30 @@ const courseCard = () => {
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="space-y-3">
+        <div className="space-y-3 border border-amber-50 p-5 mt-2 rounded">
           <motion.div
             key={1}
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.8 + 1 * 0.2 }}
-            className="flex items-start gap-2 text-gray-200"
+            className="flex items-start gap-2 text-gray-200 text-center "
           >
-            <span className="flex-shrink-0 mt-3 ml-3 w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+            <span className="flex-shrink-0  ml-3 w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
               ✓
             </span>
-            <p className="text-xs sm:text-sm md:text-xl font-bold text-center py-4 mb-2.5 ml-1">
+            <p className="text-xs sm:text-sm md:text-xl font-bold text-center py-1 mb-2.5 ml-1">
               Certificate in Minor in AI by IIT Ropar
             </p>
           </motion.div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-        <img
-          src={minorinai}
-          alt="AI Program Visualization"
-          className="w-full h-full sm:h-48 md:h-100 object-fill transition-transform duration-300 group-hover:scale-105"
-        />
+        <div className="mt-5">
+          <img
+            src={minorinai}
+            alt="AI Program Visualization"
+            className="w-full h-full sm:h-48 md:h-100 object-fill transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
       </motion.div>
     </div>
   );
