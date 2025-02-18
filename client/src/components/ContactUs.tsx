@@ -84,13 +84,13 @@ const ContactUs: React.FC = () => {
       description: (
         <>
           Reach out to us on <br />
-          <span
+          {/* <span
             onClick={() => () =>
               handleEmailClick("support_aiforall@iitrpr.ac.in")}
             style={{ cursor: "pointer", }}
           >
             support_aiforall@iitrpr.ac.in
-          </span>
+          </span> */}
           <br />
           <span
             onClick={() => () => handleEmailClick("ices@iitrpr.ac.in")}
@@ -108,12 +108,12 @@ const ContactUs: React.FC = () => {
         <>
           Mon-Fri from 11am to 8pm
           <br />
-          <span
+          {/* <span
             onClick={() => handlePhoneClick("+918904904840")}
             style={{ cursor: "pointer", }}
           >
             +918904904840
-          </span>
+          </span> */}
           <br />
           <span
             onClick={() => handlePhoneClick("+918904904840")}
@@ -147,7 +147,7 @@ const ContactUs: React.FC = () => {
         </Container>
       </HeroSection>
 
-      <Container sx={{ py: 8 }}>
+      <Container sx={{pb:5}}>
         <Grid container spacing={4}>
           {contactCards.map((card, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
