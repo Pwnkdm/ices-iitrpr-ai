@@ -57,7 +57,7 @@ const HomePage = () => {
       </Box> */}
 
       {/* Contact Section */}
-      <Box id="contact" sx={{ marginTop: 10, padding: 0 }}>
+      <Box id="contact" sx={{ padding: 0 }}>
         <ContactUs />
       </Box>
     </Box>
