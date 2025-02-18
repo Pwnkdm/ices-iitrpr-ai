@@ -14,17 +14,6 @@ app.use(cors({
 dotenv.config({path: './config.env'});
 
 
-
-
-
-
-
-
-
-
-
-
-
 app.use(express.json());
 
 connectDB();

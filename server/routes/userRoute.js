@@ -18,22 +18,37 @@ router.post('/sign-up', async (req, res) => {
     try {
         const data = req.body;
 
-        // Check if user already exists in the database
-        const alreadyPresent = await User.findOne({ email: data.email });
+        // Ensure phone number is formatted correctly (remove non-numeric characters)
+        let result = {
+            ...data,
+            phoneNumber: data.countryCode + data.phonenumber.replace(/\D/g, '')  // Remove non-numeric characters
+        };
+
+        console.log(result, "res");
+
+        // Check if user already exists in the database by either email or phoneNumber
+        const alreadyPresent = await User.findOne({
+            $or: [
+                { email: data.email },
+                { phoneNumber: result.phoneNumber }
+            ]
+        });
+
+        console.log(alreadyPresent, "saasd");
 
         // If user already exists, send response and stop further execution
         if (alreadyPresent) {
             return res.status(400).json({
-                msg: "User already exists"
+                message: "User already Registered!"
             });
         }
 
         // Create a new user and save to the database
-        const user = await User.create(req.body);
+        const user = await User.create(result);
 
         // Send a success response with the created user
         res.status(201).json({
-            message: 'User created successfully',
+            message: 'User created successfully!',
             user
         });
     } catch (error) {
@@ -45,5 +60,6 @@ router.post('/sign-up', async (req, res) => {
         });
     }
 });
+
 
 export default router;
