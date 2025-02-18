@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.0.6",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.8.1",
+    "axios": "^1.7.9",
     "motion": "^12.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import './singnupPage.css'
 import { Container, TextField, Button, Typography, Box } from "@mui/material";
+import axios from "axios";
 
 export const SignupPage = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
+    username: "",
     email: "",
-    phone: "",
+    phonenumber: "",
   });
   const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState("");
 
   const validate = () => {
     let tempErrors = {};
-    tempErrors.fullName = formData.fullName ? "" : "Full Name is required";
+    tempErrors.username = formData.username ? "" : "Full Name is required";
     tempErrors.email =
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) ? "" : "Please enter a valid email ID";
-    tempErrors.phone =
-      /^[0-9]{10}$/.test(formData.phone) ? "" : "Please enter a valid mobile number";
+    tempErrors.phonenumber =
+      /^[0-9]{10}$/.test(formData.phonenumber) ? "" : "Please enter a valid mobile number";
     setErrors(tempErrors);
     return Object.values(tempErrors).every((x) => x === "");
   };
@@ -25,16 +27,27 @@ export const SignupPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setServerError(""); // Reset server error message
+
     if (validate()) {
-      alert("Form submitted successfully!");
+      try {
+        const response = await axios.post('http://localhost:8080/user/sign-up', formData);
+        console.log('Response:', response.data);
+        alert("Signup successful!");
+
+        // Reset form only after successful submission
+        setFormData({ username: "", email: "", phonenumber: "" });
+      } catch (error) {
+        console.error('Error:', error);
+        if (error.response) {
+          setServerError(error.response.data.message || "Signup failed. Please try again.");
+        } else {
+          setServerError("Something went wrong. Please check your internet connection.");
+        }
+      }
     }
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-    });
   };
 
   return (
@@ -53,35 +66,30 @@ export const SignupPage = () => {
           <Typography variant="h4" fontWeight="bold" sx={{ mb: 3, color: "#10a37f" }}>
             Enter the following details to continue
           </Typography>
+
+          {serverError && (
+            <Typography color="error" sx={{ mb: 2 }}>
+              {serverError}
+            </Typography>
+          )}
+
           <Box component="form" sx={{ mt: 3 }} onSubmit={handleSubmit}>
-            <Typography variant="body1"  gutterBottom style={{textAlign:"left"}}>
-              Full Name <span style={{ color: "red", }}>*</span>
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+              Full Name <span style={{ color: "red" }}>*</span>
             </Typography>
             <TextField
               fullWidth
-              name="fullName"
+              name="username"
               variant="outlined"
-              value={formData.fullName}
+              value={formData.username}
               placeholder="Enter Full Name"
               onChange={handleChange}
-              error={Boolean(errors.fullName)}
-              helperText={errors.fullName}
+              error={Boolean(errors.username)}
+              helperText={errors.username}
               margin="normal"
-              sx={{
-                marginTop:"0px",
-                marginBottom: "17px",
-                "& .MuiOutlinedInput-root": {
-                  "&.Mui-focused fieldset": { borderColor: "#10a37f" }, // On focus
-                },
-                "& .MuiInputBase-input::placeholder": {
-                  fontSize: "18px", // Placeholder font size
-                  fontWeight: "500", // Placeholder font weight
-                  fontFamily:"sans-serif"
-                },
-              }}
-              
             />
-            <Typography variant="body1"  gutterBottom style={{textAlign:"left"}}>
+
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
               Email Address <span style={{ color: "red" }}>*</span>
             </Typography>
             <TextField
@@ -94,46 +102,23 @@ export const SignupPage = () => {
               error={Boolean(errors.email)}
               helperText={errors.email}
               margin="normal"
-              sx={{
-                marginTop:"0px",
-                marginBottom: "17px",
-                "& .MuiOutlinedInput-root": {
-                  "&.Mui-focused fieldset": { borderColor: "#10a37f" }, // On focus
-                },
-                "& .MuiInputBase-input::placeholder": {
-                  fontSize: "18px", // Placeholder font size
-                  fontWeight: "500", // Placeholder font weight
-                  fontFamily:"sans-serif"
-                },
-              }}
             />
-            <Typography variant="body1"  gutterBottom style={{textAlign:"left"}}>
+
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
               Phone Number <span style={{ color: "red" }}>*</span>
             </Typography>
             <TextField
               fullWidth
-              name="phone"
-              placeholder="Enter Your Contact number"
+              name="phonenumber"
+              placeholder="Enter Your Contact Number"
               variant="outlined"
-              value={formData.phone}
+              value={formData.phonenumber}
               onChange={handleChange}
-              error={Boolean(errors.phone)}
-              helperText={errors.phone}
+              error={Boolean(errors.phonenumber)}
+              helperText={errors.phonenumber}
               margin="normal"
-              sx={{
-                marginTop:"0px",
-                marginBottom: "17px",
-                "& .MuiOutlinedInput-root": {
-                  "&.Mui-focused fieldset": { borderColor: "#10a37f" }, // On focus
-                },
-                "& .MuiInputBase-input::placeholder": {
-                  fontSize: "18px", // Placeholder font size
-                  fontWeight: "500", // Placeholder font weight
-                  fontFamily:"sans-serif"
-                },
-              }}
-              
             />
+
             <Button
               fullWidth
               variant="contained"
@@ -148,7 +133,6 @@ export const SignupPage = () => {
                 '&:hover': {
                   backgroundColor: "rgb(4 84 65)",
                 }
-                
               }}
             >
               SIGN UP
