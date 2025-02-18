@@ -28,8 +28,8 @@ const FAQs: React.FC = () => {
       sx={{
         py: 10,
         px: 2,
-        background:
-          "linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(30, 30, 30, 0.9))", // Semi-transparent gradient
+        // background:
+        //   "linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(30, 30, 30, 0.9))", // Semi-transparent gradient
         minHeight: "100vh",
       }}
     >

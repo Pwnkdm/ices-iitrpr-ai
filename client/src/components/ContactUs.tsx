@@ -138,7 +138,7 @@ const ContactUs: React.FC = () => {
   ];
 
   return (
-    <Box sx={{ backgroundColor: "#000" }}>
+    <Box>
       <HeroSection>
         <Container>
           <Typography variant="h2" component="h1" gutterBottom>

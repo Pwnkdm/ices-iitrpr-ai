@@ -250,7 +250,7 @@ const Curriculum: React.FC = () => {
                   lineHeight: 1.3
                 }}
               >
-                Artificial Intelligence - Common NOS (300 Hours)
+                Compulsory (300 Hours)
               </Typography>
             }
           />
@@ -264,7 +264,7 @@ const Curriculum: React.FC = () => {
                   lineHeight: 1.3
                 }}
               >
-                Elective NOS (300 Hours)
+                Electives (300 Hours)
               </Typography>
             }
           />
