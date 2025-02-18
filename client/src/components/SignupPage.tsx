@@ -133,7 +133,7 @@ export const SignupPage = () => {
                 '&:hover': {
                   backgroundColor: "rgb(4 84 65)",
                 }
-              }}
+              }} 
             >
               SIGN UP
             </Button>

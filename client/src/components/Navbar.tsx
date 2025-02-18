@@ -190,7 +190,7 @@ const Navbar = () => {
               },
             }}
           >
-            Register for Test
+            Register
           </Button>
         </Box>
 
@@ -280,7 +280,7 @@ const Navbar = () => {
                 }
               }}
             >
-              REGISTER FOR TEST
+              REGISTER
             </Button>
           </MenuItem>
         </Menu>
