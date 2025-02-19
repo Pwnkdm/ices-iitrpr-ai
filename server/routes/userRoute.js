@@ -21,7 +21,7 @@ router.post('/sign-up', async (req, res) => {
         // Ensure phone number is formatted correctly (remove non-numeric characters)
         let result = {
             ...data,
-            phoneNumber: data.countryCode + data.phonenumber.replace(/\D/g, '')  // Remove non-numeric characters
+            phonenumber: data.countryCode + data.phonenumber.replace(/\D/g, '')  // Remove non-numeric characters
         };
 
         console.log(result, "res");
@@ -30,7 +30,7 @@ router.post('/sign-up', async (req, res) => {
         const alreadyPresent = await User.findOne({
             $or: [
                 { email: data.email },
-                { phoneNumber: result.phoneNumber }
+                { phonenumber: result.phonenumber }
             ]
         });
 
@@ -44,6 +44,8 @@ router.post('/sign-up', async (req, res) => {
         }
 
         // Create a new user and save to the database
+        console.log(result,"resu");
+        
         const user = await User.create(result);
 
         // Send a success response with the created user
