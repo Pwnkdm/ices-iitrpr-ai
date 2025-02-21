@@ -6,7 +6,7 @@ const app = express();
 import userRouter from "./routes/userRoute.js";
 
 app.use(cors({
-    origin: "http://localhost:5173", 
+    origin: "https://ices-iitrpr-ai.vercel.app/", 
     methods: "GET,POST", 
     allowedHeaders: "Content-Type,Authorization",
   }));
