@@ -5,13 +5,13 @@ import cors from 'cors'
 const app = express();
 import userRouter from "./routes/userRoute.js";
 
+dotenv.config({path: './config.env'});
 app.use(cors({
-    origin: "https://ices-iitrpr-ai.vercel.app/", 
+    origin: process.env.BASE_URL, 
     methods: "GET,POST", 
     allowedHeaders: "Content-Type,Authorization",
   }));
 
-dotenv.config({path: './config.env'});
 
 
 app.use(express.json());
