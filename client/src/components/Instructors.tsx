@@ -178,7 +178,7 @@ const Instructors = () => {
                     {faculty.title}
                   </Typography>
 
-                  {faculty.video && (
+                  {/* {faculty.video && (
                     <Box
                       display="flex"
                       flexDirection="column-reverse"
@@ -193,7 +193,7 @@ const Instructors = () => {
                         <SmartDisplayOutlinedIcon sx={{ fontSize: "30px" }} />
                       </Typography>
                     </Box>
-                  )}
+                  )} */}
                 </CardContent>
               </StyledCard>
             </Grid>
