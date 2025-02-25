@@ -39,8 +39,8 @@ const Navbar = () => {
     fontSize: { xs: "0.8rem", sm: "0.9rem", md: "1rem" },
     padding: { xs: "4px 8px", sm: "6px 12px", md: "8px 16px" },
     whiteSpace: "nowrap",
-    background:"none",
-    color:"#fff",
+    background: "none",
+    color: "#fff",
     transition: "color 0.3s ease-in-out",
     "&:hover": {
       color: "#fa3a00", // Light red-orange hover effect
@@ -126,15 +126,20 @@ const Navbar = () => {
             { label: "Event", path: "/#event" },
             { label: "Contact", path: "/#contact" },
           ].map((item) => (
-            <Button key={item.label} component={Link} to={item.path} sx={buttonStyle}>
+            <Button
+              key={item.label}
+              component={Link}
+              to={item.path}
+              sx={buttonStyle}
+            >
               {item.label}
             </Button>
           ))}
-          <Button
-            onClick={() => handleNavigation("/sign-up")}
+           <Button
+            onClick={() => handleNavigation("/tot")}
             sx={{
               ...buttonStyle,
-              background:" linear-gradient(90deg, #D80F20, #1547CE)",
+              background: " linear-gradient(90deg, #D80F20, #1547CE)",
               color: "white",
               borderRadius: 2,
               p: 1,
@@ -146,8 +151,30 @@ const Navbar = () => {
               },
             }}
           >
-            Register
+            ToT
           </Button>
+          <Button
+            onClick={() => handleNavigation("/sign-up")}
+            sx={{
+              ...buttonStyle,
+              background: " linear-gradient(90deg, #D80F20, #1547CE)",
+              color: "white",
+              borderRadius: 2,
+              p: 1,
+              // display: "flex", // Enable flexbox
+              // flexDirection: "column", // Stack text vertically
+              // alignItems: "center", // Center content horizontally
+              // textAlign: "center",
+              "&:hover": {
+                color: "#fff",
+                transform: "translateY(-2px) scale(1.02)",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+              },
+            }}
+          >
+           Apply For Program
+          </Button>
+         
         </Box>
 
         {/* Mobile Menu Button */}
@@ -185,15 +212,18 @@ const Navbar = () => {
             { label: "Event", path: "/#event" },
             { label: "Contact", path: "/#contact" },
           ].map((item) => (
-            <MenuItem key={item.label} onClick={() => handleNavigation(item.path)}>
+            <MenuItem
+              key={item.label}
+              onClick={() => handleNavigation(item.path)}
+            >
               {item.label}
             </MenuItem>
           ))}
           <MenuItem>
             <Button
-              onClick={() => handleNavigation("/sign-up")}
+              onClick={() => handleNavigation("/tot")}
               sx={{
-                background:" linear-gradient(90deg, #D80F20, #1547CE)",
+                background: " linear-gradient(90deg, #D80F20, #1547CE)",
                 color: "white",
                 width: "100%",
                 padding: 1,
@@ -205,7 +235,26 @@ const Navbar = () => {
                 },
               }}
             >
-              Register
+               ToT
+            </Button>
+          </MenuItem>
+          <MenuItem>
+            <Button
+              onClick={() => handleNavigation("/sign-up")}
+              sx={{
+                background: " linear-gradient(90deg, #D80F20, #1547CE)",
+                color: "white",
+                width: "100%",
+                padding: 1,
+                borderRadius: 1,
+                "&:hover": {
+                  color: "#fff",
+                  transform: "translateY(-2px)",
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+                },
+              }}
+            >
+               Apply For Program
             </Button>
           </MenuItem>
         </Menu>

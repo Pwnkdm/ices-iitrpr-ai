@@ -289,7 +289,8 @@ const Curriculum: React.FC = () => {
             sx={{
               mb: isMobile ? 2 : 4,
               pb: 2,
-              maxWidth: "100%",
+              maxWidth: "70%",
+              margin: "auto",
               "& .MuiTabs-scrollButtons": {
                 color: "white",
                 "&.Mui-disabled": {
@@ -343,6 +344,8 @@ const Curriculum: React.FC = () => {
 
           {/* Sub-Tab Content for Common NOS */}
           <Box
+            width="50%"
+            margin="auto"
             sx={{
               boxShadow: "4px 10px 50px 0px rgba(24, 28, 31, 0.50)",
               background:
@@ -433,6 +436,8 @@ const Curriculum: React.FC = () => {
             sx={{
               mb: isMobile ? 2 : 4,
               pb: 2,
+              maxWidth: "70%",
+              margin: "auto",
               "& .MuiTabs-scrollButtons": {
                 color: "white",
                 "&.Mui-disabled": {
@@ -486,6 +491,8 @@ const Curriculum: React.FC = () => {
 
           {/* Sub-Tab Content for Elective NOS */}
           <Box
+            width="50%"
+            margin="auto"
             sx={{
               boxShadow: "4px 10px 50px 0px rgba(24, 28, 31, 0.50)",
               background:

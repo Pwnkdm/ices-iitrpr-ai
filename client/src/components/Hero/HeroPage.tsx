@@ -204,6 +204,9 @@ const HeroPage = () => {
 
           {/* CTA Section */}
           <motion.div variants={itemVariants} className="text-center mt-12">
+
+            {/* <motion.button
+
             <motion.button
               onClick={() => handleNavigate("/sign-up")}
               whileHover={{ scale: 1.05 }}
@@ -211,12 +214,14 @@ const HeroPage = () => {
               className="px-8 py-3 bg-gradient-to-r from-blue-800 to-purple-600 rounded-lg text-white font-bold shadow-lg hover:shadow-blue-500/20 transition-shadow duration-300"
             >
               Start Your Journey
-            </motion.button>
+            </motion.button> */}
           </motion.div>
         </motion.div>
       </motion.div>
 
+
       {/* Youtube videos component  */}
+
       {/* <YtComponent /> */}
     </div>
   );
