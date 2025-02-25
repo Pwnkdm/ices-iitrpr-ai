@@ -34,44 +34,49 @@ const StyledCardContent = styled(CardContent)(({ theme }) => ({
 }));
 
 const facultyData = [
-  {
-    id: 1,
-    name: "Dr. Pushpendra P. Singh",
-    title: "Dean R&D, IIT Ropar; Project Director, iHub – AWaDH",
-    image: "/assets/ppssir.png",
-    video: "https://youtu.be/xIkY_54B1Bs",
-    isYoutube: true,
-  },
+  // {
+  //   id: 1,
+  //   name: "Dr. Pushpendra P. Singh",
+  //   title: "Dean R&D, IIT Ropar; Project Director, iHub – AWaDH",
+  //   image: "/assets/ppssir.png",
+  //   video: "https://youtu.be/xIkY_54B1Bs",
+  //   isYoutube: true,
+  // },
   {
     id: 2,
     name: "Prof. Sudarshan Iyengar",
     title: (
       <>
-        Head Coordinator{"\n"}
+        Head Coordinator (Faculty){"\n"}
         <span style={{ display: "block" }}>IIT Ropar</span>
       </>
     ),
     image:
       "https://cdn.masaischool.com/masai-website/Sudarshan_e73ca6492a.webp",
-    video: "https://youtu.be/YHNAkPRwI0k",
-    isYoutube: true,
-  },
-  {
-    id: 3,
-    name: "Dr. Emily Williams",
-    title: "Assistant Professor",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956",
     video: "",
     isYoutube: false,
   },
   {
-    id: 4,
-    name: "Dr. Emily Williams",
-    title: "Assistant Professor",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956",
+    id: 3,
+    name: "Er. Munish Kumar Goswami",
+    title:  (
+      <>
+        Dy. Director (Projects), ICE(India){"\n"}
+        <span style={{ display: "block" }}>Manager QP/NOS/SME, ICES</span>
+      </>
+    ),
+    image: "https://iceskills.in/wp-content/uploads/2024/07/Er.-Munish-Kumar.jpg",
     video: "",
-    isYoutube: false, // This URL needs to be updated to a direct video file
+    isYoutube: false,
   },
+  // {
+  //   id: 4,
+  //   name: "Dr. Emily Williams",
+  //   title: "Assistant Professor",
+  //   image: "https://images.unsplash.com/photo-1580489944761-15a19d654956",
+  //   video: "",
+  //   isYoutube: false, // This URL needs to be updated to a direct video file
+  // },
 ];
 
 const leadersData = [
@@ -90,14 +95,14 @@ const leadersData = [
     image: "https://iceskills.in/wp-content/uploads/2024/08/1-236x300.jpg",
     desc: "Advancing Skill Development Excellence:ICES- where community thrive strategic curriculum planning, innovative teaching methods, technology integration and personalized learning experiences.",
   },
-  {
-    id: 3,
-    name: "Ved Mani Tiwari",
-    title: "CEO, NSDC",
-    image:
-      "https://masai-website-images.s3.ap-south-1.amazonaws.com/Ved_Sir_s_picture_f71edf9077.jpg",
-    desc: "This collaboration shapes a new era of technological excellence by equipping learners with cutting-edge skills, ensuring our workforce maintains global competitiveness.",
-  },
+  // {
+  //   id: 3,
+  //   name: "Ved Mani Tiwari",
+  //   title: "CEO, NSDC",
+  //   image:
+  //     "https://masai-website-images.s3.ap-south-1.amazonaws.com/Ved_Sir_s_picture_f71edf9077.jpg",
+  //   desc: "This collaboration shapes a new era of technological excellence by equipping learners with cutting-edge skills, ensuring our workforce maintains global competitiveness.",
+  // },
   {
     id: 4,
     name: "Pushpendra P. Singh",
@@ -141,19 +146,19 @@ const Instructors = () => {
     <>
       <Container maxWidth="lg" sx={{ mb: 10 }}>
         <h2 className="text-white text-5xl text-center">
-          Faculty{" "}
+          {/* Faculty{" "} */}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
             Co-ordinators
           </span>
         </h2>
 
-        <Grid container spacing={4} mt={2}>
+        <Grid container spacing={4} mt={2} margin={"auto"}>
           {facultyData.map((faculty) => (
-            <Grid item xs={12} sm={6} md={3} key={faculty.id}>
+            <Grid item xs={12} sm={12} md={6} lg={5} xl={5} key={faculty.id}>
               <StyledCard>
                 <Box
                   sx={{ position: "relative", paddingTop: "56.25%" }}
-                  height={250}
+                  height={450}
                 >
                   {/* Just display the poster image in the cards */}
                   <Box
@@ -350,11 +355,11 @@ const Instructors = () => {
 
         <Grid container spacing={4} mt={2}>
           {leadersData.map((ldr) => (
-            <Grid item xs={12} sm={6} md={3} key={ldr.id}>
+            <Grid item xs={12} sm={6} md={4} key={ldr.id}>
               <StyledCard>
                 <Box
                   sx={{ position: "relative", paddingTop: "56.25%" }}
-                  height={300}
+                  height={400}
                 >
                   {/* Just display the poster image in the cards */}
                   <Box

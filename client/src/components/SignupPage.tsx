@@ -71,7 +71,7 @@ export const SignupPage = () => {
             color: "#10a37f",
             fontSize: { xs: "1.5rem", sm: "2rem" } // Set font size to 1.5rem for xs (below 400px)
           }}>
-            Enter the following details to continue
+            AI-Technocrat Program Registration
           </Typography>
 
           <Box component="form" sx={{ mt: 3 }} onSubmit={handleSubmit}>
