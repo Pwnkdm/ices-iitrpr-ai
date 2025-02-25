@@ -5,13 +5,13 @@ import cors from 'cors'
 const app = express();
 import userRouter from "./routes/userRoute.js";
 
+dotenv.config({path: './config.env'});
 app.use(cors({
-    origin: "http://localhost:5173", 
+    origin: process.env.BASE_URL, 
     methods: "GET,POST", 
     allowedHeaders: "Content-Type,Authorization",
   }));
 
-dotenv.config({path: './config.env'});
 
 
 app.use(express.json());
