@@ -178,6 +178,7 @@ const Instructors = () => {
                     {faculty.title}
                   </Typography>
 
+                  {/* video play icon in the card to show video in the modal  */}
                   {/* {faculty.video && (
                     <Box
                       display="flex"
