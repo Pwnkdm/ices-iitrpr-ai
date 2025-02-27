@@ -1,6 +1,6 @@
 import { FocusCards } from "../ui/focus-cards";
 import immerImage from "../../assets/5_day_immersion.webp";
-import Hours from "../../assets/300 hours.png";
+import Hours from "../../assets/Hours2.jpg";
 import alumni from "../../assets/alumni.jpeg";
 import convocation from "../../assets/Convocation.jpeg";
 import faculty from "../../assets/faculty.jpeg";
