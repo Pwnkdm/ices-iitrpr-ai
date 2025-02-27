@@ -123,7 +123,7 @@ const Navbar = () => {
             { label: "Instructors", path: "/#instructors" },
             { label: "Fees", path: "/#fees" },
             { label: "FAQs", path: "/#faqs" },
-            { label: "Event", path: "/#event" },
+            { label: "Events", path: "/#event" },
             { label: "Contact", path: "/#contact" },
           ].map((item) => (
             <Button
@@ -209,7 +209,7 @@ const Navbar = () => {
             { label: "Instructors", path: "/#instructors" },
             { label: "Fees", path: "/#fees" },
             { label: "FAQs", path: "/#faqs" },
-            { label: "Event", path: "/#event" },
+            { label: "Events", path: "/#event" },
             { label: "Contact", path: "/#contact" },
           ].map((item) => (
             <MenuItem

@@ -91,7 +91,12 @@ const leadersData = [
   {
     id: 2,
     name: "Dr. S.L Swamy",
-    title: "President, ICES",
+    title: (
+      <>
+        President, ICES{"\n"}
+        <span style={{ display: "block" }}>Chairman, ICE(India)</span>
+      </>
+    ),
     image: "https://iceskills.in/wp-content/uploads/2024/08/1-236x300.jpg",
     desc: "Advancing Skill Development Excellence:ICES- where community thrive strategic curriculum planning, innovative teaching methods, technology integration and personalized learning experiences.",
   },
