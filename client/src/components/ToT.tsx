@@ -11,6 +11,8 @@ import {
   Alert,
 } from "@mui/material";
 import { styled } from "@mui/system";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Main container that holds both columns
 const StyledContainer = styled(Container)(({ theme }) => ({
@@ -21,18 +23,18 @@ const StyledContainer = styled(Container)(({ theme }) => ({
 }));
 
 // Left side - scrollable content
-const ScrollableContent = styled(Box)(({ theme }) => ({
-  height: "calc(100vh - 80px)", // Account for margins/padding
-  overflowY: "auto",
-  padding: theme.spacing(4),
-  backgroundColor: "#f5f5f5",
-  borderRadius: theme.spacing(2),
-  "&::-webkit-scrollbar": {
-    display: "none", // Hide scrollbar for Chrome, Safari, and newer Edge
-  },
-  scrollbarWidth: "none", // Hide scrollbar for Firefox
-  msOverflowStyle: "none",
-}));
+// const ScrollableContent = styled(Box)(({ theme }) => ({
+//   height: "calc(100vh - 80px)", // Account for margins/padding
+//   overflowY: "auto",
+//   padding: theme.spacing(4),
+//   backgroundColor: "#f5f5f5",
+//   borderRadius: theme.spacing(2),
+//   "&::-webkit-scrollbar": {
+//     display: "none", // Hide scrollbar for Chrome, Safari, and newer Edge
+//   },
+//   scrollbarWidth: "none", // Hide scrollbar for Firefox
+//   msOverflowStyle: "none",
+// }));
 
 // Right side - fixed content
 const FixedFormWrapper = styled(Box)(({ theme }) => ({
@@ -52,13 +54,11 @@ const FormContainer = styled(Paper)(({ theme }) => ({
 }));
 
 const ToT: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: "",
+    username: "",
     email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-    dob: "",
+    phonenumber: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -67,19 +67,16 @@ const ToT: React.FC = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.fullName) newErrors.fullName = "Full name is required";
+    if (!formData.username) newErrors.username = "Full name is required";
     if (!formData.email) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Invalid email format";
     }
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-    } else if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
-    }
-    if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+    if (!formData.phonenumber) {
+      newErrors.phonenumber = "Phone Number is required";
+    } else if (!/^[0-9]+$/.test(formData.phonenumber)) {
+      newErrors.phonenumber = "Please enter a valid mobile number";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -90,19 +87,22 @@ const ToT: React.FC = () => {
     if (validateForm()) {
       setIsLoading(true);
       try {
-        // Simulated API call
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL_TOT}/add`,
+          formData
+        );
+
         setSubmitStatus({
           type: "success",
           message: "Registration successful!",
         });
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
         setFormData({
-          fullName: "",
+          username: "",
           email: "",
-          password: "",
-          confirmPassword: "",
-          phone: "",
-          dob: "",
+          phonenumber: "",
         });
       } catch (error) {
         setSubmitStatus({
@@ -126,7 +126,7 @@ const ToT: React.FC = () => {
   return (
     <StyledContainer maxWidth="xl">
       {/* <Grid container spacing={4}> */}
-        {/* <Grid item xs={12} md={6}>
+      {/* <Grid item xs={12} md={6}>
           <ScrollableContent>
             <Typography variant="h3" gutterBottom textAlign="center" color= "#10a37f" fontWeight={600}>
               TRAINING OF TRAINERS (TOT)/ FACULTY
@@ -138,71 +138,84 @@ const ToT: React.FC = () => {
            <div></div>
           </ScrollableContent>
         </Grid> */}
-        <Grid margin={"auto"} width="40%">
-          <FixedFormWrapper>
-            <FormContainer>
-              <Typography variant="h4" textAlign="center"  color= "#10a37f" fontWeight={600}>
-                ToT Registration
-              </Typography>
-              <Typography variant="h4" gutterBottom textAlign="center" color= "#10a37f" fontWeight={600}>
-              TRAINING OF TRAINERS (TOT)/ FACULTY
+      <Grid margin={"auto"} width="40%">
+        <FixedFormWrapper>
+          <FormContainer>
+            <Typography
+              variant="h4"
+              textAlign="center"
+              color="#10a37f"
+              fontWeight={600}
+            >
+              ToT Registration
             </Typography>
+            {/* <Typography
+              variant="h4"
+              gutterBottom
+              textAlign="center"
+              color="#10a37f"
+              fontWeight={600}
+            >
+              TRAINING OF TRAINERS (TOT)/ FACULTY
+            </Typography> */}
 
-              {submitStatus && (
-                <Alert
-                  severity={submitStatus.type}
-                  onClose={() => setSubmitStatus(null)}
-                >
-                  {submitStatus.message}
-                </Alert>
-              )}
-              <form onSubmit={handleSubmit}>
-                <TextField
-                  fullWidth
-                  label="Full Name"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  error={!!errors.fullName}
-                  helperText={errors.fullName}
-                  margin="normal"
-                />
-                <TextField
-                  fullWidth
-                  label="Email Address"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  error={!!errors.email}
-                  helperText={errors.email}
-                  margin="normal"
-                />
-                <TextField
-                  fullWidth
-                  label="Phone Number"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  margin="normal"
-                />
+            {submitStatus && (
+              <Alert
+                severity={submitStatus.type}
+                onClose={() => setSubmitStatus(null)}
+              >
+                {submitStatus.message}
+              </Alert>
+            )}
+            <form onSubmit={handleSubmit}>
+              <TextField
+                fullWidth
+                label="Full Name"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                error={!!errors.username}
+                helperText={errors.username}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="Email Address"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                error={!!errors.email}
+                helperText={errors.email}
+                margin="normal"
+              />
+              <TextField
+                fullWidth
+                label="Phone Number"
+                name="phonenumber"
+                type="tel"
+                value={formData.phonenumber}
+                onChange={handleChange}
+                error={!!errors.phonenumber}
+                helperText={errors.phonenumber}
+                margin="normal"
+              />
 
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  disabled={isLoading}
-                  sx={{ mt: 3 }}
-                >
-                  {isLoading ? <CircularProgress size={24} /> : "Register"}
-                </Button>
-              </form>
-            </FormContainer>
-          </FixedFormWrapper>
-        </Grid>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                size="large"
+                disabled={isLoading}
+                sx={{ mt: 3 }}
+              >
+                {isLoading ? <CircularProgress size={24} /> : "Register"}
+              </Button>
+            </form>
+          </FormContainer>
+        </FixedFormWrapper>
+      </Grid>
       {/* </Grid> */}
     </StyledContainer>
   );

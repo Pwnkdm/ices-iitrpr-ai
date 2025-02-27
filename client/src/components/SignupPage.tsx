@@ -3,9 +3,10 @@ import './singnupPage.css';
 import { Container, TextField, Button, Typography, Box, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 import axios from "axios";
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 export const SignupPage = () => {
-  
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -35,8 +36,11 @@ export const SignupPage = () => {
 
     if (validate()) {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/sign-up`, formData);
+        const response = await axios.post(`${import.meta.env.VITE_API_URL_USER}/sign-up`, formData);
         toast.success("Registered Successfully!");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
 
         // Reset form only after successful submission
         setFormData({ username: "", email: "", phonenumber: "", countryCode: "+91" });

@@ -24,8 +24,6 @@ router.post('/sign-up', async (req, res) => {
             phonenumber: data.countryCode + data.phonenumber.replace(/\D/g, '')  // Remove non-numeric characters
         };
 
-        console.log(result, "res");
-
         // Check if user already exists in the database by either email or phoneNumber
         const alreadyPresent = await User.findOne({
             $or: [
@@ -33,8 +31,6 @@ router.post('/sign-up', async (req, res) => {
                 { phonenumber: result.phonenumber }
             ]
         });
-
-        console.log(alreadyPresent, "saasd");
 
         // If user already exists, send response and stop further execution
         if (alreadyPresent) {
@@ -44,8 +40,6 @@ router.post('/sign-up', async (req, res) => {
         }
 
         // Create a new user and save to the database
-        console.log(result,"resu");
-        
         const user = await User.create(result);
 
         // Send a success response with the created user
