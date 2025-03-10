@@ -11,7 +11,11 @@ export const SignupPage = () => {
     username: "",
     email: "",
     phonenumber: "",
-    countryCode: "+91"  // Set India as default country code
+    countryCode: "+91",  // Set India as default country code
+    collegeName: "",
+    collegeAddress: "",
+    city: "",
+    pincode: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -22,6 +26,10 @@ export const SignupPage = () => {
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) ? "" : "Please enter a valid email ID";
     tempErrors.phonenumber =
       /^[0-9]+$/.test(formData.phonenumber) ? "" : "Please enter a valid mobile number";
+    tempErrors.collegeName = formData.collegeName ? "" : "College Name is required";
+    tempErrors.collegeAddress = formData.collegeAddress ? "" : "College Address is required";
+    tempErrors.city = formData.city ? "" : "City is required";
+    tempErrors.pincode = /^[0-9]+$/.test(formData.pincode) ? "" : "Please enter a valid Pincode";
     setErrors(tempErrors);
     return Object.values(tempErrors).every((x) => x === "");
   };
@@ -33,19 +41,37 @@ export const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData, "form");
-
+  
     if (validate()) {
       try {
         const response = await axios.post(`${import.meta.env.VITE_API_URL_USER}/sign-up`, formData);
         toast.success("Registered Successfully!");
+  
+        // Trigger PDF download before navigating
+        const link = document.createElement('a');
+        link.href = '../assets/brochure.pdf'; // Replace with the correct path to your PDF
+        link.download = 'brochure.pdf'; // This will trigger the download with the filename "brochure.pdf"
+        document.body.appendChild(link); // Append link to the DOM
+        link.click(); // Simulate click to start download
+        document.body.removeChild(link); // Remove the link after clicking it
+  
+        // Navigate after a small delay (enough time for download to start)
         setTimeout(() => {
-          navigate("/");
-        }, 2000);
-
+          navigate("/"); // Redirect to homepage
+        }, 2000); // Adjust the timeout as needed
+  
         // Reset form only after successful submission
-        setFormData({ username: "", email: "", phonenumber: "", countryCode: "+91" });
-
-         
+        setFormData({
+          username: "",
+          email: "",
+          phonenumber: "",
+          countryCode: "+91",
+          collegeName: "",
+          collegeAddress: "",
+          city: "",
+          pincode: ""
+        });
+  
       } catch (error) {
         console.error('Error:', error);
         if (error?.response) {
@@ -56,6 +82,7 @@ export const SignupPage = () => {
       }
     }
   };
+  
 
   return (
     <div className="large-header" style={{ backgroundColor: "#f4f4f9", minHeight: "100vh", padding: "0px 0", margin: "auto" }}>
@@ -75,10 +102,11 @@ export const SignupPage = () => {
             color: "#10a37f",
             fontSize: { xs: "1.5rem", sm: "2rem" } // Set font size to 1.5rem for xs (below 400px)
           }}>
-            AI-Technocrat Program Registration
+            Brochure 
           </Typography>
 
           <Box component="form" sx={{ mt: 3 }} onSubmit={handleSubmit}>
+            {/* Existing Fields */}
             <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
               Full Name <span style={{ color: "red" }}>*</span>
             </Typography>
@@ -125,9 +153,9 @@ export const SignupPage = () => {
                   label="Country Code"
                   sx={{ marginTop: "-8px" }}
                 >
+                  {/* Country Code options */}
                   <MenuItem value="+1">+1 (USA)</MenuItem>
                   <MenuItem value="+44">+44 (UK)</MenuItem>
-                  <MenuItem value="+91">+91 (India)</MenuItem>
                   <MenuItem value="+61">+61 (Australia)</MenuItem>
                   <MenuItem value="+81">+81 (Japan)</MenuItem>
                   <MenuItem value="+49">+49 (Germany)</MenuItem>
@@ -138,7 +166,6 @@ export const SignupPage = () => {
                   <MenuItem value="+86">+86 (China)</MenuItem>
                   <MenuItem value="+55">+55 (Brazil)</MenuItem>
                   <MenuItem value="+20">+20 (Egypt)</MenuItem>
-                  <MenuItem value="+91">+91 (India)</MenuItem>
                   <MenuItem value="+82">+82 (South Korea)</MenuItem>
                   <MenuItem value="+31">+31 (Netherlands)</MenuItem>
                   <MenuItem value="+32">+32 (Belgium)</MenuItem>
@@ -165,7 +192,7 @@ export const SignupPage = () => {
                   <MenuItem value="+95">+95 (Myanmar)</MenuItem>
                   <MenuItem value="+98">+98 (Iran)</MenuItem>
                   <MenuItem value="+99">+99 (Other countries)</MenuItem>
-
+                  {/* Other countries */}
                 </Select>
               </FormControl>
 
@@ -178,24 +205,89 @@ export const SignupPage = () => {
                 value={formData.phonenumber}
                 onChange={handleChange}
                 error={Boolean(errors.phonenumber)}
-                // helperText={errors.phonenumber}
                 margin="normal"
                 sx={{
                   width: "73%",
                   marginTop: "7px",
                   marginLeft: "1px"
-
-
                 }}
               />
             </Box>
 
-            {/* Display combined helper text for both country code and phone number */}
-            {(errors.phonenumber || errors.countryCode) && (
-              <Typography color="error" sx={{ mt: 0, ml: "15px", textAlign: "left", fontSize: "0.75rem" }}>
-                {errors.phonenumber || errors.countryCode}
-              </Typography>
-            )}
+            {/* New Fields */}
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+              College Name <span style={{ color: "red" }}>*</span>
+            </Typography>
+            <TextField
+              fullWidth
+              name="collegeName"
+              variant="outlined"
+              value={formData.collegeName}
+              placeholder="Enter College Name"
+              onChange={handleChange}
+              error={Boolean(errors.collegeName)}
+              helperText={errors.collegeName}
+              margin="normal"
+              sx={{ marginTop: 0, marginBottom: "20px" }}
+            />
+
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+              College Address <span style={{ color: "red" }}>*</span>
+            </Typography>
+            <TextField
+              fullWidth
+              name="collegeAddress"
+              variant="outlined"
+              value={formData.collegeAddress}
+              placeholder="Enter College Address"
+              onChange={handleChange}
+              error={Boolean(errors.collegeAddress)}
+              helperText={errors.collegeAddress}
+              margin="normal"
+              sx={{ marginTop: 0, marginBottom: "20px" }}
+            />
+
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Box sx={{ width: "50%", paddingRight: "8px" }}>
+                <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+                  City <span style={{ color: "red" }}>*</span>
+                </Typography>
+                <TextField
+                  fullWidth
+                  name="city"
+                  variant="outlined"
+                  value={formData.city}
+                  placeholder="Enter City"
+                  onChange={handleChange}
+                  error={Boolean(errors.city)}
+                  helperText={errors.city}
+                  margin="normal"
+                  sx={{
+                    marginTop:0
+                  }}
+                />
+              </Box>
+
+              <Box sx={{ width: "50%", paddingLeft: "8px" }}>
+                <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+                  Pincode <span style={{ color: "red" }}>*</span>
+                </Typography>
+                <TextField
+                  fullWidth
+                  name="pincode"
+                  variant="outlined"
+                  value={formData.pincode}
+                  placeholder="Enter Pincode"
+                  onChange={handleChange}
+                  error={Boolean(errors.pincode)}
+                  helperText={errors.pincode}
+                  margin="normal"
+                  sx={{
+                    marginTop:0
+                  }}
+                />
+              </Box>
+            </Box>
 
             <Button
               fullWidth
@@ -213,7 +305,7 @@ export const SignupPage = () => {
                 }
               }}
             >
-              REGISTER
+              DOWNLOAD
             </Button>
           </Box>
         </Box>
