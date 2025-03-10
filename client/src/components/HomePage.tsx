@@ -5,6 +5,7 @@ import FAQs from "./FAQs";
 import { FeeStructure } from "./FeeStructure";
 import ContactUs from "./ContactUs";
 import Instructors from "./Instructors";
+import WhyThisProgram from "./WhyThisProgram";
 
 const HomePage = () => {
   return (
@@ -23,6 +24,7 @@ const HomePage = () => {
         sx={{ marginTop: 0, padding: 0, width: "100vw" }}
       >
         <HeroPage />
+        <WhyThisProgram />
       </Box>
 
       {/* Curriculum Section */}

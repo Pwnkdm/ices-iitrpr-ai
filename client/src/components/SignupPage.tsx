@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './singnupPage.css';
-import { Container, TextField, Button, Typography, Box, Select, MenuItem, InputLabel, FormControl } from "@mui/material";
+import { Container, TextField, Button, Typography, Box, Select, MenuItem, InputLabel, FormControl, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ export const SignupPage = () => {
     pincode: "",
   });
   const [errors, setErrors] = useState({});
+  const [openPopup, setOpenPopup] = useState(false); // State to control popup visibility
 
   const validate = () => {
     let tempErrors = {};
@@ -47,18 +48,25 @@ export const SignupPage = () => {
         const response = await axios.post(`${import.meta.env.VITE_API_URL_USER}/sign-up`, formData);
         toast.success("Registered Successfully!");
   
-        // Trigger PDF download before navigating
-        const link = document.createElement('a');
-        link.href = '../assets/brochure.pdf'; // Replace with the correct path to your PDF
-        link.download = 'brochure.pdf'; // This will trigger the download with the filename "brochure.pdf"
-        document.body.appendChild(link); // Append link to the DOM
-        link.click(); // Simulate click to start download
-        document.body.removeChild(link); // Remove the link after clicking it
+        // Open the popup
+        setOpenPopup(true);
   
-        // Navigate after a small delay (enough time for download to start)
+        // Trigger PDF download after a small delay
         setTimeout(() => {
-          navigate("/"); // Redirect to homepage
-        }, 2000); // Adjust the timeout as needed
+          // Trigger PDF download
+          const link = document.createElement('a');
+          link.href = '../assets/brochure.pdf'; // Replace with the correct path to your PDF
+          link.download = 'brochure.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          // Navigate to homepage after the download starts
+          setTimeout(() => {
+            navigate("/"); // Redirect to homepage
+          }, 1000); // Adjust the timeout as needed to ensure the download starts before navigating
+  
+        }, 2000); // Adjust delay before triggering download
   
         // Reset form only after successful submission
         setFormData({
@@ -82,7 +90,10 @@ export const SignupPage = () => {
       }
     }
   };
-  
+
+  const handleClosePopup = () => {
+    setOpenPopup(false);
+  };
 
   return (
     <div className="large-header" style={{ backgroundColor: "#f4f4f9", minHeight: "100vh", padding: "0px 0", margin: "auto" }}>
@@ -106,7 +117,7 @@ export const SignupPage = () => {
           </Typography>
 
           <Box component="form" sx={{ mt: 3 }} onSubmit={handleSubmit}>
-            {/* Existing Fields */}
+            {/* Full Name Field */}
             <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
               Full Name <span style={{ color: "red" }}>*</span>
             </Typography>
@@ -123,6 +134,7 @@ export const SignupPage = () => {
               sx={{ marginTop: 0, marginBottom: "20px" }}
             />
 
+            {/* Email Address Field */}
             <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
               Email Address <span style={{ color: "red" }}>*</span>
             </Typography>
@@ -139,6 +151,7 @@ export const SignupPage = () => {
               sx={{ marginTop: 0, marginBottom: "20px" }}
             />
 
+            {/* Contact Number Field */}
             <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
               Contact Number <span style={{ color: "red" }}>*</span>
             </Typography>
@@ -153,50 +166,12 @@ export const SignupPage = () => {
                   label="Country Code"
                   sx={{ marginTop: "-8px" }}
                 >
-                  {/* Country Code options */}
-                  <MenuItem value="+1">+1 (USA)</MenuItem>
-                  <MenuItem value="+44">+44 (UK)</MenuItem>
-                  <MenuItem value="+61">+61 (Australia)</MenuItem>
-                  <MenuItem value="+81">+81 (Japan)</MenuItem>
-                  <MenuItem value="+49">+49 (Germany)</MenuItem>
-                  <MenuItem value="+33">+33 (France)</MenuItem>
-                  <MenuItem value="+34">+34 (Spain)</MenuItem>
-                  <MenuItem value="+39">+39 (Italy)</MenuItem>
-                  <MenuItem value="+7">+7 (Russia)</MenuItem>
-                  <MenuItem value="+86">+86 (China)</MenuItem>
-                  <MenuItem value="+55">+55 (Brazil)</MenuItem>
-                  <MenuItem value="+20">+20 (Egypt)</MenuItem>
-                  <MenuItem value="+82">+82 (South Korea)</MenuItem>
-                  <MenuItem value="+31">+31 (Netherlands)</MenuItem>
-                  <MenuItem value="+32">+32 (Belgium)</MenuItem>
-                  <MenuItem value="+43">+43 (Austria)</MenuItem>
-                  <MenuItem value="+44">+44 (United Kingdom)</MenuItem>
-                  <MenuItem value="+53">+53 (Cuba)</MenuItem>
-                  <MenuItem value="+52">+52 (Mexico)</MenuItem>
-                  <MenuItem value="+55">+55 (Brazil)</MenuItem>
-                  <MenuItem value="+56">+56 (Chile)</MenuItem>
-                  <MenuItem value="+58">+58 (Venezuela)</MenuItem>
-                  <MenuItem value="+60">+60 (Malaysia)</MenuItem>
-                  <MenuItem value="+61">+61 (Australia)</MenuItem>
-                  <MenuItem value="+62">+62 (Indonesia)</MenuItem>
-                  <MenuItem value="+63">+63 (Philippines)</MenuItem>
-                  <MenuItem value="+64">+64 (New Zealand)</MenuItem>
-                  <MenuItem value="+65">+65 (Singapore)</MenuItem>
-                  <MenuItem value="+66">+66 (Thailand)</MenuItem>
-                  <MenuItem value="+82">+82 (South Korea)</MenuItem>
-                  <MenuItem value="+84">+84 (Vietnam)</MenuItem>
                   <MenuItem value="+91">+91 (India)</MenuItem>
-                  <MenuItem value="+92">+92 (Pakistan)</MenuItem>
-                  <MenuItem value="+93">+93 (Afghanistan)</MenuItem>
-                  <MenuItem value="+94">+94 (Sri Lanka)</MenuItem>
-                  <MenuItem value="+95">+95 (Myanmar)</MenuItem>
-                  <MenuItem value="+98">+98 (Iran)</MenuItem>
-                  <MenuItem value="+99">+99 (Other countries)</MenuItem>
-                  {/* Other countries */}
+                  {/* Add other countries */}
                 </Select>
               </FormControl>
 
-              {/* Phone Number */}
+              {/* Phone Number Field */}
               <TextField
                 fullWidth
                 name="phonenumber"
@@ -214,7 +189,7 @@ export const SignupPage = () => {
               />
             </Box>
 
-            {/* New Fields */}
+            {/* College Name Field */}
             <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
               College Name <span style={{ color: "red" }}>*</span>
             </Typography>
@@ -231,6 +206,7 @@ export const SignupPage = () => {
               sx={{ marginTop: 0, marginBottom: "20px" }}
             />
 
+            {/* College Address Field */}
             <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
               College Address <span style={{ color: "red" }}>*</span>
             </Typography>
@@ -247,6 +223,7 @@ export const SignupPage = () => {
               sx={{ marginTop: 0, marginBottom: "20px" }}
             />
 
+            {/* City and Pincode Fields */}
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Box sx={{ width: "50%", paddingRight: "8px" }}>
                 <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
@@ -289,6 +266,7 @@ export const SignupPage = () => {
               </Box>
             </Box>
 
+            {/* Submit Button */}
             <Button
               fullWidth
               variant="contained"
@@ -310,6 +288,21 @@ export const SignupPage = () => {
           </Box>
         </Box>
       </Container>
+
+      {/* Popup dialog */}
+      <Dialog open={openPopup} onClose={handleClosePopup}>
+        <DialogTitle>Thank You!</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1">
+            Thank you for enquiring, we will contact you ASAP.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePopup} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
