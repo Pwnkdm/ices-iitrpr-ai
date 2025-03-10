@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
-import { Opacity } from "@mui/icons-material";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -20,6 +19,7 @@ const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+  console.log(isTablet, "isTablet");
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -36,22 +36,29 @@ const Navbar = () => {
   };
 
   const buttonStyle = {
-    fontSize: { xs: "0.8rem", sm: "0.9rem", md: "1rem" },
+    fontSize: { xs: "0.8rem", sm: "0.5rem", md: "0.7rem", lg: "1rem" },
     padding: { xs: "4px 8px", sm: "6px 12px", md: "8px 16px" },
     whiteSpace: "nowrap",
     background: "none",
-    color: "#fff",
+    color: "#181818",
     transition: "color 0.3s ease-in-out",
     "&:hover": {
       color: "#fa3a00", // Light red-orange hover effect
     },
   };
 
+  const logoStyle = {
+    width: isMobile ? "40px" : isTablet ? "50px" : "60px",
+    height: isMobile ? "40px" : isTablet ? "50px" : "60px",
+    objectFit: "fill",
+  };
+
   return (
     <AppBar
       position="fixed"
       sx={{
-        backgroundColor: "#28282B",
+        // backgroundColor: "#28282B",
+        backgroundColor: "#F6F6F7",
         zIndex: 1000,
         pt: { xs: 0.5, sm: 1 },
         pb: { xs: 0.5, sm: 1 },
@@ -59,7 +66,7 @@ const Navbar = () => {
     >
       <Toolbar
         sx={{
-          width: { xs: "95%", sm: "90%", md: "80%", lg: "80%" },
+          width: { xs: "100%", sm: "100%", md: "100%", lg: "80%" },
           margin: "auto",
           display: "flex",
           justifyContent: "space-between",
@@ -71,7 +78,7 @@ const Navbar = () => {
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: { xs: 1, sm: 2 },
+            gap: { xs: 1, sm: 1, md: 1, lg: 2 },
             cursor: "pointer",
           }}
           onClick={() => handleNavigation("/")}
@@ -80,32 +87,15 @@ const Navbar = () => {
             src="/assets/iit_rpr_logo.png"
             alt="iit-logo"
             loading="lazy"
-            style={{
-              width: isMobile ? "40px" : "60px",
-              height: isMobile ? "40px" : "65px",
-              objectFit: "cover",
-            }}
+            style={logoStyle}
           />
-          {/* <img
-            src="/assets/handshake.png"
-            alt="handshake"
-            loading="lazy"
-            style={{
-              width: isMobile ? "40px" : "40px",
-              height: isMobile ? "40px" : "30px",
-              objectFit: "fill",
-            }}
-          /> */}
+
           <br />
           <img
-            src="/assets/ices_logo.png"
+            src="/assets/logo-2.jpeg"
             alt="iit-logo"
             loading="lazy"
-            style={{
-              width: isMobile ? "40px" : "60px",
-              height: isMobile ? "40px" : "60px",
-              objectFit: "cover",
-            }}
+            style={logoStyle}
           />
         </Box>
 
@@ -113,18 +103,18 @@ const Navbar = () => {
         <Box
           sx={{
             display: { xs: "none", md: "flex" },
-            gap: { md: 1, lg: 2 },
+            // gap: { md: 1, lg: 2 },
             alignItems: "center",
             flexWrap: "nowrap",
           }}
         >
           {[
+            { label: "overview", path: "/#overview" },
+            { label: "Why this course?", path: "/#Why_this_course" },
             { label: "Curriculum", path: "/#curriculum" },
-            { label: "Instructors", path: "/#instructors" },
-            { label: "Fees", path: "/#fees" },
+            { label: "events", path: "/#events" },
+            { label: "contact", path: "/#contact" },
             { label: "FAQs", path: "/#faqs" },
-            { label: "Events", path: "/#event" },
-            { label: "Contact", path: "/#contact" },
           ].map((item) => (
             <Button
               key={item.label}
@@ -135,20 +125,13 @@ const Navbar = () => {
               {item.label}
             </Button>
           ))}
-           <Button
+          <Button
             onClick={() => handleNavigation("/tot")}
             sx={{
               ...buttonStyle,
-              background: " linear-gradient(90deg, #D80F20, #1547CE)",
-              color: "white",
+              color: "black",
               borderRadius: 2,
               p: 1,
-              // fontWeight: 600,
-              "&:hover": {
-                color: "#fff",
-                transform: "translateY(-2px) scale(1.02)",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-              },
             }}
           >
             ToT
@@ -157,24 +140,14 @@ const Navbar = () => {
             onClick={() => handleNavigation("/sign-up")}
             sx={{
               ...buttonStyle,
-              background: " linear-gradient(90deg, #D80F20, #1547CE)",
-              color: "white",
-              borderRadius: 2,
+              background: "Orange",
+              color: "black",
+              borderRadius: 0,
               p: 1,
-              // display: "flex", // Enable flexbox
-              // flexDirection: "column", // Stack text vertically
-              // alignItems: "center", // Center content horizontally
-              // textAlign: "center",
-              "&:hover": {
-                color: "#fff",
-                transform: "translateY(-2px) scale(1.02)",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-              },
             }}
           >
-           Apply For Program
+            Enquire Now
           </Button>
-         
         </Box>
 
         {/* Mobile Menu Button */}
@@ -185,7 +158,9 @@ const Navbar = () => {
           sx={{ display: { md: "none" } }}
           onClick={handleMenuOpen}
         >
-          <MenuIcon sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }} />
+          <MenuIcon
+            sx={{ fontSize: { xs: "1.5rem", sm: "2rem", color: "black" } }}
+          />
         </IconButton>
 
         {/* Mobile Dropdown Menu */}
@@ -205,12 +180,12 @@ const Navbar = () => {
           }}
         >
           {[
+            { label: "overview", path: "/#overview" },
+            { label: "Why this course?", path: "/#Why_this_course" },
             { label: "Curriculum", path: "/#curriculum" },
-            { label: "Instructors", path: "/#instructors" },
-            { label: "Fees", path: "/#fees" },
+            { label: "events", path: "/#events" },
+            { label: "contact", path: "/#contact" },
             { label: "FAQs", path: "/#faqs" },
-            { label: "Events", path: "/#event" },
-            { label: "Contact", path: "/#contact" },
           ].map((item) => (
             <MenuItem
               key={item.label}
@@ -223,38 +198,28 @@ const Navbar = () => {
             <Button
               onClick={() => handleNavigation("/tot")}
               sx={{
-                background: " linear-gradient(90deg, #D80F20, #1547CE)",
-                color: "white",
+                color: "black",
                 width: "100%",
                 padding: 1,
                 borderRadius: 1,
-                "&:hover": {
-                  color: "#fff",
-                  transform: "translateY(-2px)",
-                  boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-                },
+                background: "none",
               }}
             >
-               ToT
+              ToT
             </Button>
           </MenuItem>
           <MenuItem>
             <Button
               onClick={() => handleNavigation("/sign-up")}
               sx={{
-                background: " linear-gradient(90deg, #D80F20, #1547CE)",
-                color: "white",
+                background: "orange",
+                color: "black",
                 width: "100%",
                 padding: 1,
-                borderRadius: 1,
-                "&:hover": {
-                  color: "#fff",
-                  transform: "translateY(-2px)",
-                  boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-                },
+                borderRadius: 0,
               }}
             >
-               Apply For Program
+              Enquire Now
             </Button>
           </MenuItem>
         </Menu>
