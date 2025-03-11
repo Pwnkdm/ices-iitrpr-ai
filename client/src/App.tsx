@@ -4,13 +4,12 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import "./App.css";
 import Navbar from "./components/Navbar.tsx";
 import HomePage from "./components/HomePage.tsx";
 import { useEffect } from "react";
 import { SignupPage } from "./components/SignupPage.tsx";
-import { ToastContainer } from 'react-toastify';
-import { ToT } from "./components/ToT.tsx";
+import { ToastContainer } from "react-toastify";
+import ToT from "./components/ToT.tsx";
 
 const ScrollToHash = () => {
   const { hash } = useLocation();
@@ -41,7 +40,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <ToastContainer/>
+      <ToastContainer />
       <ScrollToHash />
       <Routes>
         <Route path="/" element={<HomePage />} />

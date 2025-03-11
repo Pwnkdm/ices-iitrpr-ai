@@ -1,11 +1,10 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import HeroPage from "./Hero/HeroPage";
 import Curriculum from "./Curriculam";
 import FAQs from "./FAQs";
 import { FeeStructure } from "./FeeStructure";
 import ContactUs from "./ContactUs";
 import Instructors from "./Instructors";
-import WhyThisProgram from "./WhyThisProgram";
 
 const HomePage = () => {
   return (
@@ -14,15 +13,11 @@ const HomePage = () => {
         minHeight: "200vh",
         padding: 0,
         paddingTop: 10,
-        background: "#28282B",
-        //background: "linear-gradient(351deg, rgba(175,94,135,1) 0%, rgba(40,40,43,1) 36%)"
+        //   "linear-gradient(351deg, rgba(175,94,135,1) 0%, rgba(40,40,43,1) 36%)",
       }}
     >
       {/* Why This Course Section */}
-      <Box
-        id="why-this-course"
-        sx={{ marginTop: 0, padding: 0, width: "100vw" }}
-      >
+      <Box id="overview" sx={{ marginTop: 0, padding: 0, width: "100vw" }}>
         <HeroPage />
         <WhyThisProgram />
       </Box>
@@ -39,7 +34,7 @@ const HomePage = () => {
 
       {/* Fees Section */}
 
-      <Box id="fees" sx={{ marginTop: 10,  }}>
+      <Box id="fees" sx={{ marginTop: 10 }}>
         <FeeStructure />
       </Box>
 

@@ -19,7 +19,6 @@ const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
-  console.log(isTablet, "isTablet");
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);

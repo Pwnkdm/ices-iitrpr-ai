@@ -1,40 +1,30 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"); */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap'); */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
 @import "tailwindcss";
 
 :root {
-  font-family: "Sora", serif;
+  /* font-family: "Sora", serif; */
+  font-family: "Lexend", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
 body {
-  font-family: "Sora", sans-serif;
+  /* font-family: "Sora", sans-serif; */
+  font-family: "Lexend", sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-y: scroll; /* Ensures scrolling is still possible */
   scrollbar-width: none; /* For Firefox */
-  font-family: "Sora", sans-serif;
+  /* font-family: "Sora", sans-serif; */
+  font-family: "Lexend", sans-serif;
 }
 html::-webkit-scrollbar {
   display: none; /* For Chrome, Safari, and Edge */
 }
-
-/* * {
-background: hsla(0, 0%, 3%, 1);
-
-background: linear-gradient(45deg, hsla(0, 0%, 3%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
-
-background: -moz-linear-gradient(45deg, hsla(0, 0%, 3%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
-
-background: -webkit-linear-gradient(45deg, hsla(0, 0%, 3%, 1) 0%, hsla(208, 90%, 88%, 1) 100%);
-
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#080808", endColorstr="#C3E1FC", GradientType=1 );
-} */
-
-/* Default CSS for all components- END */
 
 /* Navbar Css */
 .nav-btn.MuiButton-root {
@@ -46,16 +36,3 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#080808", en
 .nav-btn.MuiButton-root:hover {
   background-color: lightblue;
 }
-
-/* Navbar Css- END */
-
-a {
-  /* font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit; */
-}
-a:hover {
-  /* color: #535bf2; */
-}
-/* 
-AS
