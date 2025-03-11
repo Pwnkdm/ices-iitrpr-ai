@@ -1,224 +1,299 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-  Paper,
-  CircularProgress,
-  Alert,
-} from "@mui/material";
-import { styled } from "@mui/system";
+import  { useState } from "react";
+import './singnupPage.css';
+import { Container, TextField, Button, Typography, Box, Select, MenuItem, InputLabel, FormControl, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import axios from "axios";
+import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
-// Main container that holds both columns
-const StyledContainer = styled(Container)(({ theme }) => ({
-  minHeight: "100vh",
-  display: "flex",
-  padding: theme.spacing(4),
-  marginTop: theme.spacing(2),
-}));
-
-// Left side - scrollable content
-// const ScrollableContent = styled(Box)(({ theme }) => ({
-//   height: "calc(100vh - 80px)", // Account for margins/padding
-//   overflowY: "auto",
-//   padding: theme.spacing(4),
-//   backgroundColor: "#f5f5f5",
-//   borderRadius: theme.spacing(2),
-//   "&::-webkit-scrollbar": {
-//     display: "none", // Hide scrollbar for Chrome, Safari, and newer Edge
-//   },
-//   scrollbarWidth: "none", // Hide scrollbar for Firefox
-//   msOverflowStyle: "none",
-// }));
-
-// Right side - fixed content
-const FixedFormWrapper = styled(Box)(({ theme }) => ({
-  position: "sticky",
-  top: theme.spacing(10), // Match the marginTop from StyledContainer
-  height: "fit-content",
-  width: "100%",
-}));
-
-const FormContainer = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(4),
-  display: "flex",
-  flexDirection: "column",
-  gap: theme.spacing(3),
-  boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-  borderRadius: theme.spacing(2),
-}));
-
-const ToT: React.FC = () => {
+export const ToT = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     phonenumber: "",
+    countryCode: "+91",  // Set India as default country code
+    collegeName: "",
+    collegeAddress: "",
+    city: "",
+    pincode: "",
   });
-
   const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [openPopup, setOpenPopup] = useState(false); // State to control popup visibility
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.username) newErrors.username = "Full name is required";
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
-    }
-    if (!formData.phonenumber) {
-      newErrors.phonenumber = "Phone Number is required";
-    } else if (!/^[0-9]+$/.test(formData.phonenumber)) {
-      newErrors.phonenumber = "Please enter a valid mobile number";
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const validate = () => {
+    let tempErrors = {};
+    tempErrors.username = formData.username ? "" : "Full Name is required";
+    tempErrors.email =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) ? "" : "Please enter a valid email ID";
+    tempErrors.phonenumber =
+      /^[0-9]+$/.test(formData.phonenumber) ? "" : "Please enter a valid mobile number";
+    tempErrors.collegeName = formData.collegeName ? "" : "College Name is required";
+    tempErrors.collegeAddress = formData.collegeAddress ? "" : "College Address is required";
+    tempErrors.city = formData.city ? "" : "City is required";
+    tempErrors.pincode = /^[0-9]+$/.test(formData.pincode) ? "" : "Please enter a valid Pincode";
+    setErrors(tempErrors);
+    return Object.values(tempErrors).every((x) => x === "");
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      setIsLoading(true);
+    console.log(formData, "form");
+  
+    if (validate()) {
       try {
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL_TOT}/add`,
           formData
         );
-
-        setSubmitStatus({
-          type: "success",
-          message: "Registration successful!",
-        });
+        toast.success("Registered Successfully!");
+  
+        setOpenPopup(true);
+  
+        
         setTimeout(() => {
-          navigate("/");
-        }, 2000);
+          navigate("/"); 
+
+        }, 3000); // Adjust delay before triggering download
+  
+        // Reset form only after successful submission
         setFormData({
           username: "",
           email: "",
           phonenumber: "",
+          countryCode: "+91",
+          collegeName: "",
+          collegeAddress: "",
+          city: "",
+          pincode: ""
         });
+  
       } catch (error) {
-        setSubmitStatus({
-          type: "error",
-          message: "Registration failed. Please try again.",
-        });
-      } finally {
-        setIsLoading(false);
+        console.error('Error:', error);
+        if (error?.response) {
+          toast.error(error?.response?.data?.message || "Signup failed. Please try again.");
+        } else {
+          toast.error("Something went wrong. Please check your internet connection.");
+        }
       }
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+  const handleClosePopup = () => {
+    setOpenPopup(false);
   };
 
   return (
-    <StyledContainer maxWidth="xl">
-      {/* <Grid container spacing={4}> */}
-      {/* <Grid item xs={12} md={6}>
-          <ScrollableContent>
-            <Typography variant="h3" gutterBottom textAlign="center" color= "#10a37f" fontWeight={600}>
-              TRAINING OF TRAINERS (TOT)/ FACULTY
-            </Typography>
-           <div>Domain training will be provided by IIT Ropar</div>
-           <div></div>
-           <div></div>
-           <div></div>
-           <div></div>
-          </ScrollableContent>
-        </Grid> */}
-      <Grid margin={"auto"} width="40%">
-        <FixedFormWrapper>
-          <FormContainer>
-            <Typography
-              variant="h4"
-              textAlign="center"
-              color="#10a37f"
-              fontWeight={600}
-            >
-              ToT Registration
-            </Typography>
-            {/* <Typography
-              variant="h4"
-              gutterBottom
-              textAlign="center"
-              color="#10a37f"
-              fontWeight={600}
-            >
-              TRAINING OF TRAINERS (TOT)/ FACULTY
-            </Typography> */}
+    <div className="large-header" style={{ backgroundColor: "#f4f4f9", minHeight: "100vh", padding: "0px 0", margin: "auto" }}>
+      <Container maxWidth="sm">
+        <Box
+          sx={{
+            textAlign: "center",
+            mt: 11,
+            backgroundColor: "#ffffff",
+            padding: { xs: "20px", sm: "40px" },
+            borderRadius: "10px",
+            boxShadow: "1px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)",
+          }}
+        >
+          <Typography variant="h4" fontWeight="bold" sx={{
+            mb: 3,
+            color: "#10a37f",
+            fontSize: { xs: "1.5rem", sm: "2rem" } // Set font size to 1.5rem for xs (below 400px)
+          }}>
+            ToT Enquiry Form
+          </Typography>
 
-            {submitStatus && (
-              <Alert
-                severity={submitStatus.type}
-                onClose={() => setSubmitStatus(null)}
-              >
-                {submitStatus.message}
-              </Alert>
-            )}
-            <form onSubmit={handleSubmit}>
+          <Box component="form" sx={{ mt: 3 }} onSubmit={handleSubmit}>
+            {/* Full Name Field */}
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+              Full Name <span style={{ color: "red" }}>*</span>
+            </Typography>
+            <TextField
+              fullWidth
+              name="username"
+              variant="outlined"
+              value={formData.username}
+              placeholder="Enter Full Name"
+              onChange={handleChange}
+              error={Boolean(errors.username)}
+              helperText={errors.username}
+              margin="normal"
+              sx={{ marginTop: 0, marginBottom: "20px" }}
+            />
+
+            {/* Email Address Field */}
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+              Email Address <span style={{ color: "red" }}>*</span>
+            </Typography>
+            <TextField
+              fullWidth
+              name="email"
+              variant="outlined"
+              placeholder="Enter Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              error={Boolean(errors.email)}
+              helperText={errors.email}
+              margin="normal"
+              sx={{ marginTop: 0, marginBottom: "20px" }}
+            />
+
+            {/* Contact Number Field */}
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+              Contact Number <span style={{ color: "red" }}>*</span>
+            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center", marginBottom: "0px" }}>
+              {/* Country Code Selector */}
+              <FormControl sx={{ width: "27%", }} margin="normal">
+                <InputLabel sx={{ marginTop: "-6px" }}>Country Code</InputLabel>
+                <Select
+                  name="countryCode"
+                  value={formData.countryCode}
+                  onChange={handleChange}
+                  label="Country Code"
+                  sx={{ marginTop: "-8px" }}
+                >
+                  <MenuItem value="+91">+91 (India)</MenuItem>
+                  {/* Add other countries */}
+                </Select>
+              </FormControl>
+
+              {/* Phone Number Field */}
               <TextField
                 fullWidth
-                label="Full Name"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                error={!!errors.username}
-                helperText={errors.username}
-                margin="normal"
-              />
-              <TextField
-                fullWidth
-                label="Email Address"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                error={!!errors.email}
-                helperText={errors.email}
-                margin="normal"
-              />
-              <TextField
-                fullWidth
-                label="Phone Number"
                 name="phonenumber"
-                type="tel"
+                placeholder="Enter Your Contact Number"
+                variant="outlined"
                 value={formData.phonenumber}
                 onChange={handleChange}
-                error={!!errors.phonenumber}
-                helperText={errors.phonenumber}
+                error={Boolean(errors.phonenumber)}
                 margin="normal"
+                sx={{
+                  width: "73%",
+                  marginTop: "7px",
+                  marginLeft: "1px"
+                }}
               />
+            </Box>
 
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                size="large"
-                disabled={isLoading}
-                sx={{ mt: 3 }}
-              >
-                {isLoading ? <CircularProgress size={24} /> : "Register"}
-              </Button>
-            </form>
-          </FormContainer>
-        </FixedFormWrapper>
-      </Grid>
-      {/* </Grid> */}
-    </StyledContainer>
+            {/* College Name Field */}
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+              College Name <span style={{ color: "red" }}>*</span>
+            </Typography>
+            <TextField
+              fullWidth
+              name="collegeName"
+              variant="outlined"
+              value={formData.collegeName}
+              placeholder="Enter College Name"
+              onChange={handleChange}
+              error={Boolean(errors.collegeName)}
+              helperText={errors.collegeName}
+              margin="normal"
+              sx={{ marginTop: 0, marginBottom: "20px" }}
+            />
+
+            {/* College Address Field */}
+            <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+              College Address <span style={{ color: "red" }}>*</span>
+            </Typography>
+            <TextField
+              fullWidth
+              name="collegeAddress"
+              variant="outlined"
+              value={formData.collegeAddress}
+              placeholder="Enter College Address"
+              onChange={handleChange}
+              error={Boolean(errors.collegeAddress)}
+              helperText={errors.collegeAddress}
+              margin="normal"
+              sx={{ marginTop: 0, marginBottom: "20px" }}
+            />
+
+            {/* City and Pincode Fields */}
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Box sx={{ width: "50%", paddingRight: "8px" }}>
+                <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+                  City <span style={{ color: "red" }}>*</span>
+                </Typography>
+                <TextField
+                  fullWidth
+                  name="city"
+                  variant="outlined"
+                  value={formData.city}
+                  placeholder="Enter City"
+                  onChange={handleChange}
+                  error={Boolean(errors.city)}
+                  helperText={errors.city}
+                  margin="normal"
+                  sx={{
+                    marginTop:0
+                  }}
+                />
+              </Box>
+
+              <Box sx={{ width: "50%", paddingLeft: "8px" }}>
+                <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
+                  Pincode <span style={{ color: "red" }}>*</span>
+                </Typography>
+                <TextField
+                  fullWidth
+                  name="pincode"
+                  variant="outlined"
+                  value={formData.pincode}
+                  placeholder="Enter Pincode"
+                  onChange={handleChange}
+                  error={Boolean(errors.pincode)}
+                  helperText={errors.pincode}
+                  margin="normal"
+                  sx={{
+                    marginTop:0
+                  }}
+                />
+              </Box>
+            </Box>
+
+            {/* Submit Button */}
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              type="submit"
+              sx={{
+                backgroundColor: "#10a37f",
+                mt: 3,
+                height: "60px",
+                fontSize: "20px",
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                '&:hover': {
+                  backgroundColor: "rgb(4 84 65)",
+                }
+              }}
+            >
+              SUBMIT
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+
+      {/* Popup dialog */}
+      <Dialog open={openPopup} onClose={handleClosePopup}>
+        <DialogTitle>Thank You!</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1">
+            Thank you !! , We will react out to you shortly.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePopup} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
-
-export default ToT;

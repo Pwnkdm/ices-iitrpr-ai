@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './singnupPage.css';
-import { Container, TextField, Button, Typography, Box, Select, MenuItem, InputLabel, FormControl, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import { Container, TextField, Button, Typography, Box, Select, MenuItem, InputLabel, FormControl, Dialog, DialogActions, DialogContent, DialogTitle, Checkbox, FormControlLabel } from "@mui/material";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ export const SignupPage = () => {
     collegeAddress: "",
     city: "",
     pincode: "",
+    role: "", // New state for role
   });
   const [errors, setErrors] = useState({});
   const [openPopup, setOpenPopup] = useState(false); // State to control popup visibility
@@ -31,6 +32,10 @@ export const SignupPage = () => {
     tempErrors.collegeAddress = formData.collegeAddress ? "" : "College Address is required";
     tempErrors.city = formData.city ? "" : "City is required";
     tempErrors.pincode = /^[0-9]+$/.test(formData.pincode) ? "" : "Please enter a valid Pincode";
+
+    // Role validation
+    tempErrors.role = formData.role ? "" : "Please select a role (Student or Faculty)";
+
     setErrors(tempErrors);
     return Object.values(tempErrors).every((x) => x === "");
   };
@@ -39,18 +44,22 @@ export const SignupPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleRoleChange = (e) => {
+    setFormData({ ...formData, role: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData, "form");
-  
+
     if (validate()) {
       try {
         const response = await axios.post(`${import.meta.env.VITE_API_URL_USER}/sign-up`, formData);
         toast.success("Registered Successfully!");
-  
+
         // Open the popup
         setOpenPopup(true);
-  
+
         // Trigger PDF download after a small delay
         setTimeout(() => {
           // Trigger PDF download
@@ -65,9 +74,8 @@ export const SignupPage = () => {
           setTimeout(() => {
             navigate("/"); // Redirect to homepage
           }, 1000); // Adjust the timeout as needed to ensure the download starts before navigating
-  
         }, 2000); // Adjust delay before triggering download
-  
+
         // Reset form only after successful submission
         setFormData({
           username: "",
@@ -77,9 +85,10 @@ export const SignupPage = () => {
           collegeName: "",
           collegeAddress: "",
           city: "",
-          pincode: ""
+          pincode: "",
+          role: "" // Reset the role after submission
         });
-  
+
       } catch (error) {
         console.error('Error:', error);
         if (error?.response) {
@@ -113,10 +122,51 @@ export const SignupPage = () => {
             color: "#10a37f",
             fontSize: { xs: "1.5rem", sm: "2rem" } // Set font size to 1.5rem for xs (below 400px)
           }}>
-            Brochure 
+            Enquire Now
           </Typography>
 
           <Box component="form" sx={{ mt: 3 }} onSubmit={handleSubmit}>
+            {/* Role Selection */}
+            <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={formData.role === "student"}
+                    onChange={handleRoleChange}
+                    value="student"
+                    sx={{
+                      color: formData.role === "student" ? "#10a37f" : "default",  // Color when checked
+                      '&.Mui-checked': {
+                        color: "#10a37f",  // Set custom color when checked
+                      },
+                    }}
+                  />
+                }
+                label="Student"
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={formData.role === "faculty"}
+                    onChange={handleRoleChange}
+                    value="faculty"
+                    sx={{
+                      color: formData.role === "faculty" ? "#10a37f" : "default",  // Color when checked
+                      '&.Mui-checked': {
+                        color: "#10a37f",  // Set custom color when checked
+                      },
+                    }}
+                  />
+                }
+                label="Faculty"
+              />
+            </Box>
+            {errors.role && (
+              <Typography variant="body2" color="error" style={{ textAlign: "left", marginBottom: "10px" }}>
+                {errors.role}
+              </Typography>
+            )}
+
             {/* Full Name Field */}
             <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
               Full Name <span style={{ color: "red" }}>*</span>
@@ -283,7 +333,7 @@ export const SignupPage = () => {
                 }
               }}
             >
-              DOWNLOAD
+              SUBMIT
             </Button>
           </Box>
         </Box>
