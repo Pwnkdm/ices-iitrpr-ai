@@ -109,7 +109,7 @@ const Navbar = () => {
         >
           {[
             { label: "overview", path: "/#overview" },
-            { label: "Why this course?", path: "/#Why_this_course" },
+            { label: "Why this course?", path: "/#why_this_course" },
             { label: "Curriculum", path: "/#curriculum" },
             { label: "events", path: "/#events" },
             { label: "contact", path: "/#contact" },
@@ -180,7 +180,7 @@ const Navbar = () => {
         >
           {[
             { label: "overview", path: "/#overview" },
-            { label: "Why this course?", path: "/#Why_this_course" },
+            { label: "Why this course?", path: "/#why_this_course" },
             { label: "Curriculum", path: "/#curriculum" },
             { label: "events", path: "/#events" },
             { label: "contact", path: "/#contact" },
