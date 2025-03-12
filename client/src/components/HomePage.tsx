@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import HeroPage from "./Hero/HeroPage";
+import HeroPage from "./HeroPage";
 import Curriculum from "./Curriculam";
 import FAQs from "./FAQs";
 import ContactUs from "./ContactUs";
@@ -41,7 +41,6 @@ const HomePage = () => {
       </Box>
 
       {/* Fees Section */}
-
 
       <Box id="fees" sx={{ marginTop: 10 }}>
         {/* <FeeStructure /> */}
