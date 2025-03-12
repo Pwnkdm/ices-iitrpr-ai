@@ -101,7 +101,7 @@ const FAQs: React.FC = () => {
                 <AccordionDetails sx={{ p: 3, backgroundColor: "transparent" }}>
                   <Typography
                     variant={isMobile ? "body2" : "body1"}
-                    sx={{ color: "black" }}
+                    sx={{ color: "#2F4F4F" }}
                   >
                     {faq.answer}
                   </Typography>
