@@ -1,12 +1,11 @@
-import { Box, Typography } from "@mui/material";
-// import HeroPage from "./Hero/HeroPage";
+import { Box } from "@mui/material";
+import HeroPage from "./Hero/HeroPage";
 import Curriculum from "./Curriculam";
 import FAQs from "./FAQs";
-import { FeeStructure } from "./FeeStructure";
 import ContactUs from "./ContactUs";
 import Instructors from "./Instructors";
 import WhyThisProgram from "./WhyThisProgram";
-import HeroPage from "./HeroPage";
+import BrochureDownload from "./BrochureDownload";
 
 const HomePage = () => {
   return (
@@ -43,9 +42,11 @@ const HomePage = () => {
 
       {/* Fees Section */}
 
-      {/* <Box id="fees" sx={{ marginTop: 10 }}>
-        <FeeStructure />
-      </Box> */}
+
+      <Box id="fees" sx={{ marginTop: 10 }}>
+        {/* <FeeStructure /> */}
+        <BrochureDownload />
+      </Box>
 
       {/* FAQs Section */}
       <Box id="faqs" sx={{ marginTop: 10, padding: 0 }}>
