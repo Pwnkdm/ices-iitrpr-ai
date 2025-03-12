@@ -28,8 +28,6 @@ const FAQs: React.FC = () => {
       sx={{
         py: 10,
         px: 2,
-        // background:
-        //   "linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(30, 30, 30, 0.9))", // Semi-transparent gradient
         minHeight: "100vh",
       }}
     >
@@ -42,11 +40,15 @@ const FAQs: React.FC = () => {
               fontWeight: "bold",
               color: theme.palette.primary.main,
               mb: 2,
+              background: "linear-gradient(to bottom right, #5eead4, #4338ca)",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              display: "inline-block",
             }}
           >
             Frequently Asked Questions
           </Typography>
-          <Typography variant={isMobile ? "body2" : "body1"} color="#ffffff">
+          <Typography variant={isMobile ? "body2" : "body1"} color="#2F4F4F">
             Find answers to common questions about the AI Technocrat Program.
           </Typography>
         </Box>
@@ -78,19 +80,20 @@ const FAQs: React.FC = () => {
                 }}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
+                  expandIcon={<ExpandMoreIcon style={{ color: "black" }} />}
                   aria-controls={`panel-${index}-content`}
                   id={`panel-${index}-header`}
                   sx={{
                     backgroundColor: "transparent", // Transparent background for AccordionSummary
-                    fontWeight: "bold",
+                    // fontWeight: "bold",
+                    textTransform: "none",
                     padding: "12px 16px",
-                    color: "white", // White text color
+                    color: "black",
                   }}
                 >
                   <Typography
                     variant={isMobile ? "body1" : "h6"}
-                    sx={{ fontWeight: "bold" }}
+                    sx={{ fontSize: "16px", fontWeight: "", color: "#2F4F4F" }}
                   >
                     {index + 1}. {faq.question}
                   </Typography>
@@ -98,7 +101,7 @@ const FAQs: React.FC = () => {
                 <AccordionDetails sx={{ p: 3, backgroundColor: "transparent" }}>
                   <Typography
                     variant={isMobile ? "body2" : "body1"}
-                    sx={{ color: "white" }}
+                    sx={{ color: "black" }}
                   >
                     {faq.answer}
                   </Typography>

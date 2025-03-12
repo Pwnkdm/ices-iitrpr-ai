@@ -15,6 +15,7 @@ const HomePage = () => {
         minHeight: "200vh",
         padding: 0,
         paddingTop: 10,
+        fontFamily: "Lexend",
         //   "linear-gradient(351deg, rgba(175,94,135,1) 0%, rgba(40,40,43,1) 36%)",
       }}
     >
@@ -42,9 +43,9 @@ const HomePage = () => {
 
       {/* Fees Section */}
 
-      <Box id="fees" sx={{ marginTop: 10 }}>
+      {/* <Box id="fees" sx={{ marginTop: 10 }}>
         <FeeStructure />
-      </Box>
+      </Box> */}
 
       {/* FAQs Section */}
       <Box id="faqs" sx={{ marginTop: 10, padding: 0 }}>

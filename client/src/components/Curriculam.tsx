@@ -162,7 +162,7 @@ const Curriculum: React.FC = () => {
   return (
     <Box
       className="wrapper"
-      sx={{ width: "100%", color: "white", p: isMobile ? 2 : 4 }}
+      sx={{ width: "100%", color: "#2F4F4F", p: isMobile ? 2 : 4 }}
     >
       {/* Main Title */}
       <Typography
@@ -171,8 +171,15 @@ const Curriculum: React.FC = () => {
         gutterBottom
         textAlign={"center"}
         fontWeight={600}
+        sx={{
+          background: "linear-gradient(to right, #5D3FD3, #FF4433)",
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+          color: "transparent",
+          fill: "currentColor",
+        }}
       >
-        Topics You'll Be Learning
+        What You'll Learn:
       </Typography>
       <br></br>
 
@@ -198,7 +205,7 @@ const Curriculum: React.FC = () => {
             mb: 2,
             pb: 2,
             "& .MuiTabs-scrollButtons": {
-              color: "white",
+              color: "#2F4F4F",
               "&.Mui-disabled": {
                 opacity: 0.3,
               },
@@ -209,14 +216,13 @@ const Curriculum: React.FC = () => {
               justifyContent: "center",
             },
             "& .MuiTabs-indicator": {
-              // backgroundColor: '#fff', // Change the tab indicator color
               display: "none",
               outline: "none",
             },
             "& .MuiTab-root": {
               borderRadius: 2,
               border: "1px solid",
-              color: "white",
+              color: "#2F4F4F",
               background: "rgba(255, 255, 255, 0.1)",
               transition: "all 0.3s ease",
               minWidth: isMobile ? "100%" : "300px",
@@ -228,19 +234,21 @@ const Curriculum: React.FC = () => {
               "&.Mui-selected": {
                 color: "#fff", // Color when tab is selected
                 background:
-                  "linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)",
+                  "linear-gradient(to bottom right, #5eead4, #4338ca)",
                 outline: "none",
                 fontWeight: "600",
               },
               "&:hover": {
                 fontWeight: "700",
-                background: "rgba(255, 255, 255, 0.2)",
+                color: "#FFF",
+                background:
+                  "linear-gradient(to bottom right, #5eead4, #4338ca)",
               },
             },
           }}
         >
           <Tab
-            className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
+            className="bg-gradient-to-r from-teal-600 to-indigo-600 px-8 py-2 rounded-lg shadow-lg"
             label={
               <Typography
                 sx={{
@@ -250,12 +258,12 @@ const Curriculum: React.FC = () => {
                   fontWeight: 600,
                 }}
               >
-                Compulsory (300 Hours)
+                Common Module (300 Hours)
               </Typography>
             }
           />
           <Tab
-            className="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-2 rounded-lg shadow-lg"
+            className="bg-gradient-to-r from-teal-600 to-indigo-600 px-8 py-2 rounded-lg shadow-lg"
             label={
               <Typography
                 sx={{
@@ -265,7 +273,7 @@ const Curriculum: React.FC = () => {
                   fontWeight: 600,
                 }}
               >
-                Electives (300 Hours)
+                Core Engineering (300 Hours)
               </Typography>
             }
           />
@@ -275,7 +283,7 @@ const Curriculum: React.FC = () => {
       {/* Sub-Tabs and Content */}
       {mainTabValue === 0 && (
         <Box
-          width={isMobile ? "100%" : isTablet ? "90%" : "80%"}
+          width={isMobile ? "100%" : isTablet ? "100%" : "80%"}
           margin={"auto"}
         >
           {/* Sub-Tabs for Common NOS */}
@@ -307,9 +315,10 @@ const Curriculum: React.FC = () => {
                 outline: "none",
               },
               "& .MuiTab-root": {
-                color: "#000", // Change the default tab text color
+                color: "#2F4F4F", // Change the default tab text color
                 background: "#fff",
                 outline: "none",
+                border: "1px solid gray",
                 fontWeight: "600",
                 marginX: "2px",
                 minHeight: isMobile ? "auto" : "48px",
@@ -322,12 +331,15 @@ const Curriculum: React.FC = () => {
                 "&.Mui-selected": {
                   color: "#fff", // Color when tab is selected
                   background:
-                    "linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)",
+                    "linear-gradient(to bottom right, #5eead4, #4338ca)",
                   outline: "none",
                   fontWeight: "600",
                 },
                 "&:hover": {
                   fontWeight: "700",
+                  background:
+                    "linear-gradient(to bottom right, #5eead4, #4338ca)",
+                  color: "#fff",
                 },
               },
             }}
@@ -344,12 +356,11 @@ const Curriculum: React.FC = () => {
 
           {/* Sub-Tab Content for Common NOS */}
           <Box
-            width="50%"
+            width="70%"
             margin="auto"
             sx={{
               boxShadow: "4px 10px 50px 0px rgba(24, 28, 31, 0.50)",
-              background:
-                "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(207, 207, 207, 0.16) 0%, rgba(119, 117, 117, 0.21) 27.11%, rgba(75, 71, 71, 0.30) 100%)",
+              background: "linear-gradient(to bottom right, #5eead4, #4338ca)",
               padding: isMobile ? 2 : 4,
               borderRadius: 2,
             }}
@@ -360,7 +371,12 @@ const Curriculum: React.FC = () => {
               gutterBottom
               sx={{
                 fontWeight: "bold",
-                color: "rgb(255 219 102)",
+                background:
+                  "linear-gradient(to bottom right, #E5E4E2,  #D3D3D3)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+                fill: "currentColor",
                 textAlign: "center",
                 mb: 3,
               }}
@@ -378,16 +394,16 @@ const Curriculum: React.FC = () => {
                       alignItems: "center",
                       py: 1,
                       background:
-                        "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(230, 230, 230, 0.3) 0%, rgba(200, 200, 200, 0.2) 27.11%, rgba(180, 180, 180, 0.15) 100%)",
+                        "linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
+                      backdropFilter: "blur(10px)",
                       borderRadius: 2,
                     }}
                   >
                     {/* Bullet Icon */}
                     <Box
                       sx={{
-                        width: "20px",
-                        height: "20px",
-                        //bgcolor: "#007bff",
+                        width: "32px", // Slightly bigger for better visuals
+                        height: "32px",
                         borderRadius: "50%",
                         display: "flex",
                         alignItems: "center",
@@ -395,7 +411,14 @@ const Curriculum: React.FC = () => {
                         mr: 2,
                       }}
                     >
-                      <AutoAwesome sx={{ fontSize: 16, color: "lightcorel" }} />
+                      <AutoAwesome
+                        sx={{
+                          fontSize: 18,
+                          color: "white", // White for contrast
+                          filter:
+                            "drop-shadow(0px 2px 5px rgba(94, 234, 212, 0.7))", // Glow effect
+                        }}
+                      />
                     </Box>
 
                     {/* Point Text */}
@@ -422,7 +445,7 @@ const Curriculum: React.FC = () => {
 
       {mainTabValue === 1 && (
         <Box
-          width={isMobile ? "100%" : isTablet ? "90%" : "80%"}
+          width={isMobile ? "100%" : isTablet ? "100%" : "80%"}
           margin={"auto"}
         >
           {/* Sub-Tabs for Elective NOS */}
@@ -436,7 +459,7 @@ const Curriculum: React.FC = () => {
             sx={{
               mb: isMobile ? 2 : 4,
               pb: 2,
-              maxWidth: "70%",
+              maxWidth: "90%",
               margin: "auto",
               "& .MuiTabs-scrollButtons": {
                 color: "white",
@@ -454,9 +477,10 @@ const Curriculum: React.FC = () => {
                 outline: "none",
               },
               "& .MuiTab-root": {
-                color: "#000", // Change the default tab text color
+                color: "#2F4F4F", // Change the default tab text color
                 background: "#fff",
                 outline: "none",
+                border: "1px solid gray",
                 fontWeight: "600",
                 marginX: "2px",
                 minHeight: isMobile ? "auto" : "48px",
@@ -469,12 +493,15 @@ const Curriculum: React.FC = () => {
                 "&.Mui-selected": {
                   color: "#fff", // Color when tab is selected
                   background:
-                    "linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)",
+                    "linear-gradient(to bottom right, #5eead4, #4338ca)",
                   outline: "none",
                   fontWeight: "600",
                 },
                 "&:hover": {
                   fontWeight: "700",
+                  color: "#fff",
+                  background:
+                    "linear-gradient(to bottom right, #5eead4, #4338ca)",
                 },
               },
             }}
@@ -491,12 +518,11 @@ const Curriculum: React.FC = () => {
 
           {/* Sub-Tab Content for Elective NOS */}
           <Box
-            width="50%"
+            width="70%"
             margin="auto"
             sx={{
               boxShadow: "4px 10px 50px 0px rgba(24, 28, 31, 0.50)",
-              background:
-                "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(207, 207, 207, 0.16) 0%, rgba(119, 117, 117, 0.21) 27.11%, rgba(75, 71, 71, 0.30) 100%)",
+              background: "linear-gradient(to bottom right, #5eead4, #4338ca)",
               padding: isMobile ? 2 : 4,
               borderRadius: 2,
             }}
@@ -507,7 +533,12 @@ const Curriculum: React.FC = () => {
               gutterBottom
               sx={{
                 fontWeight: "bold",
-                color: "rgb(255 219 102)",
+                background:
+                  "linear-gradient(to bottom right, #E5E4E2,  #D3D3D3)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+                fill: "currentColor",
                 textAlign: "center",
                 mb: 3,
               }}
@@ -525,16 +556,16 @@ const Curriculum: React.FC = () => {
                       alignItems: "center",
                       py: 1,
                       background:
-                        "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(230, 230, 230, 0.3) 0%, rgba(200, 200, 200, 0.2) 27.11%, rgba(180, 180, 180, 0.15) 100%)",
+                        "linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))",
+                      backdropFilter: "blur(10px)",
                       borderRadius: 2,
                     }}
                   >
                     {/* Bullet Icon */}
                     <Box
                       sx={{
-                        width: "20px",
-                        height: "20px",
-                        //bgcolor: "#007bff",
+                        width: "32px", // Slightly bigger for better visuals
+                        height: "32px",
                         borderRadius: "50%",
                         display: "flex",
                         alignItems: "center",
@@ -542,8 +573,16 @@ const Curriculum: React.FC = () => {
                         mr: 2,
                       }}
                     >
-                      <AutoAwesome sx={{ fontSize: 16, color: "lightcorel" }} />
+                      <AutoAwesome
+                        sx={{
+                          fontSize: 18,
+                          color: "white", // White for contrast
+                          filter:
+                            "drop-shadow(0px 2px 5px rgba(94, 234, 212, 0.7))", // Glow effect
+                        }}
+                      />
                     </Box>
+
                     {/* Point Text */}
                     <ListItemText
                       primary={point}

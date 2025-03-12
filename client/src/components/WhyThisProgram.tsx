@@ -37,14 +37,17 @@ const features = [
 
 const WhyThisProgram = () => {
   return (
-    <div className="p-12 bg-white min-h-screen font-[Poppins] text-gray-900 flex flex-col items-center">
+    <div className="p-12 bg-white min-h-screen text-gray-900 flex flex-col items-center font-lexend">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         className="text-center"
       >
-        <Typography variant="h3" className="font-extrabold text-5xl md:text-7xl italic tracking-wide">
+        <Typography
+          variant="h3"
+          className="font-extrabold text-5xl md:text-7xl italic tracking-wide"
+        >
           Why Become an AI Technocrat?
         </Typography>
       </motion.div>
@@ -58,10 +61,16 @@ const WhyThisProgram = () => {
           >
             <Card className="border-t-4 border-red-900 bg-gray-100 text-gray-900 transform hover:scale-105 transition duration-500 ease-in-out h-80 flex items-center">
               <CardContent className="p-6 flex flex-col justify-center">
-                <Typography variant="h4" className="font-bold text-2xl md:text-3xl">
+                <Typography
+                  variant="h4"
+                  className="font-bold text-2xl md:text-3xl"
+                >
                   {feature.title}
                 </Typography>
-                <Typography variant="body1" className="pt-1 mt-4 text-gray-700 text-lg md:text-xl leading-relaxed">
+                <Typography
+                  variant="body1"
+                  className="pt-1 mt-4 text-gray-700 text-lg md:text-xl leading-relaxed"
+                >
                   {feature.description}
                 </Typography>
               </CardContent>
@@ -75,12 +84,17 @@ const WhyThisProgram = () => {
         transition={{ duration: 1 }}
         className="mt-16 text-center w-full max-w-2xl"
       >
-        <Typography variant="h4" className="font-extrabold text-4xl md:text-5xl italic">
+        <Typography
+          variant="h4"
+          className="font-extrabold text-4xl md:text-5xl italic"
+        >
           Who Should Enroll?
         </Typography>
         <ul className="list-disc list-inside text-2xl md:text-3xl mt-6 space-y-3">
           <li>Engineering Candidates</li>
-          <li>Individuals Interested in AI and its Applications in Engineering</li>
+          <li>
+            Individuals Interested in AI and its Applications in Engineering
+          </li>
         </ul>
       </motion.div>
     </div>

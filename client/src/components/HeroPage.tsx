@@ -3,7 +3,7 @@ import immerImage from "../assets/5_day_immersion.webp";
 import convocation from "../assets/Convocation.jpeg";
 import faculty from "../assets/faculty.jpeg";
 import courseDuration from "../assets/course_duration.png";
-import certification from "../assets/winner.png";
+import certification from "../assets/winner-white.png";
 import AiMl from "../assets/artificial-inelegance.png";
 import folder from "../assets/folder.png";
 import blogger from "../assets/blogger.png";
@@ -11,23 +11,23 @@ import videocam from "../assets/old-video-camera.png";
 
 const HeroPage = () => {
   return (
-    <>
+    <div className="m-auto w-full">
       {/* Hero Section */}
       <div className="min-h-screen w-full px-4 sm:px-6 md:px-8 lg:w-[80%] lg:mx-auto text-center flex flex-col justify-center items-center">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-l from-blue-500 to-red-500 bg-clip-text text-transparent">
           Pursuing B-Tech? It's time to get IIT fortified
         </h1>
 
         {/* Image container with responsive height */}
-        <div className="w-full h-[40vh] sm:h-[50vh] md:h-[60vh] flex items-center justify-center my-4">
+        <div className="w-full h-[60vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
           <img
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
             src={bannerimage}
             alt="banner"
           />
         </div>
 
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4 bg-gradient-to-r from-blue-500 to-red-500 bg-clip-text text-transparent">
           Don't just be an Engineer, Be an AI-powered engineer
         </h2>
       </div>
@@ -51,7 +51,7 @@ const HeroPage = () => {
 
         {/* Dual Certification Section */}
         <div className="mt-4 w-full max-w-4xl">
-          <div className="bg-amber-100 p-4 rounded-lg shadow-md text-center mx-auto max-w-md">
+          <div className=" bg-gradient-to-br from-teal-300 to-indigo-700  p-4 rounded-lg text-amber-50  shadow-md text-center mx-auto max-w-md">
             <div className="mx-auto h-16 w-16 sm:h-20 sm:w-20">
               <img
                 src={certification}
@@ -180,7 +180,7 @@ const HeroPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -31,8 +31,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
     boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
     cursor: "pointer",
   },
-  background:
-    "radial-gradient(79.21% 69.61% at 12.98% 20.44%, rgba(230, 230, 230, 0.3) 0%, rgba(200, 200, 200, 0.2) 27.11%, rgba(180, 180, 180, 0.15) 100%)",
+  background: "linear-gradient(to bottom right, #2F4F4F, #000000)",
 }));
 
 const ContactUs: React.FC = () => {
@@ -68,7 +67,9 @@ const ContactUs: React.FC = () => {
   const IconWrapper = styled(Box)(({ theme }) => ({
     fontSize: "2.5rem",
     marginBottom: "1rem",
-    color: "#1976d2",
+    // color: "#1976d2",
+    // color: "#2F4F4F",
+    color: "white",
     display: "inline-flex",
     border: "2px solid",
     alignItems: "center",
@@ -94,7 +95,7 @@ const ContactUs: React.FC = () => {
           <br />
           <span
             onClick={() => () => handleEmailClick("ices@iitrpr.ac.in")}
-            style={{ cursor: "pointer", }}
+            style={{ cursor: "pointer" }}
           >
             info@iceskills.in
           </span>
@@ -117,7 +118,7 @@ const ContactUs: React.FC = () => {
           <br />
           <span
             onClick={() => handlePhoneClick("+918904904840")}
-            style={{ cursor: "pointer", }}
+            style={{ cursor: "pointer" }}
           >
             +919899118475
           </span>
@@ -141,19 +142,32 @@ const ContactUs: React.FC = () => {
     <Box>
       <HeroSection>
         <Container>
-          <Typography variant="h2" component="h1" gutterBottom>
+          <Typography
+            sx={{
+              color: "#2F4F4F",
+              fontWeight: "bold",
+              background: "linear-gradient(to bottom right, #5eead4, #4338ca)",
+
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              display: "inline-block",
+            }}
+            variant="h2"
+            component="h1"
+            gutterBottom
+          >
             Contact Us.
           </Typography>
         </Container>
       </HeroSection>
 
-      <Container sx={{pb:5}}>
+      <Container sx={{ pb: 5 }}>
         <Grid container spacing={4}>
           {contactCards.map((card, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <StyledCard onClick={card.onClick}>
                 <CardContent
-                  sx={{ flexGrow: 1, textAlign: "center", color: "#fff" }}
+                  sx={{ flexGrow: 1, textAlign: "center", color: "white" }}
                 >
                   <IconWrapper>{card.icon}</IconWrapper>
                   <Typography gutterBottom variant="h5" component="h2">
