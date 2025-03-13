@@ -57,9 +57,9 @@ export const ToT = () => {
         setTimeout(() => {
           navigate("/"); 
 
-        }, 3000); // Adjust delay before triggering download
+        }, 3000); 
   
-        // Reset form only after successful submission
+
         setFormData({
           username: "",
           email: "",
@@ -88,23 +88,64 @@ export const ToT = () => {
 
   return (
     <div className="large-header" style={{ backgroundColor: "#f4f4f9", minHeight: "100vh", padding: "0px 0", margin: "auto" }}>
-      <Container maxWidth="sm">
+      <Container  maxWidth="lg" sx={{ display: "flex", flexDirection: { xs: "column-reverse", md: "row" }, gap: 3, mt: 5 }}>
+      <Box  sx={{ 
+      flex: 1, 
+      p: 3, 
+      mt: 12, 
+      backgroundColor: "#f9f9f9", 
+      borderRadius: "8px",
+      position: "sticky",
+      top: "20px",  // Adjust based on need
+      height: "fit-content" // Ensures it doesn't take unnecessary space
+    }}
+      
+      
+      >
+        <Typography variant="h5" fontWeight="bold" gutterBottom>Training of Trainers (ToT)/ Faculty</Typography>
+        <Typography>- Core Training will be provided by the IIT Ropar & Pedagogical training will be provided by ICES.</Typography>
+        <Typography>- ToT certificate will be obtained by ICES after training and assessment.</Typography>
+        <Typography>- College will nominate the faculty member for the ToT program through (SIDH) portal.</Typography>
+        <Typography>- The eligible candidate can enroll for this program through college.</Typography>
+        <Typography>- Trainer will provide training, monitoring, and mentoring in physical mode.</Typography>
+      </Box>
         <Box
           sx={{
+           
             textAlign: "center",
-            mt: 11,
+            mt: 8,
             backgroundColor: "#ffffff",
             padding: { xs: "20px", sm: "40px" },
             borderRadius: "10px",
             boxShadow: "1px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)",
+            
           }}
+
+          // sx={{
+          //   flex: 2,
+          //   textAlign: "center",
+          //   mt: 8,
+          //   backgroundColor: "#ffffff",
+          //   padding: { xs: "20px", sm: "40px" },
+          //   borderRadius: "10px",
+          //   boxShadow: "1px 4px 8px rgba(0.1, 0.1, 0.1, 0.1)",
+          //   maxHeight: "80vh", // Restricts height
+          //   overflowY: "auto", // Enables scrolling
+          // }}
         >
           <Typography variant="h4" fontWeight="bold" sx={{
-            mb: 3,
+            mb: 1,
             color: "#10a37f",
             fontSize: { xs: "1.5rem", sm: "2rem" } // Set font size to 1.5rem for xs (below 400px)
           }}>
             ToT Enquiry Form
+          </Typography>
+          <Typography   sx={{
+            mb: 3,
+            color: "red",
+            fontSize: { xs: "0.75rem", sm: "0.5rem", md:"0.85rem" } // Set font size to 1.5rem for xs (below 400px)
+          }}>
+            (for currently serving faculty only)
           </Typography>
 
           <Box component="form" sx={{ mt: 3 }} onSubmit={handleSubmit}>
