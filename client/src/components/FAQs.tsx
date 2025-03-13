@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Accordion,
   AccordionSummary,
@@ -9,6 +9,7 @@ import {
   useMediaQuery,
   useTheme,
   Paper,
+  Pagination,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { faqsData } from "../data/Faqs";
@@ -22,6 +23,17 @@ interface FaqItem {
 const FAQs: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // Pagination State
+  const [page, setPage] = useState(1);
+  const faqsPerPage = 5;
+  const totalPages = Math.ceil(faqsData.length / faqsPerPage);
+
+  // Slice FAQs for the current page
+  const displayedFaqs = faqsData.slice(
+    (page - 1) * faqsPerPage,
+    page * faqsPerPage
+  );
 
   return (
     <Box
@@ -48,17 +60,18 @@ const FAQs: React.FC = () => {
           >
             Frequently Asked Questions
           </Typography>
+
           <Typography variant={isMobile ? "body2" : "body1"} color="#2F4F4F">
             Find answers to common questions about the AI Technocrat Program.
           </Typography>
         </Box>
 
         {/* FAQs List */}
-        {faqsData?.length > 0 ? (
-          faqsData.map((faq: FaqItem, index: number) => (
+        {displayedFaqs.length > 0 ? (
+          displayedFaqs.map((faq: FaqItem, index: number) => (
             <Paper
               elevation={3}
-              key={`faq-${index}`}
+              key={`faq-${(page - 1) * faqsPerPage + index}`}
               sx={{
                 mb: 2,
                 borderRadius: 3,
@@ -85,7 +98,6 @@ const FAQs: React.FC = () => {
                   id={`panel-${index}-header`}
                   sx={{
                     backgroundColor: "transparent", // Transparent background for AccordionSummary
-                    // fontWeight: "bold",
                     textTransform: "none",
                     padding: "12px 16px",
                     color: "black",
@@ -93,9 +105,9 @@ const FAQs: React.FC = () => {
                 >
                   <Typography
                     variant={isMobile ? "body1" : "h6"}
-                    sx={{ fontSize: "16px", fontWeight: "", color: "#2F4F4F" }}
+                    sx={{ fontSize: "16px", color: "#2F4F4F" }}
                   >
-                    {index + 1}. {faq.question}
+                    {index + 1 + (page - 1) * faqsPerPage}. {faq.question}
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{ p: 3, backgroundColor: "transparent" }}>
@@ -117,6 +129,18 @@ const FAQs: React.FC = () => {
           >
             No FAQs available at the moment.
           </Typography>
+        )}
+
+        {/* Pagination Component */}
+        {totalPages > 1 && (
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={(_, value) => setPage(value)}
+              color="primary"
+            />
+          </Box>
         )}
       </Container>
     </Box>
