@@ -435,9 +435,9 @@ const [errors, setErrors] = useState({});
         className="mt-8"
       >
         <Typography >
-  <p className="font-serif italic  text-center font-semibold w-full md:w-4/5 lg:w-3/5 mx-auto sm:text-l md: text-xl lg:text-3xl">
+  {/* <p className="font-serif italic  text-center font-semibold w-full md:w-4/5 lg:w-3/5 mx-auto sm:text-l md: text-xl lg:text-3xl">
     Be a qualified engineer with Minor in AI from IIT Ropar and get certified by ICES as an AI Technocrat
-  </p>
+  </p> */}
 </Typography>
 
       </motion.div>
