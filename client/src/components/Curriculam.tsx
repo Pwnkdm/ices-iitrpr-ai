@@ -601,8 +601,13 @@ const Curriculum: React.FC = () => {
               ))}
             </List>
           </Box>
+          
         </Box>
+
       )}
+      <p  className="bg-gradient-to-r from-gray-400 to-gray-800 bg-clip-text text-transparent font-serif  mt-10  text-center font-semibold w-full md:w-4/5 lg:w-3/5 mx-auto sm:text-l md: text-xl lg:text-3xl ">
+    Be a qualified engineer with Minor in AI from IIT Ropar and get certified by ICES as an AI Technocrat
+  </p>
     </Box>
   );
 };
