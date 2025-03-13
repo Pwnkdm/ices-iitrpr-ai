@@ -28,7 +28,7 @@ const HeroPage = () => {
         </div>
 
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4 bg-gradient-to-r from-blue-500 to-red-500 bg-clip-text text-transparent">
-          Don't just be an Engineer, Be an AI-powered engineer
+          Don't just be an Engineer, Be an AI-powered Engineer
         </h2>
       </div>
 
