@@ -92,6 +92,7 @@ const WhyThisProgram = () => {
         </Typography>
         <ul className="list-disc list-inside text-2xl md:text-2xl mt-6 space-y-3">
           <li>Engineering Candidates</li>
+          
           <li>
             Individuals Interested in AI and its Applications in Engineering
           </li>
