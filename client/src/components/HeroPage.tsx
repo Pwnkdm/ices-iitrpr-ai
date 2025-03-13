@@ -110,6 +110,7 @@ const HeroPage = () => {
             />
             <p className="text-sm text-center mt-2">
               Alumni Status - IIT Ropar
+              
             </p>
           </div>
         </div>
