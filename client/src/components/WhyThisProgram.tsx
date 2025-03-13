@@ -82,19 +82,23 @@ const WhyThisProgram = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="mt-16 text-center w-full max-w-2xl"
+        className="mt-16 text-left w-full max-w-6xl"
       >
         <Typography
           variant="h4"
-          className="font-extrabold text-4xl md:text-5xl italic"
+          className="font-extrabold text-4xl md:text-5xl lg:text-9xl italic"
         >
           Who Should Enroll?
         </Typography>
-        <ul className="list-disc list-inside text-2xl md:text-3xl mt-6 space-y-3">
+        <ul className="list-disc list-inside text-2xl md:text-2xl mt-6 space-y-3">
           <li>Engineering Candidates</li>
           <li>
             Individuals Interested in AI and its Applications in Engineering
           </li>
+          <li> Duration - 600 hours spread across a year/semester
+          </li>
+          <li>
+          Delivery Format - Blended mode (Online + Offline)</li>
         </ul>
       </motion.div>
     </div>

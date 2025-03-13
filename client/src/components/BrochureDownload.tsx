@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Card, CardContent } from "@mui/material";
 import {
   Button,
   Modal,
@@ -10,7 +11,8 @@ import {
   FormControl,
   Select,
   MenuItem,
-  InputLabel
+  InputLabel,
+  
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
@@ -120,10 +122,12 @@ const [errors, setErrors] = useState({});
         className="mb-6"
       >
      <Typography>
-  <div className="font-serif text-center font-semibold w-full mx-auto text-base md:text-2xl lg:text-3xl leading-loose space-y-1">
-    <p>• Duration - 600 hours spread across a year/semester</p>
-    <p>• Delivery Format - Blended mode (Online + Offline)</p>
+  <div className="text-2xl italic sm:text-3xl md:text-4xl lg:text-5xl leading-loose space-y-1 font-semibold mb-4 bg-gradient-to-l from-blue-500 to-red-600 bg-clip-text text-transparent">
+    <p>READY TO TAKE THE NEXT STEP?</p>
   </div>
+  {/* <div className="font-serif text-center font-semibold w-full mx-auto text-base md:text-2xl lg:text-5xl leading-loose space-y-1">
+    <p>READY TO TAKE THE NEXT STEP?</p>
+  </div> */}
 </Typography>
 
 
@@ -137,28 +141,61 @@ const [errors, setErrors] = useState({});
         animate={{ scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Button
-          onClick={handleOpen}
-          sx={{
-            backgroundColor: '#FFA500',
-            mt:"20px",
-            mb:"20px",
-            color: 'black',
-            fontWeight: 'bold',
-            paddingX: 8,
-            paddingY: 4,
-            borderRadius: 'xl',
-            boxShadow: 'lg',
-            '&:hover': {
-              backgroundColor: '#f1c40f',
-            },
-            transition: 'all 0.3s',
-            fontSize: 'lg',
-          }}
-         
-        >
-          DOWNLOAD A BROCHURE
-        </Button>
+ <Card 
+  className="shadow-amber-300 shadow-2xl rounded-2xl p-8 bg-white max-w-md w-full text-center"
+  sx={{ minHeight: "220px", borderRadius: "16px" }}
+>
+  <Typography 
+    variant="h6" 
+    fontWeight="bold" 
+    gutterBottom 
+    sx={{
+      color: "#aa6595", 
+      fontSize: "1.5rem",
+      letterSpacing: "0.5px", 
+      textTransform: "uppercase", 
+      marginBottom: 4,
+      fontFamily: '"Roboto", sans-serif',
+      fontWeight: 600,
+    }}
+  >
+    GET A BROCHURE
+  </Typography>
+  
+  <CardContent 
+    sx={{ 
+      display: "flex", 
+      flexDirection: "column", 
+      justifyContent: "center", 
+      alignItems: "center" 
+    }}
+  >
+    <Button
+      onClick={handleOpen}
+      sx={{
+        backgroundColor: "#FFA500",
+        color: "black",
+        fontWeight: "semi-bold",
+        paddingX: 6, // Reduced padding for a smaller button
+        paddingY: 3.5, // Reduced padding for a smaller button
+        borderRadius: "15px", // Rounded corners for the button
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+        "&:hover": {
+          backgroundColor: "#f1c40f",
+          boxShadow: "5px 6px 15px rgba(0, 0, 0, 0.15)",
+        },
+        transition: "all 0.3s",
+        fontSize: "1.1rem", // Slightly bigger text size for the button
+        marginTop: 4, // Increased space between text and button
+      }}
+    >
+      DOWNLOAD A BROCHURE
+    </Button>
+  </CardContent>
+</Card>
+
+
+
       </motion.div>
 
     
@@ -398,7 +435,7 @@ const [errors, setErrors] = useState({});
         className="mt-8"
       >
         <Typography >
-  <p className="font-serif italic  text-center font-bold w-full md:w-4/5 lg:w-4/5 mx-auto sm:text-l md: text-xl lg:text-4xl">
+  <p className="font-serif italic  text-center font-semibold w-full md:w-4/5 lg:w-3/5 mx-auto sm:text-l md: text-xl lg:text-3xl">
     Be a qualified engineer with Minor in AI from IIT Ropar and get certified by ICES as an AI Technocrat
   </p>
 </Typography>
