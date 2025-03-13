@@ -6,6 +6,7 @@ import ContactUs from "./ContactUs";
 import Instructors from "./Instructors";
 import WhyThisProgram from "./WhyThisProgram";
 import BrochureDownload from "./BrochureDownload";
+import Coordinator from "./Coordinator";
 
 const HomePage = () => {
   return (
@@ -49,6 +50,7 @@ const HomePage = () => {
 
       {/* FAQs Section */}
       <Box id="faqs" sx={{ marginTop: 10, padding: 0 }}>
+        <Coordinator />
         <FAQs />
       </Box>
 

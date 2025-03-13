@@ -156,7 +156,7 @@ const ContactUs: React.FC = () => {
             component="h1"
             gutterBottom
           >
-            Contact Us.
+           For Further Assistance
           </Typography>
         </Container>
       </HeroSection>
