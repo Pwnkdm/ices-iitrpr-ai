@@ -86,7 +86,7 @@ const WhyThisProgram = () => {
       >
         <Typography
           variant="h4"
-          className="font-extrabold text-4xl md:text-5xl lg:text-9xl italic"
+          className="font-extrabold sm:text-4xl md:text-5xl lg:text-12xl "
         >
           Who Should Enroll?
         </Typography>

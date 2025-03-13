@@ -28,7 +28,7 @@ const HeroPage = () => {
         </div>
 
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4 bg-gradient-to-r from-blue-500 to-red-500 bg-clip-text text-transparent">
-          Don't just be an Engineer, Be an AI-powered engineer
+          Don't just be an Engineer, Be an AI-powered Engineer
         </h2>
       </div>
 
@@ -44,7 +44,7 @@ const HeroPage = () => {
             AI TECHNOCRAT PROGRAM
           </h3>
           <p className="text-sm sm:text-md md:text-lg font-medium mt-2 text-center max-w-2xl mx-auto">
-            approved by NCVET, MSDE (Ministry of Skill Development &
+            approved by NCVET, MSDE <br /> (Ministry of Skill Development &
             Entrepreneurship)
           </p>
         </div>
@@ -110,6 +110,7 @@ const HeroPage = () => {
             />
             <p className="text-sm text-center mt-2">
               Alumni Status - IIT Ropar
+
             </p>
           </div>
         </div>
