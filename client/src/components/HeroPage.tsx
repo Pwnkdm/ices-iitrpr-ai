@@ -44,7 +44,7 @@ const HeroPage = () => {
             AI TECHNOCRAT PROGRAM
           </h3>
           <p className="text-sm sm:text-md md:text-lg font-medium mt-2 text-center max-w-2xl mx-auto">
-            approved by NCVET, MSDE (Ministry of Skill Development &
+            approved by NCVET, MSDE <br /> (Ministry of Skill Development &
             Entrepreneurship)
           </p>
         </div>
@@ -110,7 +110,7 @@ const HeroPage = () => {
             />
             <p className="text-sm text-center mt-2">
               Alumni Status - IIT Ropar
-              
+
             </p>
           </div>
         </div>
