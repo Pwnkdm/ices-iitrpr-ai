@@ -13,6 +13,8 @@ import {
   useTheme,
   styled,
 } from "@mui/material";
+import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
+
 import CloseIcon from "@mui/icons-material/Close";
 import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
 
@@ -149,139 +151,7 @@ const Instructors = () => {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ mb: 10 }}>
-        <h2 className="text-white text-5xl text-center">
-          {/* Faculty{" "} */}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
-            Co-ordinators
-          </span>
-        </h2>
 
-        <Grid container spacing={4} mt={2} margin={"auto"}>
-          {facultyData.map((faculty) => (
-            <Grid item xs={12} sm={12} md={6} lg={5} xl={5} key={faculty.id}>
-              <StyledCard>
-                <Box
-                  sx={{ position: "relative", paddingTop: "56.25%" }}
-                  height={450}
-                >
-                  {/* Just display the poster image in the cards */}
-                  <Box
-                    component="img"
-                    src={faculty.image}
-                    alt={faculty.name}
-                    sx={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </Box>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                    {faculty.name}
-                  </Typography>
-                  <Typography variant="subtitle1" color="text.secondary">
-                    {faculty.title}
-                  </Typography>
-
-                  {/* video play icon in the card to show video in the modal  */}
-                  {/* {faculty.video && (
-                    <Box
-                      display="flex"
-                      flexDirection="column-reverse"
-                      mt={2}
-                      
-                    >
-                      <Typography
-                        onClick={() => handleCardClick(faculty)}
-                        textAlign={"center"}
-                        color="red"
-                      >
-                        <SmartDisplayOutlinedIcon sx={{ fontSize: "30px" }} />
-                      </Typography>
-                    </Box>
-                  )} */}
-                </CardContent>
-              </StyledCard>
-            </Grid>
-          ))}
-        </Grid>
-
-        <Dialog
-          open={Boolean(selectedFaculty)}
-          onClose={handleClose}
-          maxWidth="sm"
-          fullWidth
-        >
-          {selectedFaculty && (
-            <>
-              <DialogTitle>
-                <Box
-                  display="flex"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <Typography variant="h6" fontWeight={600}>
-                    {selectedFaculty.name}
-                  </Typography>
-                  <IconButton onClick={handleClose}>
-                    <CloseIcon />
-                  </IconButton>
-                </Box>
-              </DialogTitle>
-              <DialogContent>
-                <Box mb={2}>
-                  {selectedFaculty.isYoutube ? (
-                    // YouTube embed for YouTube videos
-                    <Box
-                      sx={{ position: "relative", paddingTop: "56.25%", mb: 2 }}
-                    >
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src={`https://www.youtube.com/embed/${getYoutubeId(
-                          selectedFaculty.video
-                        )}`}
-                        title={selectedFaculty.name}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        style={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                          borderRadius: "4px",
-                        }}
-                      ></iframe>
-                    </Box>
-                  ) : (
-                    // Regular video element for direct video files
-                    <video
-                      width="100%"
-                      controls
-                      poster={selectedFaculty.image}
-                      style={{
-                        borderRadius: "4px",
-                        marginBottom: theme.spacing(2),
-                      }}
-                    >
-                      <source src={selectedFaculty.video} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  )}
-                  <Typography variant="subtitle1" gutterBottom>
-                    {selectedFaculty.title}
-                  </Typography>
-                </Box>
-              </DialogContent>
-            </>
-          )}
-        </Dialog>
-      </Container>
 
       {/* <Container maxWidth="lg" sx={{ mt: 10 }}>
         <h2 className="text-white text-5xl text-center">
@@ -403,6 +273,28 @@ const Instructors = () => {
             </Grid>
           ))}
         </Grid>
+
+
+        <br />
+        <h6 className=" text-center text-3xl mt-3 ml-10">
+         
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#08798b] to-[#CF1512]">
+  “The world is at the dawn of AI age where the technology is fast writing the code for humanity and reshaping our polity, economy, security, and society”
+</span>
+
+        
+
+        </h6>
+        <h6 className="text-xl flex justify-end sm:text-2xl text-left md:text-3xl lg:text-4xl xl:text-xl text-white mt-6 leading-tight ml-10 italic">
+            <span className="bg-clip-text text-left text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+            - Honorable PM Sh. Narendra Modi at AI Action Summit, Paris, 2025
+            </span>
+         
+        </h6>
+        {/* Vision Statement */}
+        <br />
+        <br />
+
       </Container>
     </>
   );
