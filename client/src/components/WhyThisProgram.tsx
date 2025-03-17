@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    title: "High-Demand Skills",
-    description:
-      "The demand for AI professionals is skyrocketing globally. This qualification equips you with the cutting-edge skills needed to thrive in this lucrative and rapidly expanding field.",
-  },
-  {
     title: "Transform Industries",
     description:
       "Learn how to apply AI to revolutionize diverse engineering disciplines, from manufacturing and construction to energy and transportation.",
+  },
+  {
+    title: "High-Demand Skills",
+    description:
+      "The demand for AI professionals is skyrocketing globally. This qualification equips you with the cutting-edge skills needed to thrive in this lucrative and rapidly expanding field.",
   },
   {
     title: "Drive Innovation",
@@ -46,7 +46,7 @@ const WhyThisProgram = () => {
       >
         <Typography
           variant="h3"
-          className="font-extrabold text-5xl md:text-7xl italic tracking-wide"
+          className="font-extrabold text-5xl md:text-7xl italic tracking-wide bg-gradient-to-br from-teal-400 to-indigo-800 text-transparent bg-clip-text p-2"
         >
           Why Become an AI Technocrat?
         </Typography>
@@ -78,28 +78,31 @@ const WhyThisProgram = () => {
           </motion.div>
         ))}
       </div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="mt-16 text-left w-full max-w-6xl"
+        className="mt-16 w-full max-w-6xl px-4 bg-gradient-to-br from-teal-400 to-indigo-800 text-transparent bg-clip-text"
       >
         <Typography
           variant="h4"
-          className="font-extrabold text-4xl md:text-5xl lg:text-9xl italic"
+          style={{ fontWeight: "bold" }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl italic text-center bg-gradient-to-br from-teal-400 to-indigo-800 text-transparent bg-clip-text"
         >
           Who Should Enroll?
         </Typography>
-        <ul className="list-disc list-inside text-2xl md:text-2xl mt-6 space-y-3">
-          <li>Engineering Candidates</li>
-          
-          <li>
+        <ul className="list-disc list-inside text-lg sm:text-xl md:text-2xl mt-6 space-y-4 max-w-3xl w-full mx-auto">
+          <li className="whitespace-normal">Engineering Candidates</li>
+          <li className="whitespace-normal">
             Individuals Interested in AI and its Applications in Engineering
           </li>
-          <li> Duration - 600 hours spread across a year/semester
+          <li className="whitespace-normal">
+            <strong>Duration:</strong> 600 hours spread across a year/semester
           </li>
-          <li>
-          Delivery Format - Blended mode (Online + Offline)</li>
+          <li className="whitespace-normal">
+            <strong>Delivery Format:</strong> Blended mode (Online + Offline)
+          </li>
         </ul>
       </motion.div>
     </div>

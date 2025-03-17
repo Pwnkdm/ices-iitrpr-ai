@@ -8,13 +8,15 @@ import AiMl from "../assets/artificial-inelegance.png";
 import folder from "../assets/folder.png";
 import blogger from "../assets/blogger.png";
 import videocam from "../assets/old-video-camera.png";
+import awsLogo from "../assets/aws-logo.png";
+import GridComponent from "./gridComponent";
 
 const HeroPage = () => {
   return (
     <div className="m-auto w-full">
       {/* Hero Section */}
       <div className="min-h-screen w-full px-4 sm:px-6 md:px-8 lg:w-[80%] lg:mx-auto text-center flex flex-col justify-center items-center">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-l from-blue-500 to-red-500 bg-clip-text text-transparent">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-l from-blue-500 to-red-500 bg-clip-text text-transparent p-2">
           Pursuing B-Tech? It's time to get IIT fortified
         </h1>
 
@@ -71,48 +73,11 @@ const HeroPage = () => {
         </div>
 
         {/* Feature Images Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 w-full max-w-6xl px-2">
-          <div className="bg-black bg-opacity-50 text-white p-3 rounded-md">
-            <img
-              className="w-full h-32 sm:h-40 object-contain mx-auto"
-              src={courseDuration}
-              alt="AI Technocrat"
-            />
-            <p className="text-sm text-center mt-2">
-              AI Technocrat - 20 Credits
-            </p>
-          </div>
-          <div className="bg-black bg-opacity-50 text-white p-3 rounded-md">
-            <img
-              className="w-full h-32 sm:h-40 object-cover mx-auto"
-              src={faculty}
-              alt="Faculty"
-            />
-            <p className="text-sm text-center mt-2">
-              IIT-Ropar & Industry Expert Faculty
-            </p>
-          </div>
-          <div className="bg-black bg-opacity-50 text-white p-3 rounded-md">
-            <img
-              className="w-full h-32 sm:h-40 object-cover mx-auto"
-              src={immerImage}
-              alt="Campus"
-            />
-            <p className="text-sm text-center mt-2">
-              5 Day IIT-Ropar Campus Immersion
-            </p>
-          </div>
-          <div className="bg-black bg-opacity-50 text-white p-3 rounded-md">
-            <img
-              className="w-full h-32 sm:h-40 object-cover mx-auto"
-              src={convocation}
-              alt="Alumni"
-            />
-            <p className="text-sm text-center mt-2">
-              Alumni Status - IIT Ropar
-            </p>
-          </div>
-        </div>
+        <GridComponent
+          faculty={faculty}
+          immerImage={immerImage}
+          convocation={convocation}
+        />
 
         {/* Highlights Section */}
         <div className="mt-12 w-full max-w-6xl">
@@ -133,7 +98,7 @@ const HeroPage = () => {
               <div className="w-12 h-12 sm:w-16 sm:h-16">
                 <img
                   className="w-full h-full object-contain"
-                  src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
+                  src={awsLogo}
                   alt="AWS Logo"
                 />
               </div>

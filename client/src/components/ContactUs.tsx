@@ -141,24 +141,20 @@ const ContactUs: React.FC = () => {
   return (
     <Box>
       <HeroSection>
-        <Container>
-          <Typography
-            sx={{
-              color: "#2F4F4F",
-              fontWeight: "bold",
-              background: "linear-gradient(to bottom right, #5eead4, #4338ca)",
-
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              display: "inline-block",
-            }}
-            variant="h2"
-            component="h1"
-            gutterBottom
-          >
-           For Further Assistance
-          </Typography>
-        </Container>
+        <Typography
+          sx={{
+            fontWeight: "bold",
+            background: "linear-gradient(to bottom right, #5eead4, #4338ca)",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            display: "inline-block",
+          }}
+          variant="h3"
+          component="h3"
+          // gutterBottom
+        >
+          For Further Assistance
+        </Typography>
       </HeroSection>
 
       <Container sx={{ pb: 5 }}>
