@@ -224,9 +224,9 @@ const Instructors = () => {
       <Container maxWidth="lg" sx={{ mt: 10 }}>
         <h2 className="text-white text-5xl text-center mt-10">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
-            Leadership{" "}
+          Few Words From The Leaders of Industry Experts{" "}
           </span>
-          Desk
+          
         </h2>
 
         <Grid container spacing={4} mt={2}>

@@ -27,8 +27,8 @@ export const ToT = () => {
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) ? "" : "Please enter a valid email ID";
     tempErrors.phonenumber =
       /^[0-9]+$/.test(formData.phonenumber) ? "" : "Please enter a valid mobile number";
-    tempErrors.collegeName = formData.collegeName ? "" : "College Name is required";
-    tempErrors.collegeAddress = formData.collegeAddress ? "" : "College Address is required";
+    tempErrors.collegeName = formData.collegeName ? "" : "College/Institution Name is required";
+    tempErrors.collegeAddress = formData.collegeAddress ? "" : "College/Institution Address is required";
     tempErrors.city = formData.city ? "" : "City is required";
     tempErrors.pincode = /^[0-9]+$/.test(formData.pincode) ? "" : "Please enter a valid Pincode";
     setErrors(tempErrors);
@@ -223,14 +223,14 @@ export const ToT = () => {
 
             {/* College Name Field */}
             <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
-              College Name <span style={{ color: "red" }}>*</span>
+              College/Institution Name <span style={{ color: "red" }}>*</span>
             </Typography>
             <TextField
               fullWidth
               name="collegeName"
               variant="outlined"
               value={formData.collegeName}
-              placeholder="Enter College Name"
+              placeholder="Enter College/Institution Name"
               onChange={handleChange}
               error={Boolean(errors.collegeName)}
               helperText={errors.collegeName}
@@ -240,14 +240,14 @@ export const ToT = () => {
 
             {/* College Address Field */}
             <Typography variant="body1" gutterBottom style={{ textAlign: "left" }}>
-              College Address <span style={{ color: "red" }}>*</span>
+              College/Institution Address <span style={{ color: "red" }}>*</span>
             </Typography>
             <TextField
               fullWidth
               name="collegeAddress"
               variant="outlined"
               value={formData.collegeAddress}
-              placeholder="Enter College Address"
+              placeholder="Enter College/Institution Address"
               onChange={handleChange}
               error={Boolean(errors.collegeAddress)}
               helperText={errors.collegeAddress}

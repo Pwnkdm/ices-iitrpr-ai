@@ -49,8 +49,8 @@ const [errors, setErrors] = useState({});
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) ? "" : "Please enter a valid email ID";
     tempErrors.phonenumber =
       /^[0-9]+$/.test(formData.phonenumber) ? "" : "Please enter a valid mobile number";
-    tempErrors.collegeName = formData.collegeName ? "" : "College Name is required";
-    tempErrors.collegeAddress = formData.collegeAddress ? "" : "College Address is required";
+    tempErrors.collegeName = formData.collegeName ? "" : "College/Institution Name is required";
+    tempErrors.collegeAddress = formData.collegeAddress ? "" : "College/Institution Address is required";
     tempErrors.city = formData.city ? "" : "City is required";
     tempErrors.pincode = /^[0-9]+$/.test(formData.pincode) ? "" : "Please enter a valid Pincode";
 
@@ -114,16 +114,16 @@ const [errors, setErrors] = useState({});
 
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen text-center bg-gray-100 p-6">
+    <div className="flex flex-col items-center justify-center  text-center bg-gray-100 p-6">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="mb-6"
+        className="mb-6 w-full"
       >
-     <Typography>
+     <Typography >
   <div className="text-2xl italic sm:text-3xl md:text-4xl lg:text-5xl leading-loose space-y-1 font-semibold mb-4 bg-gradient-to-l from-blue-500 to-red-600 bg-clip-text text-transparent">
-    <p>READY TO TAKE THE NEXT STEP?</p>
+    <p >READY TO TAKE THE NEXT STEP?</p>
   </div>
   {/* <div className="font-serif text-center font-semibold w-full mx-auto text-base md:text-2xl lg:text-5xl leading-loose space-y-1">
     <p>READY TO TAKE THE NEXT STEP?</p>
@@ -141,26 +141,8 @@ const [errors, setErrors] = useState({});
         animate={{ scale: 1 }}
         transition={{ duration: 0.5 }}
       >
- <Card 
-  className="shadow-amber-300 shadow-2xl rounded-2xl p-8 bg-white max-w-md w-full text-center"
-  sx={{ minHeight: "220px", borderRadius: "16px" }}
->
-  <Typography 
-    variant="h6" 
-    fontWeight="bold" 
-    gutterBottom 
-    sx={{
-      color: "#aa6595", 
-      fontSize: "1.5rem",
-      letterSpacing: "0.5px", 
-      textTransform: "uppercase", 
-      marginBottom: 4,
-      fontFamily: '"Roboto", sans-serif',
-      fontWeight: 600,
-    }}
-  >
-    GET A BROCHURE
-  </Typography>
+
+
   
   <CardContent 
     sx={{ 
@@ -192,7 +174,7 @@ const [errors, setErrors] = useState({});
       DOWNLOAD A BROCHURE
     </Button>
   </CardContent>
-</Card>
+
 
 
 
@@ -336,7 +318,7 @@ const [errors, setErrors] = useState({});
             />
 
             <TextField
-              label="College Name"
+              label="College/Institution Name"
               name="collegeName"
               variant="outlined"
               fullWidth
@@ -357,7 +339,7 @@ const [errors, setErrors] = useState({});
               }}
             />
             <TextField
-              label="College Address"
+              label="College/Institution Address"
               name="collegeAddress"
               variant="outlined"
               fullWidth
