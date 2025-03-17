@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
 const features = [
@@ -84,25 +84,77 @@ const WhyThisProgram = () => {
         transition={{ duration: 1 }}
         className="mt-16 w-full max-w-6xl px-4 bg-gradient-to-br from-teal-400 to-indigo-800 text-transparent bg-clip-text"
       >
+        <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 p-6">
+      {/* First Box: Who Should Enroll */}
+      <Box
+        sx={{
+          backgroundColor: "#F9FAFB", // Light background color for the box
+          padding: "30px",
+          borderRadius: "12px",
+          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+          height: "auto",
+          maxWidth: "100%",
+        }}
+        className="transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl hover:rotate-1 motion-safe:animate-fade-in cursor-pointer"
+      >
         <Typography
-          variant="h4"
-          style={{ fontWeight: "bold" }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl italic text-center bg-gradient-to-br from-teal-400 to-indigo-800 text-transparent bg-clip-text"
+          variant="h6"
+          sx={{
+            color: "#1F2937", // Dark text color for heading
+            fontWeight: "600",
+            marginBottom: "10px",
+            fontSize: "1.5rem",
+          }}
         >
           Who Should Enroll?
         </Typography>
-        <ul className="list-disc list-inside text-lg sm:text-xl md:text-2xl mt-6 space-y-4 max-w-3xl w-full mx-auto">
-          <li className="whitespace-normal">Engineering Candidates</li>
-          <li className="whitespace-normal">
-            Individuals Interested in AI and its Applications in Engineering
+        <Typography
+          variant="body1"
+          sx={{
+            color: "#4B5563", // Slightly lighter gray for body text
+            fontSize: "1.125rem",
+          }}
+        >
+          B-Tech Pursuing Candidates
+        </Typography>
+      </Box>
+
+      {/* Second Box: Duration and Delivery Format */}
+      <Box
+        sx={{
+          backgroundColor: "#F9FAFB", // Same background for consistency
+          padding: "30px",
+          borderRadius: "12px",
+          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)",
+          height: "auto",
+        }}
+        className="transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl hover:rotate-1 motion-safe:animate-fade-in cursor-pointer"
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            color: "#1F2937", // Dark text color for heading
+            fontWeight: "600",
+            marginBottom: "10px",
+            fontSize: "1.5rem",
+          }}
+        >
+          Duration & Delivery Format
+        </Typography>
+
+        <ul className="list-none space-y-4">
+          <li className="text-lg sm:text-xl md:text-2xl">
+            <strong className="text-gray-800">Duration:</strong>{" "}
+            <span className="text-gray-600">600 hours spread across a year/semester</span>
           </li>
-          <li className="whitespace-normal">
-            <strong>Duration:</strong> 600 hours spread across a year/semester
-          </li>
-          <li className="whitespace-normal">
-            <strong>Delivery Format:</strong> Blended mode (Online + Offline)
+          <li className="text-lg sm:text-xl md:text-2xl">
+            <strong className="text-gray-800">Delivery Format:</strong>{" "}
+            <span className="text-gray-600">Blended mode (Online + Offline)</span>
           </li>
         </ul>
+      </Box>
+    </div>
+
       </motion.div>
     </div>
   );
