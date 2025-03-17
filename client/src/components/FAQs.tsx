@@ -61,6 +61,8 @@ const FAQs: React.FC = () => {
             Frequently Asked Questions
           </Typography>
 
+          
+
           <Typography variant={isMobile ? "body2" : "body1"} color="#2F4F4F">
             Find answers to common questions about the AI Technocrat Program.
           </Typography>

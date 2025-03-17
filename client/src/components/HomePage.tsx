@@ -50,8 +50,8 @@ const HomePage = () => {
 
       {/* FAQs Section */}
       <Box id="faqs" sx={{ marginTop: 10, padding: 0 }}>
-        <Coordinator />
         <FAQs />
+        <Coordinator />
       </Box>
 
       {/* Event Section */}
