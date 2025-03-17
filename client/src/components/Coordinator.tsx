@@ -6,15 +6,9 @@ import {
   Grid,
   Card,
   CardContent,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  useTheme,
   styled,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
+
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: "100%",
@@ -34,14 +28,7 @@ const StyledCardContent = styled(CardContent)(({ theme }) => ({
 }));
 
 const facultyData = [
-  // {
-  //   id: 1,
-  //   name: "Dr. Pushpendra P. Singh",
-  //   title: "Dean R&D, IIT Ropar; Project Director, iHub – AWaDH",
-  //   image: "/assets/ppssir.png",
-  //   video: "https://youtu.be/xIkY_54B1Bs",
-  //   isYoutube: true,
-  // },
+ 
   {
     id: 2,
     name: "Prof. Sudarshan Iyengar",
@@ -97,7 +84,6 @@ const Coordinator = () => {
   
   const [expandedCardId, setExpandedCardId] = useState(null);
 
-  // For second container - toggle video display
   const handleSecondContainerCardClick = (id) => {
     setExpandedCardId(expandedCardId === id ? null : id);
   };
@@ -112,13 +98,16 @@ const Coordinator = () => {
           </span>
         </h2>
 
-        <Grid container spacing={4} mt={2} margin={"auto"}>
+        <Grid container spacing={4} mt={2} alignItems="center" justifyContent="center" margin={"auto" }
+        
+      
+        >
           {facultyData.map((faculty) => (
-            <Grid item xs={12} sm={12} md={6} lg={5} xl={5} key={faculty.id}>
+            <Grid item xs={10} sm={10} md={6} lg={4} xl={4} key={faculty.id}>
               <StyledCard>
                 <Box
-                  sx={{ position: "relative", paddingTop: "56.25%" }}
-                  height={450}
+                  sx={{ position: "relative" }}
+                  height={300}
                 >
                   {/* Just display the poster image in the cards */}
                   <Box
@@ -131,7 +120,8 @@ const Coordinator = () => {
                       left: 0,
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover",
+                      objectFit: "contain",
+                      background:"#eaebed"
                     }}
                   />
                 </Box>
@@ -143,23 +133,7 @@ const Coordinator = () => {
                     {faculty.title}
                   </Typography>
 
-                  {/* video play icon in the card to show video in the modal  */}
-                  {/* {faculty.video && (
-                    <Box
-                      display="flex"
-                      flexDirection="column-reverse"
-                      mt={2}
-                      
-                    >
-                      <Typography
-                        onClick={() => handleCardClick(faculty)}
-                        textAlign={"center"}
-                        color="red"
-                      >
-                        <SmartDisplayOutlinedIcon sx={{ fontSize: "30px" }} />
-                      </Typography>
-                    </Box>
-                  )} */}
+                 
                 </CardContent>
               </StyledCard>
             </Grid>
