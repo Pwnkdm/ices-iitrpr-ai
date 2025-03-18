@@ -26,7 +26,7 @@ const HeroPage = () => {
         </h1> */}
 
         {/* Image container with responsive height */}
-        <div className="flex flex-col overflow-hidden">
+        {/* <div className="flex flex-col overflow-hidden">
           <ContainerScroll
             titleComponent={
               <>
@@ -45,15 +45,29 @@ const HeroPage = () => {
               alt="banner"
             />
           </ContainerScroll>
-        </div>
+        </div> */}
 
-        {/* <div className="w-full h-[60vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
+        <h2 className="mt-[30px] mb-[-30px] text-sm sm:text-xl md:text-2xl font-semibold">
+          <ColourfulText
+            gradientColors={[["#1E90FF", "#CD853F"]]}
+            text="Pursuing B-Tech?"
+          />
+        </h2>
+
+        <h2 className="text-sm sm:text-3xl md:text-4xl font-semibold mt-4">
+          <ColourfulText
+            gradientColors={[["#FFE4E1", "#00CED1"]]}
+            text="It's time to get IIT fortified"
+          />
+        </h2>
+
+        <div className="w-full h-[60vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
           <img
             className="w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
             src={bannerimage}
             alt="banner"
           />
-        </div> */}
+        </div>
 
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">
           <ColourfulText
