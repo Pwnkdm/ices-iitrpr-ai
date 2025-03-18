@@ -17,9 +17,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
-  const isXsScreen = useMediaQuery(theme.breakpoints.down("xs"));
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   // Custom breakpoint for the problematic range (900px-1132px)
   const isMediumScreen = useMediaQuery(
@@ -103,7 +100,8 @@ const Navbar = () => {
     <AppBar
       position="fixed"
       sx={{
-        backgroundColor: "#28282B",
+        // backgroundColor: "#28282B",
+        backgroundColor: "black",
         zIndex: theme.zIndex.appBar,
         pt: { xs: 0.5, sm: 0.75, md: 1 },
         pb: { xs: 0.5, sm: 0.75, md: 1 },
@@ -155,7 +153,7 @@ const Navbar = () => {
           />
           <Box
             component="img"
-            src="/assets/logo-2.jpeg"
+            src="/assets/logo-ICE-2.png"
             alt="Secondary logo"
             loading="lazy"
             sx={logoStyle}

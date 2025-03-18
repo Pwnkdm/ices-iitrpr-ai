@@ -1,6 +1,7 @@
-import bannerimage from "../assets/Design Illustration Portfolio Website in White  Black  Light Classic Minimal Style.png";
+import bannerimage from "../assets/banner.png";
 import immerImage from "../assets/5_day_immersion.webp";
 import convocation from "../assets/Convocation.jpeg";
+import alumni from "../assets/alumni.jpeg";
 import faculty from "../assets/faculty.jpeg";
 import courseDuration from "../assets/course_duration.png";
 import certification from "../assets/winner-white.png";
@@ -10,27 +11,55 @@ import blogger from "../assets/blogger.png";
 import videocam from "../assets/old-video-camera.png";
 import awsLogo from "../assets/aws-logo.png";
 import GridComponent from "./gridComponent";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import ColourfulText from "./ui/colorful-text";
+import { ContainerScroll } from "./ui/container-scroll-animation";
+import { Image } from "lucide-react";
 
 const HeroPage = () => {
   return (
     <div className="m-auto w-full">
       {/* Hero Section */}
       <div className="min-h-screen w-full px-4 sm:px-6 md:px-8 lg:w-[80%] lg:mx-auto text-center flex flex-col justify-center items-center">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 bg-gradient-to-l from-blue-500 to-red-500 bg-clip-text text-transparent p-2">
-          Pursuing B-Tech? It's time to get IIT fortified
-        </h1>
+        {/* <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 py-2 ">
+          <ColourfulText text="It's time to get IIT fortified" />
+        </h1> */}
 
         {/* Image container with responsive height */}
-        <div className="w-full h-[60vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
+        <div className="flex flex-col overflow-hidden">
+          <ContainerScroll
+            titleComponent={
+              <>
+                <h1 className="text-4xl font-semibold text-black dark:text-black">
+                  Pursuing B-Tech? <br />
+                  <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                    It's time to get IIT fortified
+                  </span>
+                </h1>
+              </>
+            }
+          >
+            <img
+              className="w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
+              src={bannerimage}
+              alt="banner"
+            />
+          </ContainerScroll>
+        </div>
+
+        {/* <div className="w-full h-[60vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
           <img
             className="w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
             src={bannerimage}
             alt="banner"
           />
-        </div>
+        </div> */}
 
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4 bg-gradient-to-r from-blue-500 to-red-500 bg-clip-text text-transparent">
-          Don't just be an Engineer, Be an AI-powered Engineer
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">
+          <ColourfulText
+            gradientColors={[["#FF4500", "#7B68EE"]]}
+            text="Don't just be an Engineer, Be an AI-powered Engineer"
+          />
         </h2>
       </div>
 
@@ -52,28 +81,35 @@ const HeroPage = () => {
         </div>
 
         {/* Dual Certification Section */}
-        <div className="mt-4 w-full max-w-4xl">
-          <div className=" bg-gradient-to-br from-teal-300 to-indigo-700  p-4 rounded-lg text-amber-50  shadow-md text-center mx-auto max-w-md">
-            <div className="mx-auto h-16 w-16 sm:h-20 sm:w-20">
-              <img
-                src={certification}
-                alt="certification"
-                className="h-full w-full object-contain"
-              />
+        <HoverBorderGradient
+          containerClassName="border-3 border-blue-800/30 text-gray-300"
+          as="button"
+          className="text-white text-xl sm:text-xl md:text-3xl lg:text-4xl dark:text-white block items-center space-x-2 w-full max-w-4xl bg-gradient-to-br from-teal-300 to-indigo-700 "
+        >
+          <>
+            <div className="p-4 rounded-lg text-amber-50 shadow-md text-center mx-auto max-w-md">
+              <div className="mx-auto h-16 w-16 sm:h-20 sm:w-20">
+                <img
+                  src={certification}
+                  alt="certification"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+              <h4 className="text-lg font-bold mt-2">Dual Certification</h4>
+              <p className="text-sm mt-2">
+                Certificate in AI Technocrat worth 20 Credits by ICES, IIT Ropar
+                & NCVET
+              </p>
+              <p className="text-sm mt-2">
+                Certificate in Minor in AI by IIT Ropar
+              </p>
             </div>
-            <h4 className="text-lg font-bold mt-2">Dual Certification</h4>
-            <p className="text-sm mt-2">
-              Certificate in AI Technocrat worth 20 Credits by ICES, IIT Ropar &
-              NCVET
-            </p>
-            <p className="text-sm mt-2">
-              Certificate in Minor in AI by IIT Ropar
-            </p>
-          </div>
-        </div>
+          </>
+        </HoverBorderGradient>
 
         {/* Feature Images Grid */}
         <GridComponent
+          alumni={alumni}
           faculty={faculty}
           immerImage={immerImage}
           convocation={convocation}

@@ -7,6 +7,10 @@ import Instructors from "./Instructors";
 import WhyThisProgram from "./WhyThisProgram";
 import BrochureDownload from "./BrochureDownload";
 import Coordinator from "./Coordinator";
+import { GlowingEffectComp } from "./GlowingEffect";
+import { Compare } from "../components/ui/compare";
+import wse1 from "../assets/wse-1.png";
+import wse2 from "../assets/wse-2.png";
 
 const HomePage = () => {
   return (
@@ -29,6 +33,18 @@ const HomePage = () => {
         sx={{ marginTop: 0, padding: 0, width: "100vw" }}
       >
         <WhyThisProgram />
+        {/* <GlowingEffectComp />
+
+        <div className="m-auto w-[90%] p-4  rounded-3xl  px-4">
+          <Compare
+            firstImage={wse1}
+            secondImage={wse2}
+            firstImageClassName="object-fill object-left-top"
+            secondImageClassname="object-fill object-left-top"
+            className="mx-auto w-full max-w-[200px] h-[250px] sm:max-w-[300px] sm:h-[300px] md:max-w-[500px] md:h-[400px] lg:max-w-[700px] lg:h-[450px] xl:max-w-[900px] xl:h-[500px] 2xl:max-w-[1100px] 2xl:h-[550px]"
+            slideMode="hover"
+          />
+        </div> */}
       </Box>
 
       {/* Curriculum Section */}

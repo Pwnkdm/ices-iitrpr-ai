@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
-const GridComponent = ({ faculty, immerImage, convocation }) => {
+const GridComponent = ({ alumni, faculty, immerImage, convocation }) => {
   const [previewImage, setPreviewImage] = useState(null);
 
   const features = [
@@ -22,10 +22,17 @@ const GridComponent = ({ faculty, immerImage, convocation }) => {
     },
     {
       id: 3,
-      image: convocation,
+      image: alumni,
       title: "Alumni Status - IIT Ropar",
       description:
         "Gain prestigious alumni status and access to the extensive IIT Ropar alumni network and resources.",
+    },
+    {
+      id: 4,
+      image: convocation,
+      title: "IIT Ropar Convocation Ceremony",
+      description:
+        "Participate in the official convocation ceremony and become part of the prestigious IIT Ropar alumni network with access to exclusive resources and connections.",
     },
   ];
 
@@ -41,11 +48,11 @@ const GridComponent = ({ faculty, immerImage, convocation }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 w-full max-w-6xl px-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 w-full max-w-6xl px-2">
         {features.map((feature) => (
           <motion.div
             key={feature.id}
-            className="bg-black bg-opacity-60 text-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+            className="bg-black bg-opacity-60 text-white rounded-md overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
