@@ -88,8 +88,9 @@ const WhyThisProgram = () => {
   {/* First Box: Who Should Enroll */}
   <Box
     sx={{
-      backgroundColor: "#E5E7EB", // Updated light background color
+      backgroundColor: "#d29684", // Updated light background color
       padding: "30px",
+      paddingTop:"50px",
       borderRadius: "16px", // Slightly more rounded corners
       boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)", // More prominent shadow
       height: "auto",
@@ -105,8 +106,8 @@ const WhyThisProgram = () => {
         color: "linear-gradient(90deg, #4B5563, #1F2937)", // Gradient color for heading text
         fontWeight: "700", // Bold weight for emphasis
         marginBottom: "15px",
-        fontSize: "1.75rem", // Slightly larger text for heading
-        backgroundImage: "linear-gradient(90deg, #4B5563, #1F2937)", // Gradient text
+        fontSize: "2.70rem", // Slightly larger text for heading
+        backgroundImage: "linear-gradient(299deg, #78889e, #273343)", // Gradient text
         WebkitBackgroundClip: "text",
       }}
     >
@@ -115,8 +116,8 @@ const WhyThisProgram = () => {
     <Typography
       variant="body1"
       sx={{
-        color: "#6B7280", // Lighter gray color for body text
-        fontSize: "1.25rem",
+        color: "#FFF", // Lighter gray color for body text
+        fontSize: "1.90rem",
         lineHeight: "1.75",
       }}
     >
@@ -143,8 +144,8 @@ const WhyThisProgram = () => {
         color: "linear-gradient(90deg, #4B5563, #1F2937)", // Gradient color for heading text
         fontWeight: "700",
         marginBottom: "15px",
-        fontSize: "1.75rem",
-        backgroundImage: "linear-gradient(90deg, #4B5563, #1F2937)", // Gradient text
+        fontSize: "2rem",
+        backgroundImage: "linear-gradient(299deg, #78889e, #273343)", // Gradient text
         WebkitBackgroundClip: "text",
       }}
     >
