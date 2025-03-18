@@ -41,6 +41,7 @@ const FAQs: React.FC = () => {
         py: 10,
         px: 2,
         minHeight: "100vh",
+        pt:0
       }}
     >
       <Container maxWidth="lg">
