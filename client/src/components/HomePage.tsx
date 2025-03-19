@@ -32,8 +32,9 @@ const HomePage = () => {
         id="why_this_course"
         sx={{ marginTop: 0, padding: 0, width: "100vw" }}
       >
-        <WhyThisProgram />
-        {/* <GlowingEffectComp />
+        {/* <WhyThisProgram /> */}
+        {/* <div className="bg-black "> */}
+        <GlowingEffectComp />
 
         <div className="m-auto w-[90%] p-4  rounded-3xl  px-4">
           <Compare
@@ -44,7 +45,8 @@ const HomePage = () => {
             className="mx-auto w-full max-w-[200px] h-[250px] sm:max-w-[300px] sm:h-[300px] md:max-w-[500px] md:h-[400px] lg:max-w-[700px] lg:h-[450px] xl:max-w-[900px] xl:h-[500px] 2xl:max-w-[1100px] 2xl:h-[550px]"
             slideMode="hover"
           />
-        </div> */}
+        </div>
+        {/* </div> */}
       </Box>
 
       {/* Curriculum Section */}
