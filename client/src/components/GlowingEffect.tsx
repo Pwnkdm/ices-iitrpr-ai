@@ -6,6 +6,7 @@ import { features } from "../data/Features.js";
 
 export function GlowingEffectComp() {
   return (
+    // <div className="bg-black h-screen"/>
     <ul className="grid grid-cols-1 w-[90%] m-auto  grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2 py-10">
       {features?.map((el, id) => (
         <GridItem
@@ -16,6 +17,7 @@ export function GlowingEffectComp() {
         />
       ))}
     </ul>
+    // </div>
   );
 }
 
