@@ -20,34 +20,8 @@ const HeroPage = () => {
   return (
     <div className="m-auto w-full">
       {/* Hero Section */}
-      <div className="min-h-screen w-full px-4 sm:px-6 md:px-8 lg:w-[80%] lg:mx-auto text-center flex flex-col justify-center items-center">
-        {/* <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 py-2 ">
-          <ColourfulText text="It's time to get IIT fortified" />
-        </h1> */}
-
-        {/* Image container with responsive height */}
-        {/* <div className="flex flex-col overflow-hidden">
-          <ContainerScroll
-            titleComponent={
-              <>
-                <h1 className="text-4xl font-semibold text-black dark:text-black">
-                  Pursuing B-Tech? <br />
-                  <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
-                    It's time to get IIT fortified
-                  </span>
-                </h1>
-              </>
-            }
-          >
-            <img
-              className="w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
-              src={bannerimage}
-              alt="banner"
-            />
-          </ContainerScroll>
-        </div> */}
-
-        <h2 className="mt-[30px] mb-[-30px] text-sm sm:text-xl md:text-2xl font-semibold">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:w-[80%] lg:mx-auto text-center flex flex-col justify-center items-center py-3 sm:py-0 md:py-0 lg:py-2">
+        <h2 className="mt-[12px] mb-[-30px] text-sm sm:text-xl md:text-2xl font-semibold">
           <ColourfulText
             gradientColors={[["#1E90FF", "#CD853F"]]}
             text="Pursuing B-Tech?"
@@ -61,10 +35,9 @@ const HeroPage = () => {
           />
         </h2>
 
-        <div className="w-full h-[60vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
+        <div className="w-full sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
           <img
-            // className="w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
-            className="image-transition w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
+            className="w-full h-full object-cover sm:object-contain md:object-fill lg:object-fill image-transition"
             src={bannerimage}
             alt="banner"
           />
@@ -93,8 +66,7 @@ const HeroPage = () => {
             />
           </h3>
           <p className="text-sm sm:text-md md:text-lg font-medium mt-2 text-center max-w-2xl mx-auto">
-            approved by NCVET, MSDE <br /> (Ministry of Skill Development &
-            Entrepreneurship)
+            approved by NCVET, MSDE <br /> (Ministry of Skill Development & Entrepreneurship)
           </p>
         </div>
 
@@ -104,25 +76,23 @@ const HeroPage = () => {
           as="button"
           className="text-white text-xl sm:text-xl md:text-3xl lg:text-4xl dark:text-white block items-center space-x-2 w-full max-w-4xl bg-gradient-to-r from-gray-800 to-black-700 "
         >
-          <>
-            <div className="p-4 rounded-lg text-amber-50 shadow-md text-center mx-auto max-w-md">
-              <div className="mx-auto h-16 w-16 sm:h-20 sm:w-20">
-                <img
-                  src={certification}
-                  alt="certification"
-                  className="h-full w-full object-contain"
-                />
-              </div>
-              <h4 className="text-lg font-bold mt-2">Dual Certification</h4>
-              <p className="text-sm mt-2">
-                Certificate in AI Technocrat worth 20 Credits by ICES, IIT Ropar
-                & NCVET
-              </p>
-              <p className="text-sm mt-2">
-                Certificate in Minor in AI by IIT Ropar
-              </p>
+          <div className="p-4 rounded-lg text-amber-50 shadow-md text-center mx-auto max-w-md">
+            <div className="mx-auto h-16 w-16 sm:h-20 sm:w-20">
+              <img
+                src={certification}
+                alt="certification"
+                className="h-full w-full object-contain"
+              />
             </div>
-          </>
+            <h4 className="text-lg font-bold mt-2">Dual Certification</h4>
+            <p className="text-sm mt-2">
+              Certificate in AI Technocrat worth 20 Credits by ICES, IIT Ropar
+              & NCVET
+            </p>
+            <p className="text-sm mt-2">
+              Certificate in Minor in AI by IIT Ropar
+            </p>
+          </div>
         </HoverBorderGradient>
 
         {/* Feature Images Grid */}
