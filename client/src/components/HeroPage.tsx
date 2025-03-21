@@ -59,6 +59,7 @@ const HeroPage = () => {
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-900">
             IIT-Ropar & ICE(India)
           </h2>
+          
           <p className="text-lg sm:text-xl font-semibold mt-2">offers</p>
           <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-red-700 mt-2">
             <ColourfulText
