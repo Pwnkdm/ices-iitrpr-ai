@@ -87,11 +87,10 @@ const HeroPage = () => {
           </h2>
           <p className="text-lg sm:text-xl font-semibold mt-2">offers</p>
           <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-red-700 mt-2">
-          <ColourfulText
-            gradientColors={[["#FF4500", "#7B68EE"]]}
-            text="AI TECHNOCRAT PROGRAM"
-          />
-            
+            <ColourfulText
+              gradientColors={[["#FF4500", "#7B68EE"]]}
+              text="AI TECHNOCRAT PROGRAM"
+            />
           </h3>
           <p className="text-sm sm:text-md md:text-lg font-medium mt-2 text-center max-w-2xl mx-auto">
             approved by NCVET, MSDE <br /> (Ministry of Skill Development &
@@ -103,7 +102,7 @@ const HeroPage = () => {
         <HoverBorderGradient
           containerClassName="border-3 border-blue-800/30 text-gray-300"
           as="button"
-          className="text-white text-xl sm:text-xl md:text-3xl lg:text-4xl dark:text-white block items-center space-x-2 w-full max-w-4xl bg-gradient-to-br from-teal-300 to-indigo-700 "
+          className="text-white text-xl sm:text-xl md:text-3xl lg:text-4xl dark:text-white block items-center space-x-2 w-full max-w-4xl bg-gradient-to-r from-gray-800 to-black-700 "
         >
           <>
             <div className="p-4 rounded-lg text-amber-50 shadow-md text-center mx-auto max-w-md">

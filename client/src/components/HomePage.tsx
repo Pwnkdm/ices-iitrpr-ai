@@ -11,6 +11,7 @@ import { GlowingEffectComp } from "./GlowingEffect";
 import { Compare } from "../components/ui/compare";
 import wse1 from "../assets/wse-1.png";
 import wse2 from "../assets/wse-2.png";
+import { CardHoverEffect } from "./CardHoverEffect";
 
 const HomePage = () => {
   return (
@@ -32,7 +33,8 @@ const HomePage = () => {
         id="why_this_course"
         sx={{ marginTop: 0, padding: 0, width: "100vw" }}
       >
-        <WhyThisProgram />
+        {/* <WhyThisProgram /> */}
+        <CardHoverEffect />
         {/* <GlowingEffectComp />
 
         <div className="m-auto w-[90%] p-4  rounded-3xl  px-4">
