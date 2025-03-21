@@ -14,7 +14,8 @@ import GridComponent from "./gridComponent";
 import { HoverBorderGradient } from "./ui/hover-border-gradient";
 import ColourfulText from "./ui/colorful-text";
 import { ContainerScroll } from "./ui/container-scroll-animation";
-import { Image } from "lucide-react";
+import { Button } from "./ui/moving-border";
+import { motion } from "framer-motion";
 
 const HeroPage = () => {
   return (
@@ -71,29 +72,44 @@ const HeroPage = () => {
         </div>
 
         {/* Dual Certification Section */}
-        <HoverBorderGradient
-          containerClassName="border-3 border-blue-800/30 text-gray-300"
-          as="button"
-          className="text-white text-xl sm:text-xl md:text-3xl lg:text-4xl dark:text-white block items-center space-x-2 w-full max-w-4xl bg-gradient-to-r from-gray-800 to-black-700 "
+        <motion.div
+          className="p-1 rounded-3xl bg-gradient-to-b from-gray-800 to-gray-800"
+          whileHover={{ scale: 1.03 }} // Slightly scale up on hover
+          whileTap={{ scale: 0.98 }} // Slightly scale down on click
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <div className="p-4 rounded-lg text-amber-50 shadow-md text-center mx-auto max-w-md">
-            <div className="mx-auto h-16 w-16 sm:h-20 sm:w-20">
-              <img
-                src={certification}
-                alt="certification"
-                className="h-full w-full object-contain"
-              />
-            </div>
-            <h4 className="text-lg font-bold mt-2">Dual Certification</h4>
-            <p className="text-sm mt-2">
-              Certificate in AI Technocrat worth 20 Credits by ICES, IIT Ropar
-              & NCVET
-            </p>
-            <p className="text-sm mt-2">
-              Certificate in Minor in AI by IIT Ropar
-            </p>
-          </div>
-        </HoverBorderGradient>
+          <Button
+            containerClassName="w-full h-full"
+            borderClassName="h-20 w-30 bg-[radial-gradient(#0ea5e9_100%,transparent_70%)] opacity-[0.9] border-10 border-orange-500"
+            className="backdrop-blur-none bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800 "
+          >
+            <>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }} // Start hidden and below
+                animate={{ opacity: 1, y: 0 }} // Animate into view
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="p-4 rounded-lg text-amber-50 shadow-md text-center mx-auto max-w-md "
+              >
+                <div className="mx-auto h-16 w-16 sm:h-20 sm:w-20">
+                  <img
+                    src={certification}
+                    alt="certification"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+                <h4 className="text-lg font-bold mt-2">Dual Certification</h4>
+                <p className="text-sm mt-2">
+                  Certificate in AI Technocrat worth 20 Credits by ICES, IIT
+                  Ropar & NCVET
+                </p>
+                <p className="text-sm mt-2">
+                  Certificate in Minor in AI by IIT Ropar
+                </p>
+              </motion.div>
+            </>
+          </Button>
+        </motion.div>
+        {/* </HoverBorderGradient> */}
 
         {/* Feature Images Grid */}
         <GridComponent
