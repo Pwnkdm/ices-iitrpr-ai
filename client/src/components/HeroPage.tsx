@@ -63,7 +63,8 @@ const HeroPage = () => {
 
         <div className="w-full h-[60vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
           <img
-            className="w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
+            // className="w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
+            className="image-transition w-full h-full object-contain sm:object-contain md:object-fill lg:object-fill"
             src={bannerimage}
             alt="banner"
           />
