@@ -156,10 +156,7 @@ const Navbar = () => {
             src="/assets/logo-ICE-2.png"
             alt="Secondary logo"
             loading="lazy"
-            sx={{
-              width:"80px",
-              height:"auto"
-            }}
+          
           />
           <Box
             component="img"
