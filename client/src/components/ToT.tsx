@@ -106,7 +106,7 @@ export const ToT = () => {
         <Typography>- Core Training will be provided by the IIT Ropar & Pedagogical training will be provided by ICES.</Typography>
         <Typography>- ToT certificate will be obtained by ICES after training and assessment.</Typography>
         <Typography>- College/Institution will nominate the faculty member for the ToT program through (SIDH) portal.</Typography>
-        <Typography>- The eligible candidate can enroll for this program through college/Institution.</Typography>
+        <Typography>- The eligible candidate can enrol for this program through college/Institution.</Typography>
         <Typography>- Trainer will provide training, monitoring, and mentoring in physical mode.</Typography>
       </Box>
         <Box
