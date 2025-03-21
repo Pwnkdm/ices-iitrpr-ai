@@ -224,7 +224,7 @@ const Instructors = () => {
       <Container maxWidth="lg" sx={{ mt: 10 }}>
         <h2 className="text-white text-5xl text-center mt-10">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
-          Few Words From <br /> The Leaders of Industry Experts{" "}
+          Insights from Industry Leaders and  Experts{" "}
           </span>
           
         </h2>

@@ -85,7 +85,7 @@ const WhyThisProgram = () => {
         className="mt-16 w-full max-w-6xl px-4 bg-gradient-to-br from-teal-400 to-indigo-800 text-transparent bg-clip-text"
       >
        <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 p-6 w-full">
-  {/* First Box: Who Should Enroll */}
+  {/* First Box: Who Should Enrol */}
   <Box
     sx={{
       backgroundColor: "#d29684", // Updated light background color
@@ -111,7 +111,7 @@ const WhyThisProgram = () => {
         WebkitBackgroundClip: "text",
       }}
     >
-      Who Should Enroll?
+      Who Should Enrol?
     </Typography>
     <Typography
       variant="body1"

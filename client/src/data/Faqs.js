@@ -2,9 +2,9 @@ export const faqsData = [
   {
     id: 1,
     question:
-      "Who is eligible to enroll in the AI Technocrat Program based on academic qualifications?",
+      "Who is eligible to enrol in the AI Technocrat Program based on academic qualifications?",
     answer:
-      "Participants who have completed the 2nd year of a 4-year B-Tech program are eligible to enroll in the AI Technocrat Program.",
+      "Participants who have completed the 2nd year of a 4-year B-Tech program are eligible to enrol in the AI Technocrat Program.",
   },
   {
     id: 2,
@@ -16,9 +16,9 @@ export const faqsData = [
   {
     id: 3,
     question:
-      "How can eligible candidates Enroll in the AI Technocrat Program?",
+      "How can eligible candidates Enrol in the AI Technocrat Program?",
     answer:
-      "Eligible candidates can Enroll through affiliated training centers (college/university), which assist with registration and program guidance.",
+      "Eligible candidates can Enrol through affiliated training centers (college/university), which assist with registration and program guidance.",
   },
   {
     id: 4,

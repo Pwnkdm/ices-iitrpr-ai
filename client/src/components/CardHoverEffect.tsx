@@ -39,7 +39,7 @@ export function CardHoverEffect() {
       boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)", // More prominent shadow
       height: "auto",
       width: "100%",
-      maxWidth: "calc(50% + 2rem)", // Making the first box wider
+       // Making the first box wider
       transition: "transform 0.3s ease, box-shadow 0.3s ease",
     }}
     className="hover:scale-105 hover:shadow-xl hover:rotate-1 motion-safe:animate-fade-in cursor-pointer"
@@ -55,7 +55,7 @@ export function CardHoverEffect() {
         WebkitBackgroundClip: "text",
       }}
     >
-      Who Should Enroll?
+      Who Should Enrol?
     </Typography>
     <Typography
       variant="body1"
