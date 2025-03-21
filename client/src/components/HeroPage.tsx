@@ -108,7 +108,7 @@ const HeroPage = () => {
         >
           <Button
             containerClassName="w-full h-full"
-            borderClassName="h-50 w-50 bg-[radial-gradient(#0ea5e9_40%,transparent_60%)] opacity-[0.9] border-10 border-orange-500"
+            borderClassName="h-20 w-30 bg-[radial-gradient(#0ea5e9_100%,transparent_70%)] opacity-[0.9] border-10 border-orange-500"
             className="backdrop-blur-none bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800 "
           >
             <>
