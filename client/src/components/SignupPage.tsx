@@ -64,7 +64,7 @@ export const SignupPage = () => {
         setTimeout(() => {
           // Trigger PDF download
           const link = document.createElement('a');
-          link.href = '../assets/brochure.pdf'; // Replace with the correct path to your PDF
+          link.href = '/assets/brochure.pdf'; // Replace with the correct path to your PDF
           link.download = 'brochure.pdf';
           document.body.appendChild(link);
           link.click();
