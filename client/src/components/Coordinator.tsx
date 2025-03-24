@@ -90,7 +90,7 @@ const Coordinator = () => {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ mb: 10 }}>
+      <Container maxWidth="lg" sx={{ mb: 10 , }}>
         <h2 className="text-white text-5xl text-center">
           {/* Faculty{" "} */}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
@@ -98,12 +98,12 @@ const Coordinator = () => {
           </span>
         </h2>
 
-        <Grid container spacing={4} mt={2} alignItems="center" justifyContent="center" margin={"auto" }
+        <Grid container spacing={4} mt={2} alignItems="center" justifyContent="center" 
         
       
         >
           {facultyData.map((faculty) => (
-            <Grid item xs={10} sm={10} md={6} lg={4} xl={4} key={faculty.id}>
+            <Grid item xs={10} sm={10} md={6} lg={4} xl={4} key={faculty.id} >
               <StyledCard>
                 <Box
                   sx={{ position: "relative" }}
