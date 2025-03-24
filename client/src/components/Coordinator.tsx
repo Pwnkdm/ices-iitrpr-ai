@@ -91,7 +91,7 @@ const Coordinator = () => {
   return (
     <>
       <Container maxWidth="lg" sx={{ mb: 10 , }}>
-        <h2 className="text-white text-5xl text-center">
+        <h2 className="text-white text-4xl sm:text-5xl text-center">
           {/* Faculty{" "} */}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
             Co-ordinators
