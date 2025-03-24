@@ -222,7 +222,7 @@ const Instructors = () => {
       </Container> */}
 
       <Container maxWidth="lg" sx={{ mt: 10 }}>
-        <h2 className="text-white text-5xl text-center mt-10">
+        <h2 className="text-white text-3xl sm:text-5xl text-center mt-10">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
           Insights from Industry Leaders and  Experts{" "}
           </span>
@@ -276,13 +276,13 @@ const Instructors = () => {
 
 
         <br />
-        <h6 className="text-center text-[0.7rem] sm:text-3xl mt-3 ml-1 sm:ml-10  s">
+        <h6 className="sm:text-center text-start text-[1rem] sm:text-3xl mt-3 ml-1 sm:ml-10  s">
   <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#08798b] to-[#CF1512]">
     “The world is at the dawn of AI age where the technology is fast writing the code for humanity and reshaping our polity, economy, security, and society”
   </span>
 </h6>
 
-        <h6 className="text-[15px] flex justify-end sm:text-2xl text-left md:text-3xl lg:text-4xl xl:text-xl text-white mt-6 leading-tight ml-10 italic">
+        <h6 className="text-[0.7rem] flex justify-end sm:text-2xl text-left md:text-3xl lg:text-4xl xl:text-xl text-white mt-6 leading-tight ml-10 italic">
             <span className="bg-clip-text text-left text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
             - Honorable PM Shree. Narendra Modi at AI Action Summit, Paris, 2025
             </span>
