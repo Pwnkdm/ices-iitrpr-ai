@@ -70,6 +70,7 @@ const FAQs: React.FC = () => {
         </Box>
 
         {/* FAQs List */}
+        <div className="h-[60vh] md:h-[75vh] sm:h-[75vh] p-4 overflow-y-auto">
         {displayedFaqs.length > 0 ? (
           displayedFaqs.map((faq: FaqItem, index: number) => (
             <Paper
@@ -133,6 +134,7 @@ const FAQs: React.FC = () => {
             No FAQs available at the moment.
           </Typography>
         )}
+        </div>
 
         {/* Pagination Component */}
         {totalPages > 1 && (
