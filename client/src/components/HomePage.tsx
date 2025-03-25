@@ -1,19 +1,61 @@
+import React, { useEffect } from "react";
 import { Box } from "@mui/material";
+import { useLocation } from "react-router-dom"; // To listen to changes in the URL
 import HeroPage from "./HeroPage";
 import Curriculum from "./Curriculam";
 import FAQs from "./FAQs";
 import ContactUs from "./ContactUs";
 import Instructors from "./Instructors";
-import WhyThisProgram from "./WhyThisProgram";
 import BrochureDownload from "./BrochureDownload";
 import Coordinator from "./Coordinator";
-import { GlowingEffectComp } from "./GlowingEffect";
-import { Compare } from "../components/ui/compare";
-import wse1 from "../assets/wse-1.png";
-import wse2 from "../assets/wse-2.png";
 import { CardHoverEffect } from "./CardHoverEffect";
 
 const HomePage = () => {
+  // Get the current hash from the URL (used to highlight or scroll to sections)
+  const { hash } = useLocation();
+
+  // Define a function to update the URL based on the section ID
+  const updateURL = (sectionId: string) => {
+    window.history.pushState({}, "", `#${sectionId}`); // Updates the URL with the section ID
+  };
+
+  // Set up the Intersection Observer to track section visibility
+  useEffect(() => {
+    const sections = document.querySelectorAll("section"); // Get all sections
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+            updateURL(sectionId); // Update the URL when the section is visible
+          }
+        });
+      },
+      {
+        rootMargin: "0px",
+        threshold: 0.5, // 50% visibility before triggering
+      }
+    );
+
+    // Observe all sections
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      observer.disconnect(); // Cleanup observer on component unmount
+    };
+  }, []);
+
+  // Scroll to section based on the current URL hash (if any)
+  useEffect(() => {
+    if (hash) {
+      const section = document.querySelector(hash);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [hash]);
+
   return (
     <Box
       sx={{
@@ -21,72 +63,46 @@ const HomePage = () => {
         padding: 0,
         paddingTop: 10,
         fontFamily: "Lexend",
-        //   "linear-gradient(351deg, rgba(175,94,135,1) 0%, rgba(40,40,43,1) 36%)",
       }}
     >
-      {/* Why This Course Section */}
-      <Box id="overview" sx={{ marginTop: 0, padding: 0, width: "100vw" }}>
+      {/* Hero Section */}
+      <section id="overview" sx={{ marginTop: 0, padding: 0, width: "100vw" }}>
         <HeroPage />
-      </Box>
+      </section>
 
-      <Box
+      {/* Why This Course Section */}
+      <section
         id="why_this_course"
         sx={{ marginTop: 0, padding: 0, width: "100vw" }}
       >
-        {/* <WhyThisProgram /> */}
         <CardHoverEffect />
-        {/* <GlowingEffectComp />
-
-        <div className="m-auto w-[90%] p-4  rounded-3xl  px-4">
-          <Compare
-            firstImage={wse1}
-            secondImage={wse2}
-            firstImageClassName="object-fill object-left-top"
-            secondImageClassname="object-fill object-left-top"
-            className="mx-auto w-full max-w-[200px] h-[250px] sm:max-w-[300px] sm:h-[300px] md:max-w-[500px] md:h-[400px] lg:max-w-[700px] lg:h-[450px] xl:max-w-[900px] xl:h-[500px] 2xl:max-w-[1100px] 2xl:h-[550px]"
-            slideMode="hover"
-          />
-        </div> */}
-      </Box>
+      </section>
 
       {/* Curriculum Section */}
-      <Box id="curriculum" sx={{ marginTop: 10, padding: 0 }}>
+      <section id="curriculum" sx={{ marginTop: 10, padding: 0 }}>
         <Curriculum />
-      </Box>
+      </section>
 
       {/* Instructor Section */}
-      <Box id="instructors" sx={{ marginTop: 10, padding: 0 }}>
+      <section id="instructors" sx={{ marginTop: 10, padding: 0 }}>
         <Instructors />
-      </Box>
+      </section>
 
-      {/* Fees Section */}
-
-      <Box id="fees" sx={{ marginTop: 10 }}>
-        {/* <FeeStructure /> */}
+      {/* brochure Section */}
+      <section id="brochure" sx={{ marginTop: 10 }}>
         <BrochureDownload />
-      </Box>
+      </section>
 
       {/* FAQs Section */}
-      <Box id="faqs" sx={{ marginTop: 10, padding: 0 }}>
+      <section id="faqs" sx={{ marginTop: 10, padding: 0 }}>
         <FAQs />
         <Coordinator />
-      </Box>
-
-      {/* Event Section */}
-      {/* <Box
-        id="event"
-        sx={{ marginTop: 10, padding: 4, backgroundColor: "#f9f9f9" }}
-      >
-        <Typography variant="h4">Event</Typography>
-        <Typography variant="body1">
-          Remove Typography Add Component here
-        </Typography>
-      </Box> */}
+      </section>
 
       {/* Contact Section */}
-      <Box id="contact" sx={{ padding: 0 }}>
+      <section id="contact" sx={{ padding: 0 }}>
         <ContactUs />
-      </Box>
+      </section>
     </Box>
   );
 };
