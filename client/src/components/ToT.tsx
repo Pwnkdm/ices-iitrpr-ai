@@ -326,7 +326,7 @@ export const ToT = () => {
         <DialogTitle>Thank You!</DialogTitle>
         <DialogContent>
           <Typography variant="body1">
-            Thank you !! , We will react out to you shortly.
+            Thank you for your submission! We'll get back to you soon.
           </Typography>
         </DialogContent>
         <DialogActions>
