@@ -91,9 +91,9 @@ const Navbar = () => {
     { label: "Overview", path: "/#overview" },
     { label: "Why this course?", path: "/#why_this_course" },
     { label: "Curriculum", path: "/#curriculum" },
+    { label: "FAQs", path: "/#faqs" },
     { label: "Events", path: "/#events" },
     { label: "Contact", path: "/#contact" },
-    { label: "FAQs", path: "/#faqs" },
   ];
 
   return (
