@@ -61,7 +61,7 @@ const GridComponent = ({ alumni, faculty, immerImage, convocation }) => {
           >
             <div
               className="relative overflow-hidden cursor-pointer group"
-              onClick={() => openPreview(feature.image)}
+              // onClick={() => openPreview(feature.image)}
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300 flex items-end justify-center">
                 <p className="text-white text-center p-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">

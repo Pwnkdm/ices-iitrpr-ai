@@ -49,7 +49,7 @@ export function CardHoverEffect() {
           >
             <div className="group relative bg-white p-8 border-1 border-gray-300 rounded-2xl shadow-lg hover:shadow-4xl transform hover:-translate-y-2 transition-all duration-300 ease-in-out ">
               <div className="absolute inset-0 bg-gradient-to-br from-red-300/70 to-purple-400/70 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300 "></div>
-              <h2 className="relative text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-red-500 to-purple-600 text-transparent bg-clip-text">
+              <h2 className="relative text-3xl sm:text-3xl font-bold mb-6 bg-gradient-to-r from-red-500 to-purple-600 text-transparent bg-clip-text w-fit ">
                 Duration & Delivery Format
               </h2>
               <ul className="relative list-none space-y-4">
@@ -58,7 +58,7 @@ export function CardHoverEffect() {
                     Duration :
                   </span>{" "}
                   <span className="text-orange-400">
-                    600 hours across a year/semester
+                    600 hours across a year/ semester
                   </span>
                 </li>
                 <li className="text-lg sm:text-xl md:text-2xl text-red-700">
