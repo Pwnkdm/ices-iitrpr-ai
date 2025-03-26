@@ -63,12 +63,14 @@ export const SignupPage = () => {
         // Trigger PDF download after a small delay
         setTimeout(() => {
           // Trigger PDF download
-          const link = document.createElement('a');
-          link.href = '/assets/A.I-Technocrat-Brochure.pdf'; // Replace with the correct path to your PDF
-          link.download = 'A.I-Technocrat-Brochure.pdf';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
+          // const link = document.createElement('a');
+          // link.href = '/assets/A.I-Technocrat-Brochure.pdf'; 
+          // link.download = 'A.I-Technocrat-Brochure.pdf';
+          // document.body.appendChild(link);
+          // link.click();
+          // document.body.removeChild(link);
+          console.log("hi");
+          
 
           // Navigate to homepage after the download starts
           setTimeout(() => {

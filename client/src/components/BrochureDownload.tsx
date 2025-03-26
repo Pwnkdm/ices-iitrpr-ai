@@ -69,7 +69,7 @@ const [errors, setErrors] = useState({});
     if (validate()) {
       try {
         const response = await axios.post(`${import.meta.env.VITE_API_URL_USER}/sign-up`, formData);
-        toast.success("Registered Successfully!");
+        // toast.success("Registered Successfully!");
   
         // Close the modal after successful submission
         handleClose();
@@ -78,8 +78,8 @@ const [errors, setErrors] = useState({});
         setTimeout(() => {
           // Trigger PDF download
           const link = document.createElement('a');
-          link.href = '/assets/brochure.pdf'; // Replace with the correct path to your PDF
-          link.download = 'brochure.pdf';
+          link.href = '/assets/A.I-Technocrat-Brochure.pdf'; // Replace with the correct path to your PDF
+          link.download = 'A.I-Technocrat-Brochure.pdf';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
