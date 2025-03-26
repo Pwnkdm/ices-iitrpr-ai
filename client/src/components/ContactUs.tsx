@@ -165,8 +165,15 @@ const ContactUs: React.FC = () => {
                 <CardContent
                   sx={{ flexGrow: 1, textAlign: "center", color: "white" }}
                 >
-                  <IconWrapper>{card.icon}</IconWrapper>
-                  <Typography gutterBottom variant="h5" component="h2">
+                  <IconWrapper sx={{ color: "#F5F5F5" }}>
+                    {card.icon}
+                  </IconWrapper>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h2"
+                    sx={{ color: "#FFA725" }}
+                  >
                     {card.title}
                   </Typography>
                   <Typography color="text.white">{card.description}</Typography>

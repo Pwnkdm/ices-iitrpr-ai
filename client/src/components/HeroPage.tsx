@@ -22,7 +22,7 @@ const HeroPage = () => {
     <div className="m-auto w-full">
       {/* Hero Section */}
       <div className="w-full px-4 sm:px-6 md:px-8 lg:w-[80%] lg:mx-auto text-center flex flex-col justify-center items-center py-3 sm:py-0 md:py-0 lg:py-2">
-        <h2 className="mt-[12px] mb-[-30px] text-sm sm:text-xl md:text-2xl font-semibold">
+        <h2 className="mt-[12px] mb-[-30px] text-sm sm:text-xl md:text-2xl font-semibold ">
           <ColourfulText
             gradientColors={[["#1E90FF", "#CD853F"]]}
             text="Pursuing B-Tech?"
@@ -44,10 +44,15 @@ const HeroPage = () => {
           />
         </div>
 
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-4">
+        <h2 className="text-xl sm:text-4xl md:text-4xl font-semibold mt-4 w-fit">
           <ColourfulText
             gradientColors={[["#FF4500", "#7B68EE"]]}
-            text="Don't just be an Engineer, Be an AI-powered Engineer"
+            text="Don't just be an Engineer, "
+          />
+          <ColourfulText
+            classname="w-full px-5"
+            gradientColors={[["#FF4500", "#7B68EE"]]}
+            text=" Be an AI-powered Engineer"
           />
         </h2>
       </div>
@@ -59,16 +64,17 @@ const HeroPage = () => {
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-900">
             IIT-Ropar & ICE(India)
           </h2>
-          
+
           <p className="text-lg sm:text-xl font-semibold mt-2">offers</p>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-red-700 mt-2">
+          <h3 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-red-700 mt-2">
             <ColourfulText
               gradientColors={[["#FF4500", "#7B68EE"]]}
               text="AI TECHNOCRAT PROGRAM"
             />
           </h3>
           <p className="text-sm sm:text-md md:text-lg font-medium mt-2 text-center max-w-2xl mx-auto">
-            approved by NCVET, MSDE <br /> (Ministry of Skill Development & Entrepreneurship)
+            approved by NCVET, MSDE <br /> (Ministry of Skill Development &
+            Entrepreneurship)
           </p>
         </div>
 

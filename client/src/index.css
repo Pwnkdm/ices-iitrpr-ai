@@ -5,11 +5,10 @@
   font-family: "Lexend", sans-serif !important;
 }
 
-
 /* Add this to your tailwind.config.js or CSS file if you're not using inline styles */
 @layer utilities {
   .image-transition {
-    animation: slideIn 3s ease-in-out forwards;
+    animation: slideIn 0.8s ease-in-out forwards;
     width: 0;
     overflow: hidden;
   }
