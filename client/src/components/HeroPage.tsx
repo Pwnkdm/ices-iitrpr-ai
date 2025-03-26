@@ -104,7 +104,7 @@ const HeroPage = () => {
                   Ropar & NCVET
                 </p>
                 <p className="text-sm mt-2">
-                  Certificate in Minor in AI by IIT Ropar
+                  Certificate in AI Minor by IIT Ropar
                 </p>
               </motion.div>
             </>

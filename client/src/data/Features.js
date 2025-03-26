@@ -10,7 +10,7 @@ export const features = [
     id: 25,
     title: "High-Demand Skills",
     description:
-      "The demand for AI professionals is skyrocketing globally. This qualification equips you with the cutting-edge skills needed to thrive in this lucrative and rapidly expanding field.",
+      "The demand for AI professionals is skyrocketing globally. This qualification equips you with the cutting-edge skills required to thrive in this lucrative and rapidly expanding field.",
     area: "md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]",
   },
   {
