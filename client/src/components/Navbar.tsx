@@ -85,6 +85,22 @@ const Navbar = () => {
     objectFit: "contain",
     transition: "all 0.2s ease-in-out",
   };
+  const logoStyleSec = {
+    width: {
+      xs: "48px",
+      sm: "56px",
+      md: isMediumScreen ? "46px" : "50px", // Smaller logos in problem range
+      lg: "80px",
+    },
+    height: {
+      xs: "42px",
+      sm: "46px",
+      md: isMediumScreen ? "46px" : "50px", // Smaller logos in problem range
+      lg: "80px",
+    },
+    objectFit: "contain",
+    transition: "all 0.2s ease-in-out",
+  };
 
   // Navigation menu items
   const navItems = [
@@ -156,7 +172,7 @@ const Navbar = () => {
             src="/assets/logo-ICE-2.png"
             alt="Secondary logo"
             loading="lazy"
-            sx={logoStyle}
+            sx={logoStyleSec}
           />
           <Box
             component="img"
