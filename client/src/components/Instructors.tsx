@@ -60,7 +60,7 @@ const leadersData = [
     id: 4,
     name: "Pushpendra P. Singh",
     title: "Project Director iHub-AWaDH & Dean R&D,IIT Ropar",
-    image: "/assets/ppssir.png",
+    image: "/assets/pps.sir.png",
     desc: "The AI for Bharat program is going to make essential skills for today's job market accessible. Its flexibility acknowledges each student's learning journey without added burden.",
   },
 ];
@@ -114,41 +114,48 @@ const Instructors = () => {
                       left: 0,
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover",
+                      objectFit: "fill",
                     }}
                   />
                   {ldr.videoUri && (
-                    <Box
+                    // <Box
+                    //   onClick={() => handleOpenVideo(ldr.videoUri)}
+                    //   sx={{
+                    //     position: "absolute",
+                    //     top: 10,
+                    //     left: 0,
+                    //     bottom: -10,
+                    //     width: "100%",
+                    //     height: "100%",
+                    //     display: "flex",
+                    //     justifyContent: "center",
+                    //     alignItems: "center",
+                    //     backgroundColor: "rgba(0,0,0,0.3)",
+                    //     cursor: "pointer",
+                    //     // transition: "background-color 0.3s ease",
+                    //     // "&:hover": {
+                    //     //   backgroundColor: "rgba(0,0,0,0.5)",
+                    //     // },
+                    //   }}
+                    // >
+                    <PlayIcon
                       onClick={() => handleOpenVideo(ldr.videoUri)}
                       sx={{
                         position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        backgroundColor: "rgba(0,0,0,0.3)",
-                        cursor: "pointer",
-                        transition: "background-color 0.3s ease",
+                        // top: 0,
+                        // left: 0,
+                        right: "50%",
+                        bottom: "10%",
+                        color: "red",
+                        fontSize: "4rem",
+                        opacity: 0.8,
+                        transition: "transform 0.3s ease",
                         "&:hover": {
-                          backgroundColor: "rgba(0,0,0,0.5)",
+                          transform: "scale(1.2)",
                         },
                       }}
-                    >
-                      <PlayIcon
-                        sx={{
-                          color: "white",
-                          fontSize: "4rem",
-                          opacity: 0.8,
-                          transition: "transform 0.3s ease",
-                          "&:hover": {
-                            transform: "scale(1.2)",
-                          },
-                        }}
-                      />
-                    </Box>
+                    />
+                    // </Box>
                   )}
                 </Box>
                 <CardContent>
