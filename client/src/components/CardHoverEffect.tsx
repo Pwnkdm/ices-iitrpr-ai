@@ -27,7 +27,7 @@ export function CardHoverEffect() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full sm:w-1/2"
+            className="w-full sm:w-1/2 h-fit"
           >
             <div className="group relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-4xl transform hover:-translate-y-2 transition-all duration-300 ease-in-out border-1 border-gray-300">
               <div className="absolute inset-0 bg-gradient-to-br from-teal-300/70 to-indigo-400/70 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300"></div>
@@ -45,7 +45,7 @@ export function CardHoverEffect() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="w-full sm:w-1/2 border-gray-400"
+            className="w-full sm:w-1/2"
           >
             <div className="group relative bg-white p-8 border-1 border-gray-300 rounded-2xl shadow-lg hover:shadow-4xl transform hover:-translate-y-2 transition-all duration-300 ease-in-out ">
               <div className="absolute inset-0 bg-gradient-to-br from-red-300/70 to-purple-400/70 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300 "></div>

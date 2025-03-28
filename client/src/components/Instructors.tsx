@@ -8,15 +8,9 @@ import {
   CardContent,
   Dialog,
   DialogContent,
-  DialogTitle,
-  IconButton,
-  useTheme,
   styled,
 } from "@mui/material";
-import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
-
-import CloseIcon from "@mui/icons-material/Close";
-import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
+import { PlayCircleOutline as PlayIcon } from "@mui/icons-material";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: "100%",
@@ -28,58 +22,6 @@ const StyledCard = styled(Card)(({ theme }) => ({
     cursor: "pointer",
   },
 }));
-const StyledCardContent = styled(CardContent)(({ theme }) => ({
-  flexGrow: 1,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between", // Ensures spacing between top and bottom elements
-}));
-
-const facultyData = [
-  // {
-  //   id: 1,
-  //   name: "Dr. Pushpendra P. Singh",
-  //   title: "Dean R&D, IIT Ropar; Project Director, iHub – AWaDH",
-  //   image: "/assets/ppssir.png",
-  //   video: "https://youtu.be/xIkY_54B1Bs",
-  //   isYoutube: true,
-  // },
-  {
-    id: 2,
-    name: "Prof. Sudarshan Iyengar",
-    title: (
-      <>
-        Head Coordinator (Faculty){"\n"}
-        <span style={{ display: "block" }}>IIT Ropar</span>
-      </>
-    ),
-    image:
-      "https://cdn.masaischool.com/masai-website/Sudarshan_e73ca6492a.webp",
-    video: "",
-    isYoutube: false,
-  },
-  {
-    id: 3,
-    name: "Er. Munish Kumar Goswami",
-    title:  (
-      <>
-        Dy. Director (Projects), ICE(India){"\n"}
-        <span style={{ display: "block" }}>Manager QP/NOS/SME, ICES</span>
-      </>
-    ),
-    image: "https://iceskills.in/wp-content/uploads/2024/07/Er.-Munish-Kumar.jpg",
-    video: "",
-    isYoutube: false,
-  },
-  // {
-  //   id: 4,
-  //   name: "Dr. Emily Williams",
-  //   title: "Assistant Professor",
-  //   image: "https://images.unsplash.com/photo-1580489944761-15a19d654956",
-  //   video: "",
-  //   isYoutube: false, // This URL needs to be updated to a direct video file
-  // },
-];
 
 const leadersData = [
   {
@@ -101,6 +43,10 @@ const leadersData = [
     ),
     image: "https://iceskills.in/wp-content/uploads/2024/08/1-236x300.jpg",
     desc: "Advancing Skill Development Excellence:ICES- where community thrive strategic curriculum planning, innovative teaching methods, technology integration and personalized learning experiences.",
+    // videoUri:
+    //   "https://drive.google.com/file/d/1I-uWwaYNOKOajoxJFW97a7ZLukgK34Zr/view?usp=sharing",
+    videoUri:
+      "https://drive.google.com/file/d/1vE1Q0CSv4ZadR5aBaazYKWRHfmcDyS6D/view?usp=sharing",
   },
   // {
   //   id: 3,
@@ -119,114 +65,35 @@ const leadersData = [
   },
 ];
 
-// Helper function to extract YouTube video ID
-const getYoutubeId = (url: string) => {
-  // Handle different YouTube URL formats
-  if (url.includes("youtu.be/")) {
-    return url.split("youtu.be/")[1].split("?")[0];
-  } else if (url.includes("youtube.com/watch")) {
-    const urlParams = new URLSearchParams(url.split("?")[1]);
-    return urlParams.get("v");
-  }
-  return url;
-};
-
 const Instructors = () => {
-  const theme = useTheme();
-  const [selectedFaculty, setSelectedFaculty] = useState(null);
-  const [expandedCardId, setExpandedCardId] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const handleCardClick = (faculty: React.SetStateAction<null>) => {
-    setSelectedFaculty(faculty);
+  // Function to convert Google Drive share link to embedded link
+  const getEmbedLink = (shareLink) => {
+    try {
+      const fileId = shareLink.match(/\/d\/([^\/]+)/)[1];
+      return `https://drive.google.com/file/d/${fileId}/preview?embedded=true`;
+    } catch (error) {
+      console.error("Invalid Google Drive link", error);
+      return null;
+    }
   };
 
-  const handleClose = () => {
-    setSelectedFaculty(null);
+  const handleOpenVideo = (videoUri) => {
+    setSelectedVideo(videoUri);
   };
 
-  // For second container - toggle video display
-  const handleSecondContainerCardClick = (id) => {
-    setExpandedCardId(expandedCardId === id ? null : id);
+  const handleCloseVideo = () => {
+    setSelectedVideo(null);
   };
 
   return (
     <>
-
-
-      {/* <Container maxWidth="lg" sx={{ mt: 10 }}>
-        <h2 className="text-white text-5xl text-center">
-          Something{" "}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
-            Informative
-          </span>
-        </h2>
-        <Grid container spacing={4} mt={2}>
-          {facultyData.map((faculty) => (
-            <Grid item xs={12} sm={6} md={3} key={faculty.id}>
-              <StyledCard>
-                <Box
-                  sx={{
-                    position: "relative",
-                    paddingTop: "56.25%",
-                    borderRight: "none",
-                  }}
-                  height={250}
-                >
-                  {faculty.isYoutube ? (
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src={`https://www.youtube.com/embed/${getYoutubeId(
-                        faculty.video
-                      )}`}
-                      title={faculty.name}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                      }}
-                    ></iframe>
-                  ) : (
-                    <video
-                      width="100%"
-                      height="100%"
-                      autoPlay
-                      controls
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        objectFit: "cover",
-                      }}
-                    >
-                      <source src={faculty.video} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  )}
-                </Box>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                    {faculty.name}
-                  </Typography>
-                  <Typography variant="subtitle1" color="text.secondary">
-                    {faculty.title}
-                  </Typography>
-                </CardContent>
-              </StyledCard>
-            </Grid>
-          ))}
-        </Grid>
-      </Container> */}
-
       <Container maxWidth="lg" sx={{ mt: 10 }}>
         <h2 className="text-white text-3xl sm:text-5xl text-center mt-10">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
-          Insights from Industry Leaders and  Experts{" "}
+            Insights from Industry Leaders and Experts{" "}
           </span>
-          
         </h2>
 
         <Grid container spacing={4} mt={2}>
@@ -237,7 +104,6 @@ const Instructors = () => {
                   sx={{ position: "relative", paddingTop: "56.25%" }}
                   height={400}
                 >
-                  {/* Just display the poster image in the cards */}
                   <Box
                     component="img"
                     src={ldr.image}
@@ -251,6 +117,39 @@ const Instructors = () => {
                       objectFit: "cover",
                     }}
                   />
+                  {ldr.videoUri && (
+                    <Box
+                      onClick={() => handleOpenVideo(ldr.videoUri)}
+                      sx={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: "rgba(0,0,0,0.3)",
+                        cursor: "pointer",
+                        transition: "background-color 0.3s ease",
+                        "&:hover": {
+                          backgroundColor: "rgba(0,0,0,0.5)",
+                        },
+                      }}
+                    >
+                      <PlayIcon
+                        sx={{
+                          color: "white",
+                          fontSize: "4rem",
+                          opacity: 0.8,
+                          transition: "transform 0.3s ease",
+                          "&:hover": {
+                            transform: "scale(1.2)",
+                          },
+                        }}
+                      />
+                    </Box>
+                  )}
                 </Box>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -274,24 +173,61 @@ const Instructors = () => {
           ))}
         </Grid>
 
+        {/* Video Modal */}
+        <Dialog
+          open={!!selectedVideo}
+          onClose={handleCloseVideo}
+          maxWidth="md"
+          fullWidth
+          sx={{
+            "& .MuiDialog-paper": {
+              backgroundColor: "transparent",
+              boxShadow: "none",
+            },
+          }}
+          onClick={handleCloseVideo}
+        >
+          <DialogContent
+            sx={{
+              padding: 0,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {selectedVideo && (
+              <div className="relative w-full max-w-screen-xl mx-auto">
+                <iframe
+                  src={getEmbedLink(selectedVideo)} // Ensure this is a valid embed link (e.g., YouTube or Google Drive)
+                  title="Video"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay"
+                  loading="lazy"
+                  className="w-full h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[80vh] border-4 border-white rounded-lg"
+                />
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
 
+        {/* Rest of the component remains the same */}
         <br />
         <h6 className="sm:text-center text-start text-[1rem] sm:text-3xl mt-3 ml-1 sm:ml-10  s">
-  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#08798b] to-[#CF1512]">
-    “The world is at the dawn of AI age where the technology is fast writing the code for humanity and reshaping our polity, economy, security, and society”
-  </span>
-</h6>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#08798b] to-[#CF1512]">
+            "The world is at the dawn of AI age where the technology is fast
+            writing the code for humanity and reshaping our polity, economy,
+            security, and society"
+          </span>
+        </h6>
 
         <h6 className="text-[0.7rem] flex justify-end sm:text-2xl text-left md:text-3xl lg:text-4xl xl:text-xl text-white mt-6 leading-tight ml-10 italic">
-            <span className="bg-clip-text text-left text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
+          <span className="bg-clip-text text-left text-transparent bg-gradient-to-r from-blue-400 to-orange-400">
             - Honorable PM Shree. Narendra Modi at AI Action Summit, Paris, 2025
-            </span>
-         
+          </span>
         </h6>
-        {/* Vision Statement */}
         <br />
         <br />
-
       </Container>
     </>
   );
