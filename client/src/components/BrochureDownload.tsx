@@ -171,7 +171,7 @@ const [errors, setErrors] = useState({});
         marginTop: 4, // Increased space between text and button
       }}
     >
-      DOWNLOAD A BROCHURE
+      DOWNLOAD BROCHURE
     </Button>
   </CardContent>
 
