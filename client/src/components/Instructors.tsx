@@ -143,8 +143,8 @@ const Instructors = () => {
                       sx={{
                         position: "absolute",
                         // top: 0,
-                        // left: 0,
-                        right: "50%",
+                        // left: "50%",
+                        right: "44%",
                         bottom: "10%",
                         color: "red",
                         fontSize: "4rem",
