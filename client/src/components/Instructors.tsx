@@ -59,7 +59,7 @@ const leadersData = [
   {
     id: 4,
     name: "Pushpendra P. Singh",
-    title: "Project Director iHub-AWaDH & Dean R&D,IIT Ropar",
+    title: "Project Director iHub-AWaDH & Dean R&D, IIT Ropar",
     image: "/assets/pps.sir.png",
     desc: "The AI for Bharat program is going to make essential skills for today's job market accessible. Its flexibility acknowledges each student's learning journey without added burden.",
   },
