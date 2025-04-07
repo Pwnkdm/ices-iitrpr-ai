@@ -35,16 +35,16 @@ const HeroPage = () => {
             text="It's time to get IIT fortified"
           />
         </h2>
-
+        </div>
         <div className="w-full sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
           <img
-            className="w-full h-full object-cover sm:object-contain md:object-fill lg:object-fill image-transition"
+            className="w-full h-full object-cover sm:object-contain md:object-fill lg:object-fill "
             src={bannerimage}
             alt="banner"
           />
         </div>
 
-        <h2 className="text-xl sm:text-4xl md:text-4xl font-semibold mt-4 w-fit">
+        <h2 className="text-xl sm:text-4xl md:text-4xl font-semibold mt-4 w-full text-center">
           <ColourfulText
             gradientColors={[["#FF4500", "#7B68EE"]]}
             text="Don't just be an Engineer, "
@@ -55,7 +55,7 @@ const HeroPage = () => {
             text=" Be an AI-powered Engineer"
           />
         </h2>
-      </div>
+      {/* </div> */}
 
       {/* Program Details Section */}
       <div className="w-full py-12 px-4 sm:px-6 md:px-8 flex flex-col items-center bg-white">
