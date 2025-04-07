@@ -36,14 +36,7 @@ const FAQs: React.FC = () => {
   );
 
   return (
-    <Box
-      sx={{
-        py: 10,
-        px: 2,
-        minHeight: "100vh",
-        pt:0
-      }}
-    >
+    <div className="h-fit p-10 ">
       <Container maxWidth="lg">
         {/* Title Section */}
         <Box sx={{ textAlign: "center", mb: 6 }}>
@@ -62,78 +55,80 @@ const FAQs: React.FC = () => {
             Frequently Asked Questions
           </Typography>
 
-          
-
           <Typography variant={isMobile ? "body2" : "body1"} color="#2F4F4F">
             Find answers to common questions about the AI Technocrat Program.
           </Typography>
         </Box>
 
         {/* FAQs List */}
-        <div className="h-[60vh] md:h-[75vh] sm:h-[75vh] p-4 overflow-y-auto">
-        {displayedFaqs.length > 0 ? (
-          displayedFaqs.map((faq: FaqItem, index: number) => (
-            <Paper
-              elevation={3}
-              key={`faq-${(page - 1) * faqsPerPage + index}`}
-              sx={{
-                mb: 2,
-                borderRadius: 3,
-                overflow: "hidden",
-                transition: "all 0.3s ease-in-out",
-                backgroundColor: "rgba(255, 255, 255, 0.1)", // Transparent background for Paper
-                "&:hover": {
-                  transform: "scale(1.02)",
-                  backgroundColor: "rgba(255, 255, 255, 0.15)", // Slightly darker on hover
-                },
-              }}
-            >
-              <Accordion
-                defaultExpanded={isMobile ? false : index === 0}
+        <div
+        // className="h-[60vh] md:h-[75vh] sm:h-[75vh] p-4 overflow-y-auto border-2"
+        >
+          {displayedFaqs.length > 0 ? (
+            displayedFaqs.map((faq: FaqItem, index: number) => (
+              <Paper
+                elevation={3}
+                key={`faq-${(page - 1) * faqsPerPage + index}`}
                 sx={{
-                  backgroundColor: "transparent", // Transparent background for Accordion
-                  boxShadow: "none",
-                  "&:before": { display: "none" },
+                  mb: 2,
+                  borderRadius: 3,
+                  overflow: "hidden",
+                  transition: "all 0.3s ease-in-out",
+                  backgroundColor: "rgba(255, 255, 255, 0.1)", // Transparent background for Paper
+                  "&:hover": {
+                    transform: "scale(1.02)",
+                    backgroundColor: "rgba(255, 255, 255, 0.15)", // Slightly darker on hover
+                  },
                 }}
               >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon style={{ color: "black" }} />}
-                  aria-controls={`panel-${index}-content`}
-                  id={`panel-${index}-header`}
+                <Accordion
+                  defaultExpanded={isMobile ? false : index === 0}
                   sx={{
-                    backgroundColor: "transparent", // Transparent background for AccordionSummary
-                    textTransform: "none",
-                    padding: "12px 16px",
-                    color: "black",
+                    backgroundColor: "transparent", // Transparent background for Accordion
+                    boxShadow: "none",
+                    "&:before": { display: "none" },
                   }}
                 >
-                  <Typography
-                    variant={isMobile ? "body1" : "h6"}
-                    sx={{ fontSize: "16px", color: "#2F4F4F" }}
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon style={{ color: "black" }} />}
+                    aria-controls={`panel-${index}-content`}
+                    id={`panel-${index}-header`}
+                    sx={{
+                      backgroundColor: "transparent", // Transparent background for AccordionSummary
+                      textTransform: "none",
+                      padding: "12px 16px",
+                      color: "black",
+                    }}
                   >
-                    {index + 1 + (page - 1) * faqsPerPage}. {faq.question}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ p: 3, backgroundColor: "transparent" }}>
-                  <Typography
-                    variant={isMobile ? "body2" : "body1"}
-                    sx={{ color: "#2F4F4F" }}
+                    <Typography
+                      variant={isMobile ? "body1" : "h6"}
+                      sx={{ fontSize: "16px", color: "#2F4F4F" }}
+                    >
+                      {index + 1 + (page - 1) * faqsPerPage}. {faq.question}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails
+                    sx={{ p: 3, backgroundColor: "transparent" }}
                   >
-                    {faq.answer}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            </Paper>
-          ))
-        ) : (
-          <Typography
-            variant={isMobile ? "body2" : "body1"}
-            color="text.secondary"
-            textAlign="center"
-          >
-            No FAQs available at the moment.
-          </Typography>
-        )}
+                    <Typography
+                      variant={isMobile ? "body2" : "body1"}
+                      sx={{ color: "#2F4F4F" }}
+                    >
+                      {faq.answer}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </Paper>
+            ))
+          ) : (
+            <Typography
+              variant={isMobile ? "body2" : "body1"}
+              color="text.secondary"
+              textAlign="center"
+            >
+              No FAQs available at the moment.
+            </Typography>
+          )}
         </div>
 
         {/* Pagination Component */}
@@ -148,7 +143,7 @@ const FAQs: React.FC = () => {
           </Box>
         )}
       </Container>
-    </Box>
+    </div>
   );
 };
 
