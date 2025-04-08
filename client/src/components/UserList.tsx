@@ -1,7 +1,7 @@
 // src/components/UserList.tsx
 import React, { useState } from "react";
 import moment from "moment-timezone";
-import { userData, User } from "../data/userData";
+import { userData } from "../data/userData";
 import CopyText from "./ui/CopyText";
 
 const UserList: React.FC = () => {
