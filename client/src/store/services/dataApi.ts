@@ -18,17 +18,17 @@ export const dataApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllData: builder.query<DataItem[], void>({
       query: () => "/data",
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ _id }) => ({ type: "Data" as const, id: _id })),
-              { type: "Data", id: "LIST" },
-            ]
-          : [{ type: "Data", id: "LIST" }],
+      // providesTags: (result) =>
+      //   result
+      //     ? [
+      //         ...result.map(({ _id }) => ({ type: "Data" as const, id: _id })),
+      //         { type: "Data", id: "LIST" },
+      //       ]
+      //     : [{ type: "Data", id: "LIST" }],
     }),
     getDataById: builder.query<DataItem, string>({
       query: (id) => `/data/${id}`,
-      providesTags: (result, error, id) => [{ type: "Data", id }],
+      // providesTags: (result, error, id) => [{ type: "Data", id }],
     }),
     createData: builder.mutation<DataItem, CreateDataRequest>({
       query: (data) => ({
@@ -47,10 +47,10 @@ export const dataApi = api.injectEndpoints({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: (result, error, { id }) => [
-        { type: "Data", id },
-        { type: "Data", id: "LIST" },
-      ],
+      // invalidatesTags: (result, error, { id }) => [
+      //   { type: "Data", id },
+      //   { type: "Data", id: "LIST" },
+      // ],
     }),
     deleteData: builder.mutation<{ message: string }, string>({
       query: (id) => ({

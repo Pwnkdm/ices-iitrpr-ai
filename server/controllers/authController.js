@@ -156,6 +156,17 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getProfile = async (req, res) => {
+  try {
+    const profile = await req.user;
+    console.log(profile, "profile");
+
+    res.json(profile);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // @desc    Approve user to admin role
 // @route   PUT /api/auth/approve/:id
 // @access  Private/SuperAdmin
@@ -252,6 +263,7 @@ export {
   promoteUser,
   demoteUser,
   getUsers,
+  getProfile,
   approveUser,
   revokeAccess,
   getPendingUsers,

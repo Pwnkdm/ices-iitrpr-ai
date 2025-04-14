@@ -53,84 +53,106 @@ const UserManagement: React.FC = () => {
   };
 
   if (isAllUsersLoading || isPendingUsersLoading) {
-    return <div>Loading users...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen text-lg font-medium">
+        Loading users...
+      </div>
+    );
   }
 
   return (
-    <div className="user-management-container">
-      <h2>User Management</h2>
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <h2 className="text-2xl font-bold text-center mb-8">User Management</h2>
 
-      <div className="pending-users-section">
-        <h3>Pending Users</h3>
+      {/* Pending Users */}
+      <div className="mb-10">
+        <h3 className="text-xl font-semibold mb-4">Pending Users</h3>
         {pendingUsers && pendingUsers.length > 0 ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pendingUsers.map((user) => (
-                <tr key={user._id}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>
-                    <button onClick={() => handleApprove(user._id)}>
-                      Approve
-                    </button>
-                  </td>
+          <div className="overflow-x-auto bg-white shadow rounded-lg">
+            <table className="min-w-full text-sm">
+              <thead className="bg-gray-100 text-gray-600 uppercase text-xs">
+                <tr>
+                  <th className="px-6 py-3 text-left">Name</th>
+                  <th className="px-6 py-3 text-left">Email</th>
+                  <th className="px-6 py-3 text-left">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {pendingUsers.map((user) => (
+                  <tr key={user._id}>
+                    <td className="px-6 py-4">{user.name}</td>
+                    <td className="px-6 py-4">{user.email}</td>
+                    <td className="px-6 py-4">
+                      <button
+                        onClick={() => handleApprove(user._id)}
+                        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                      >
+                        Approve
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
-          <p>No pending users found.</p>
+          <p className="text-gray-600">No pending users found.</p>
         )}
       </div>
 
-      <div className="all-users-section">
-        <h3>All Users</h3>
+      {/* All Users */}
+      <div>
+        <h3 className="text-xl font-semibold mb-4">All Users</h3>
         {allUsers && allUsers.length > 0 ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allUsers.map((user) => (
-                <tr key={user._id}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.role}</td>
-                  <td>
-                    {user.role === "admin" && (
-                      <button onClick={() => handlePromote(user._id)}>
-                        Promote to Superadmin
-                      </button>
-                    )}
-                    {user.role === "superadmin" && (
-                      <button onClick={() => handleDemote(user._id)}>
-                        Demote to Admin
-                      </button>
-                    )}
-                    {user.role !== "pending" && (
-                      <button onClick={() => handleRevoke(user._id)}>
-                        Revoke Access
-                      </button>
-                    )}
-                  </td>
+          <div className="overflow-x-auto bg-white shadow rounded-lg">
+            <table className="min-w-full text-sm">
+              <thead className="bg-gray-100 text-gray-600 uppercase text-xs">
+                <tr>
+                  <th className="px-6 py-3 text-left">Name</th>
+                  <th className="px-6 py-3 text-left">Email</th>
+                  <th className="px-6 py-3 text-left">Role</th>
+                  <th className="px-6 py-3 text-left">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {allUsers.map((user) => (
+                  <tr key={user._id}>
+                    <td className="px-6 py-4">{user.name}</td>
+                    <td className="px-6 py-4">{user.email}</td>
+                    <td className="px-6 py-4 capitalize">{user.role}</td>
+                    <td className="px-6 py-4 space-x-2 space-y-2">
+                      {user.role === "admin" && (
+                        <button
+                          onClick={() => handlePromote(user._id)}
+                          className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition"
+                        >
+                          Promote
+                        </button>
+                      )}
+                      {user.role === "superadmin" && (
+                        <button
+                          onClick={() => handleDemote(user._id)}
+                          className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition"
+                        >
+                          Demote
+                        </button>
+                      )}
+                      {user.role !== "pending" && (
+                        <button
+                          onClick={() => handleRevoke(user._id)}
+                          className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
+                        >
+                          Revoke
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
-          <p>No users found.</p>
+          <p className="text-gray-600">No users found.</p>
         )}
       </div>
     </div>

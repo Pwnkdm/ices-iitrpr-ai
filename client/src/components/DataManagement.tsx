@@ -1,55 +1,58 @@
-// src/components/DataManagement.tsx
 import React, { useState } from "react";
+import moment from "moment-timezone";
 import {
   useGetAllDataQuery,
-  useCreateDataMutation,
-  useUpdateDataMutation,
   useDeleteDataMutation,
 } from "../store/services/dataApi";
 import { useGetProfileQuery } from "../store/services/authApi";
+import CopyText from "./ui/CopyText"; // Optional, remove if you don't have it
+
+// Define user type based on your API response
+interface UserData {
+  _id: string;
+  username: string;
+  email: string;
+  phonenumber: string;
+  collegeName: string;
+  collegeAddress: string;
+  city: string;
+  pincode: string;
+  role: string;
+  status?: string;
+  createdAt: string;
+}
 
 const DataManagement: React.FC = () => {
   const { data: profile } = useGetProfileQuery();
-  const { data: allData, isLoading } = useGetAllDataQuery();
-  const [createData] = useCreateDataMutation();
-  const [updateData] = useUpdateDataMutation();
-  const [deleteData] = useDeleteDataMutation();
+  const { data: allData = [], isLoading } = useGetAllDataQuery();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [editingId, setEditingId] = useState<string | null>(null);
+  const [deleteData] = useDeleteDataMutation();
 
   const isSuperadmin = profile?.role === "superadmin";
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Pagination
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 10;
 
-    try {
-      if (editingId) {
-        await updateData({
-          id: editingId,
-          data: { title, description },
-        }).unwrap();
-        setEditingId(null);
-      } else {
-        await createData({ title, description }).unwrap();
-      }
-      setTitle("");
-      setDescription("");
-    } catch (err) {
-      console.error("Failed to save data:", err);
-    }
-  };
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentUsers = allData.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handleEdit = (data: {
-    _id: string;
-    title: string;
-    description: string;
-  }) => {
-    setTitle(data.title);
-    setDescription(data.description);
-    setEditingId(data._id);
-  };
+  const totalPages = Math.ceil(allData.length / itemsPerPage);
+
+  const pageNumbers: number[] = [];
+  let startPage = Math.max(currentPage - 2, 1);
+  let endPage = Math.min(currentPage + 2, totalPages);
+
+  if (currentPage <= 3) {
+    endPage = Math.min(5, totalPages);
+  } else if (currentPage >= totalPages - 2) {
+    startPage = Math.max(totalPages - 4, 1);
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
+    pageNumbers.push(i);
+  }
 
   const handleDelete = async (id: string) => {
     try {
@@ -59,86 +62,132 @@ const DataManagement: React.FC = () => {
     }
   };
 
-  const handleCancel = () => {
-    setTitle("");
-    setDescription("");
-    setEditingId(null);
-  };
-
   if (isLoading) {
-    return <div>Loading data...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen text-lg font-medium">
+        Loading data...
+      </div>
+    );
   }
 
   return (
-    <div className="data-management-container">
-      <h2>Data Management</h2>
+    <div className="w-full mx-auto p-6 bg-gradient-to-br from-sky-50 to-indigo-50 shadow-md rounded mt-10">
+      <h1 className="text-3xl font-semibold text-center mb-6 bg-gradient-to-br from-sky-600 to-indigo-700 text-transparent bg-clip-text">
+        User Data Table
+      </h1>
 
-      {isSuperadmin && (
-        <div className="data-form">
-          <h3>{editingId ? "Edit Data" : "Create New Data"}</h3>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="title">Title</label>
-              <input
-                type="text"
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="description">Description</label>
-              <textarea
-                id="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
-              />
-            </div>
-            <div className="form-actions">
-              <button type="submit">{editingId ? "Update" : "Create"}</button>
-              {editingId && (
-                <button type="button" onClick={handleCancel}>
-                  Cancel
-                </button>
-              )}
-            </div>
-          </form>
-        </div>
-      )}
-
-      <div className="data-list">
-        <h3>All Data</h3>
-        {allData && allData.length > 0 ? (
-          <table>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-                {isSuperadmin && <th>Actions</th>}
+      <div className="overflow-x-auto h-[75vh]">
+        <table className="min-w-full table-auto border-collapse rounded-lg overflow-hidden shadow-sm">
+          <thead className="bg-sky-100 text-sky-800 text-sm sticky top-0 z-10">
+            <tr>
+              <th className="px-4 py-3 border">#</th>
+              <th className="px-4 py-3 border">Username</th>
+              <th className="px-4 py-3 border">Email</th>
+              <th className="px-4 py-3 border">Phone</th>
+              <th className="px-4 py-3 border">College</th>
+              <th className="px-4 py-3 border">Address</th>
+              <th className="px-4 py-3 border">City</th>
+              <th className="px-4 py-3 border">Pincode</th>
+              <th className="px-4 py-3 border">Role</th>
+              <th className="px-4 py-3 border">Created At</th>
+              {isSuperadmin && <th className="px-4 py-3 border">Actions</th>}
+            </tr>
+          </thead>
+          <tbody className="bg-white text-gray-700">
+            {currentUsers.map((user: UserData, idx: number) => (
+              <tr key={user._id} className="hover:bg-sky-50 transition">
+                <td className="px-4 py-2 border text-center">
+                  {indexOfFirstItem + idx + 1}
+                </td>
+                <td className="px-4 py-2 border text-center">
+                  {user.username}
+                </td>
+                <td className="px-4 py-2 border text-start flex h-fit">
+                  {user.email}
+                  {user.email && <CopyText text={user.email} />}
+                </td>
+                <td className="px-4 py-2 border text-center">
+                  <div className="flex items-center justify-center gap-2">
+                    {user.phonenumber}
+                    {user.phonenumber && <CopyText text={user.phonenumber} />}
+                  </div>
+                </td>
+                <td className="px-4 py-2 border text-center">
+                  {user.collegeName}
+                </td>
+                <td className="px-4 py-2 border text-center">
+                  {user.collegeAddress}
+                </td>
+                <td className="px-4 py-2 border text-center">{user.city}</td>
+                <td className="px-4 py-2 border text-center">{user.pincode}</td>
+                <td className="px-4 py-2 border text-center">{user.role}</td>
+                <td className="px-4 py-2 border text-center">
+                  {moment(user.createdAt)
+                    .tz("Asia/Kolkata")
+                    .format("DD MMM YYYY, h:mm A")}
+                </td>
+                {isSuperadmin && (
+                  <td className="px-4 py-2 border text-center">
+                    <button
+                      onClick={() => handleDelete(user._id)}
+                      className="text-red-500 hover:underline"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                )}
               </tr>
-            </thead>
-            <tbody>
-              {allData.map((item) => (
-                <tr key={item._id}>
-                  <td>{item.title}</td>
-                  <td>{item.description}</td>
-                  {isSuperadmin && (
-                    <td>
-                      <button onClick={() => handleEdit(item)}>Edit</button>
-                      <button onClick={() => handleDelete(item._id)}>
-                        Delete
-                      </button>
-                    </td>
-                  )}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p>No data found.</p>
-        )}
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Pagination */}
+      <div className="mt-6 flex justify-center">
+        <ul className="flex gap-1">
+          <li>
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              className={`px-3 py-1 text-sm rounded ${
+                currentPage === 1
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-white border border-sky-300 text-sky-600 hover:bg-sky-100"
+              }`}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+          </li>
+          {pageNumbers.map((num) => (
+            <li key={num}>
+              <button
+                onClick={() => setCurrentPage(num)}
+                className={`px-3 py-1 text-sm rounded ${
+                  currentPage === num
+                    ? "bg-sky-600 text-white"
+                    : "bg-white border border-sky-300 text-sky-600 hover:bg-sky-100"
+                }`}
+              >
+                {num}
+              </button>
+            </li>
+          ))}
+          <li>
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              className={`px-3 py-1 text-sm rounded ${
+                currentPage === totalPages
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-white border border-sky-300 text-sky-600 hover:bg-sky-100"
+              }`}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   );

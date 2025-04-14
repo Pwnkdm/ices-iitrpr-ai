@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import { SignupPage } from "./components/SignupPage.tsx";
 import { ToastContainer } from "react-toastify";
 import { ToT } from "./components/ToT.tsx";
-import UserList from "./components/UserList.tsx";
 
 // Admin components
 import Login from "./components/Login";
@@ -57,7 +56,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/sign-up" element={<SignupPage />} />
         <Route path="/tot" element={<ToT />} />
-        <Route path="/users" element={<UserList />} />
 
         {/* admin routes below  */}
         <Route path="/login" element={<Login />} />
