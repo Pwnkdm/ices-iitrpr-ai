@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 import Navbar from "./components/Navbar.tsx";
 import HomePage from "./components/HomePage.tsx";
@@ -11,6 +12,15 @@ import { SignupPage } from "./components/SignupPage.tsx";
 import { ToastContainer } from "react-toastify";
 import { ToT } from "./components/ToT.tsx";
 import UserList from "./components/UserList.tsx";
+
+// Admin components
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
+import UserManagement from "./components/UserManagement";
+import DataManagement from "./components/DataManagement.tsx";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Unauthorized from "./components/Unauthorized";
 
 const ScrollToHash = () => {
   const { hash } = useLocation();
@@ -48,6 +58,30 @@ function App() {
         <Route path="/sign-up" element={<SignupPage />} />
         <Route path="/tot" element={<ToT />} />
         <Route path="/users" element={<UserList />} />
+
+        {/* admin routes below  */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+
+        {/* Protected routes for all authenticated users */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+
+        {/* Routes for admins and superadmins */}
+        <Route
+          element={<ProtectedRoute allowedRoles={["admin", "superadmin"]} />}
+        >
+          <Route path="/data" element={<DataManagement />} />
+        </Route>
+
+        {/* Routes only for superadmins */}
+        <Route element={<ProtectedRoute allowedRoles={["superadmin"]} />}>
+          <Route path="/users" element={<UserManagement />} />
+        </Route>
+
+        <Route path="/" element={<Navigate to="/dashboard" />} />
       </Routes>
     </Router>
   );
