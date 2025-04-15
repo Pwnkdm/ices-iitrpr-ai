@@ -283,7 +283,7 @@ const Curriculum: React.FC = () => {
       {/* Sub-Tabs and Content */}
       {mainTabValue === 0 && (
         <Box
-          width={isMobile ? "100%" : isTablet ? "100%" : "80%"}
+          width={isMobile ? "100%" : isTablet ? "100%" : "70%"}
           margin={"auto"}
         >
           {/* Sub-Tabs for Common NOS */}
@@ -518,7 +518,7 @@ const Curriculum: React.FC = () => {
 
           {/* Sub-Tab Content for Elective NOS */}
           <Box
-            width="70%"
+            width="90%"
             margin="auto"
             sx={{
               boxShadow: "4px 10px 50px 0px rgba(24, 28, 31, 0.50)",
