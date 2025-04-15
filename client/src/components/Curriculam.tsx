@@ -551,6 +551,7 @@ const Curriculum: React.FC = () => {
               {electiveNosContent[subTabValue].points.map((point, index) => (
                 <React.Fragment key={index}>
                   <ListItem
+                  
                     sx={{
                       display: "flex",
                       alignItems: "center",
