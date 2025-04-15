@@ -5,9 +5,10 @@ import {
   useDeleteDataMutation,
 } from "../store/services/dataApi";
 import { useGetProfileQuery } from "../store/services/authApi";
-import CopyText from "./ui/CopyText"; // Optional, remove if you don't have it
+import CopyText from "./ui/CopyText";
+import BackButton from "./ui/backButton";
 
-// Define user type based on your API response
+// Define user type based on API response
 interface UserData {
   _id: string;
   username: string;
@@ -25,170 +26,283 @@ interface UserData {
 const DataManagement: React.FC = () => {
   const { data: profile } = useGetProfileQuery();
   const { data: allData = [], isLoading } = useGetAllDataQuery();
-
   const [deleteData] = useDeleteDataMutation();
-
   const isSuperadmin = profile?.role === "superadmin";
 
   // Pagination
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 10;
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentUsers = allData.slice(indexOfFirstItem, indexOfLastItem);
-
   const totalPages = Math.ceil(allData.length / itemsPerPage);
 
-  const pageNumbers: number[] = [];
-  let startPage = Math.max(currentPage - 2, 1);
-  let endPage = Math.min(currentPage + 2, totalPages);
+  // Search functionality
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const filteredUsers = allData.filter((user: UserData) =>
+    Object.values(user).some(
+      (value) =>
+        value &&
+        typeof value === "string" &&
+        value.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
 
-  if (currentPage <= 3) {
-    endPage = Math.min(5, totalPages);
-  } else if (currentPage >= totalPages - 2) {
-    startPage = Math.max(totalPages - 4, 1);
-  }
+  const currentFilteredUsers = searchTerm
+    ? filteredUsers.slice(indexOfFirstItem, indexOfLastItem)
+    : currentUsers;
 
-  for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(i);
-  }
+  // Generate pagination numbers
+  const getPaginationNumbers = () => {
+    const pageNumbers: number[] = [];
+    let startPage = Math.max(currentPage - 2, 1);
+    let endPage = Math.min(currentPage + 2, totalPages);
+
+    if (currentPage <= 3) {
+      endPage = Math.min(5, totalPages);
+    } else if (currentPage >= totalPages - 2) {
+      startPage = Math.max(totalPages - 4, 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    return pageNumbers;
+  };
 
   const handleDelete = async (id: string) => {
-    try {
-      await deleteData(id).unwrap();
-    } catch (err) {
-      console.error("Failed to delete data:", err);
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      try {
+        await deleteData(id).unwrap();
+      } catch (err) {
+        console.error("Failed to delete data:", err);
+      }
     }
   };
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen text-lg font-medium">
-        Loading data...
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-lg font-medium flex flex-col items-center">
+          <div className="w-16 h-16 border-4 border-sky-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+          Loading data...
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full mx-auto p-6 bg-gradient-to-br from-sky-50 to-indigo-50 shadow-md rounded mt-10">
-      <h1 className="text-3xl font-semibold text-center mb-6 bg-gradient-to-br from-sky-600 to-indigo-700 text-transparent bg-clip-text">
-        User Data Table
-      </h1>
+    <div className="w-full mx-auto p-2 sm:p-4 md:p-6 rounded h-screen flex flex-col">
+      {/* Header */}
+      <div className="relative border border-neutral-200 flex justify-between items-center p-2 rounded mb-4 shadow-sm">
+        <BackButton />
+        <h2 className="text-xl sm:text-2xl font-bold text-center absolute left-1/2 transform -translate-x-1/2">
+          User Data Management
+        </h2>
+        <div className="w-[60px]"></div>
+      </div>
 
-      <div className="overflow-x-auto h-[75vh]">
-        <table className="min-w-full table-auto border-collapse rounded-lg overflow-hidden shadow-sm">
+      {/* Search and filters */}
+      <div className="mb-4 flex flex-col sm:flex-row gap-2 justify-between">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search users..."
+            className="pl-9 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 w-full"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-gray-400 absolute left-2 top-2.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+        <div className="text-sm text-gray-500">
+          Showing {currentFilteredUsers.length} of {filteredUsers.length} users
+        </div>
+      </div>
+
+      {/* Table container with responsive scroll */}
+      <div className="overflow-auto flex-grow rounded-lg shadow-sm border border-gray-200">
+        <table className="min-w-full table-auto border-collapse">
           <thead className="bg-sky-100 text-sky-800 text-sm sticky top-0 z-10">
             <tr>
-              <th className="px-4 py-3 border">#</th>
-              <th className="px-4 py-3 border">Username</th>
-              <th className="px-4 py-3 border">Email</th>
-              <th className="px-4 py-3 border">Phone</th>
-              <th className="px-4 py-3 border">College</th>
-              <th className="px-4 py-3 border">Address</th>
-              <th className="px-4 py-3 border">City</th>
-              <th className="px-4 py-3 border">Pincode</th>
-              <th className="px-4 py-3 border">Role</th>
-              <th className="px-4 py-3 border">Created At</th>
-              {isSuperadmin && <th className="px-4 py-3 border">Actions</th>}
+              <th className="px-2 py-3 border text-left">#</th>
+              <th className="px-2 py-3 border text-left">Username</th>
+              <th className="px-2 py-3 border text-left">Email</th>
+              <th className="px-2 py-3 border text-left">Phone</th>
+              <th className="px-2 py-3 border text-left">College</th>
+              <th className="px-2 py-3 border text-left">Address</th>
+              <th className="px-2 py-3 border text-left">City</th>
+              <th className="px-2 py-3 border text-left">Pincode</th>
+              <th className="px-2 py-3 border text-left">Role</th>
+              <th className="px-2 py-3 border text-left">Created At</th>
+              {isSuperadmin && (
+                <th className="px-2 py-3 border text-center">Actions</th>
+              )}
             </tr>
           </thead>
-          <tbody className="bg-white text-gray-700">
-            {currentUsers.map((user: UserData, idx: number) => (
-              <tr key={user._id} className="hover:bg-sky-50 transition">
-                <td className="px-4 py-2 border text-center">
-                  {indexOfFirstItem + idx + 1}
-                </td>
-                <td className="px-4 py-2 border text-center">
-                  {user.username}
-                </td>
-                <td className="px-4 py-2 border text-start flex h-fit">
-                  {user.email}
-                  {user.email && <CopyText text={user.email} />}
-                </td>
-                <td className="px-4 py-2 border text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    {user.phonenumber}
-                    {user.phonenumber && <CopyText text={user.phonenumber} />}
-                  </div>
-                </td>
-                <td className="px-4 py-2 border text-center">
-                  {user.collegeName}
-                </td>
-                <td className="px-4 py-2 border text-center">
-                  {user.collegeAddress}
-                </td>
-                <td className="px-4 py-2 border text-center">{user.city}</td>
-                <td className="px-4 py-2 border text-center">{user.pincode}</td>
-                <td className="px-4 py-2 border text-center">{user.role}</td>
-                <td className="px-4 py-2 border text-center">
-                  {moment(user.createdAt)
-                    .tz("Asia/Kolkata")
-                    .format("DD MMM YYYY, h:mm A")}
-                </td>
-                {isSuperadmin && (
-                  <td className="px-4 py-2 border text-center">
-                    <button
-                      onClick={() => handleDelete(user._id)}
-                      className="text-red-500 hover:underline"
-                    >
-                      Delete
-                    </button>
+          <tbody className="bg-white text-gray-700 divide-y divide-gray-200">
+            {currentFilteredUsers.length > 0 ? (
+              currentFilteredUsers.map((user: UserData, idx: number) => (
+                <tr key={user._id} className="hover:bg-sky-50 transition">
+                  <td className="px-2 py-2 border text-left">
+                    {indexOfFirstItem + idx + 1}
                   </td>
-                )}
+                  <td className="px-2 py-2 border text-left font-medium">
+                    {user.username}
+                  </td>
+                  <td className="px-2 py-2 border text-left">
+                    <div className="flex items-center gap-1">
+                      <span className="truncate max-w-[150px]">
+                        {user.email}
+                      </span>
+                      {user.email && <CopyText text={user.email} />}
+                    </div>
+                  </td>
+                  <td className="px-2 py-2 border text-left">
+                    <div className="flex items-center gap-1">
+                      {user.phonenumber}
+                      {user.phonenumber && <CopyText text={user.phonenumber} />}
+                    </div>
+                  </td>
+                  <td className="px-2 py-2 border text-left max-w-[250px] break-words">
+                    {user.collegeName}
+                  </td>
+                  <td className="px-2 py-2 border text-left max-w-[250px] break-words">
+                    {user.collegeAddress}
+                  </td>
+
+                  <td className="px-2 py-2 border text-left">{user.city}</td>
+                  <td className="px-2 py-2 border text-left">{user.pincode}</td>
+                  <td className="px-2 py-2 border text-left">
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        user.role === "superadmin"
+                          ? "bg-red-100 text-red-800"
+                          : user.role === "admin"
+                          ? "bg-amber-100 text-amber-800"
+                          : "bg-green-100 text-green-800"
+                      }`}
+                    >
+                      {user.role}
+                    </span>
+                  </td>
+                  <td className="px-2 py-2 border text-left">
+                    {moment(user.createdAt)
+                      .tz("Asia/Kolkata")
+                      .format("DD MMM YYYY, h:mm A")}
+                  </td>
+                  {isSuperadmin && (
+                    <td className="px-2 py-2 border text-center">
+                      <button
+                        onClick={() => handleDelete(user._id)}
+                        className="text-white bg-red-500 hover:bg-red-600 text-xs px-2 py-1 rounded transition"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  )}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan={isSuperadmin ? 11 : 10}
+                  className="px-4 py-8 text-center text-gray-500"
+                >
+                  {searchTerm
+                    ? "No users match your search criteria."
+                    : "No users found."}
+                </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
 
       {/* Pagination */}
-      <div className="mt-6 flex justify-center">
-        <ul className="flex gap-1">
-          <li>
+      {totalPages > 1 && (
+        <div className="mt-4 flex justify-center">
+          <div className="flex flex-wrap items-center gap-1">
+            <button
+              onClick={() => setCurrentPage(1)}
+              disabled={currentPage === 1}
+              className={`px-2 py-1 text-sm rounded-md ${
+                currentPage === 1
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-white border border-gray-300 text-gray-600 hover:bg-sky-50 hover:border-sky-300"
+              }`}
+            >
+              First
+            </button>
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              className={`px-3 py-1 text-sm rounded ${
-                currentPage === 1
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-white border border-sky-300 text-sky-600 hover:bg-sky-100"
-              }`}
               disabled={currentPage === 1}
+              className={`px-2 py-1 text-sm rounded-md ${
+                currentPage === 1
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-white border border-gray-300 text-gray-600 hover:bg-sky-50 hover:border-sky-300"
+              }`}
             >
-              Previous
+              &laquo;
             </button>
-          </li>
-          {pageNumbers.map((num) => (
-            <li key={num}>
+
+            {getPaginationNumbers().map((num) => (
               <button
+                key={num}
                 onClick={() => setCurrentPage(num)}
-                className={`px-3 py-1 text-sm rounded ${
+                className={`px-3 py-1 text-sm rounded-md ${
                   currentPage === num
-                    ? "bg-sky-600 text-white"
-                    : "bg-white border border-sky-300 text-sky-600 hover:bg-sky-100"
+                    ? "bg-sky-500 border border-sky-500 text-white"
+                    : "bg-white border border-gray-300 text-gray-600 hover:bg-sky-50 hover:border-sky-300"
                 }`}
               >
                 {num}
               </button>
-            </li>
-          ))}
-          <li>
+            ))}
+
             <button
               onClick={() =>
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
-              className={`px-3 py-1 text-sm rounded ${
-                currentPage === totalPages
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-white border border-sky-300 text-sky-600 hover:bg-sky-100"
-              }`}
               disabled={currentPage === totalPages}
+              className={`px-2 py-1 text-sm rounded-md ${
+                currentPage === totalPages
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-white border border-gray-300 text-gray-600 hover:bg-sky-50 hover:border-sky-300"
+              }`}
             >
-              Next
+              &raquo;
             </button>
-          </li>
-        </ul>
-      </div>
+            <button
+              onClick={() => setCurrentPage(totalPages)}
+              disabled={currentPage === totalPages}
+              className={`px-2 py-1 text-sm rounded-md ${
+                currentPage === totalPages
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : "bg-white border border-gray-300 text-gray-600 hover:bg-sky-50 hover:border-sky-300"
+              }`}
+            >
+              Last
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

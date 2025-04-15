@@ -15,6 +15,7 @@ export const dashboardApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getDashboard: builder.query<DashboardData, void>({
       query: () => "/dashboard",
+      providesTags: ["dashboard"],
     }),
   }),
   overrideExisting: false,

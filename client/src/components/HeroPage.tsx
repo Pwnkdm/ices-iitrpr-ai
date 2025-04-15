@@ -24,37 +24,37 @@ const HeroPage = () => {
       <div className="w-full px-4 sm:px-6 md:px-8 lg:w-[80%] lg:mx-auto text-center flex flex-col justify-center items-center py-3 sm:py-0 md:py-0 lg:py-2">
         <h2 className="mt-[12px] mb-[-30px] text-sm sm:text-xl md:text-2xl font-semibold ">
           <ColourfulText
-            gradientColors={[["#1E90FF", "#CD853F"]]}
+            gradientColors={[["#00CED1", "#008080"]]}
             text="Pursuing B-Tech?"
           />
         </h2>
 
         <h2 className="text-sm sm:text-3xl md:text-4xl font-semibold mt-4">
           <ColourfulText
-            gradientColors={[["#FFE4E1", "#00CED1"]]}
+            gradientColors={[["#ffbf00", "#ff4000"]]}
             text="It's time to get IIT fortified"
           />
         </h2>
-        </div>
-        <div className="w-full sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
-          <img
-            className="w-full h-full object-cover sm:object-contain md:object-fill lg:object-fill "
-            src={bannerimage}
-            alt="banner"
-          />
-        </div>
+      </div>
+      <div className="w-full sm:h-[60vh] md:h-[70vh] flex items-center justify-center my-4">
+        <img
+          className="w-full h-full object-cover sm:object-contain md:object-fill lg:object-fill "
+          src={bannerimage}
+          alt="banner"
+        />
+      </div>
 
-        <h2 className="text-xl sm:text-4xl md:text-4xl font-semibold mt-4 w-full text-center">
-          <ColourfulText
-            gradientColors={[["#FF4500", "#7B68EE"]]}
-            text="Don't just be an Engineer, "
-          />
-          <ColourfulText
-            classname="w-full px-5"
-            gradientColors={[["#FF4500", "#7B68EE"]]}
-            text=" Be an AI-powered Engineer"
-          />
-        </h2>
+      <h2 className="text-xl sm:text-4xl md:text-4xl font-semibold mt-4 w-full text-center">
+        <ColourfulText
+          gradientColors={[["#008080", "#004080"]]}
+          text="Don't just be an Engineer, "
+        />
+        <ColourfulText
+          classname="w-full px-5"
+          gradientColors={[["#008080", "#004080"]]}
+          text=" Be an AI-powered Engineer"
+        />
+      </h2>
       {/* </div> */}
 
       {/* Program Details Section */}
@@ -68,7 +68,7 @@ const HeroPage = () => {
           <p className="text-lg sm:text-xl font-semibold mt-2">offers</p>
           <h3 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-red-700 mt-2">
             <ColourfulText
-              gradientColors={[["#FF4500", "#7B68EE"]]}
+              gradientColors={[["#ff5133", "#590f00"]]}
               text="AI TECHNOCRAT PROGRAM"
             />
           </h3>

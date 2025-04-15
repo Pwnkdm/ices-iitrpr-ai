@@ -4,17 +4,26 @@ import { useGetDashboardQuery } from "../store/services/dashboardApi";
 import { useDispatch } from "react-redux";
 import { logout } from "../store/slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import { api } from "../store/api";
 
 const Dashboard: React.FC = () => {
-  const { data: dashboardData, isLoading: isDashboardLoading } =
-    useGetDashboardQuery();
+  const {
+    data: dashboardData,
+    isLoading: isDashboardLoading,
+    isError,
+  } = useGetDashboardQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(api.util.resetApiState());
     navigate("/login");
   };
+
+  if (isError) {
+    return navigate("/unauthorized");
+  }
 
   if (isDashboardLoading) {
     return (
@@ -55,7 +64,8 @@ const Dashboard: React.FC = () => {
         </h3>
 
         <div className="navigation flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          {dashboardData?.user?.role === "superadmin" && (
+          {(dashboardData?.user?.role === "superadmin" ||
+            dashboardData?.user?.role === "supremeadmin") && (
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => navigate("/users")}

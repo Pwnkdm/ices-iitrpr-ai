@@ -20,6 +20,8 @@ import UserManagement from "./components/UserManagement";
 import DataManagement from "./components/DataManagement.tsx";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Unauthorized from "./components/Unauthorized";
+import { useGetProfileQuery } from "./store/services/authApi.ts";
+import { useSelector } from "react-redux";
 
 const ScrollToHash = () => {
   const { hash } = useLocation();
@@ -47,9 +49,15 @@ const ScrollToHash = () => {
 };
 
 function App() {
+  const { data: profile } = useGetProfileQuery();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
+  console.log(!profile?.role && !isAuthenticated, "state");
+
   return (
     <Router>
-      <Navbar />
+      {profile?.role && isAuthenticated ? null : <Navbar />}
       <ToastContainer />
       <ScrollToHash />
       <Routes>

@@ -35,7 +35,8 @@ export const ColourfulText: React.FC<ColourfulTextProps> = ({
 
   // Convert array of colors to CSS gradient
   const getGradientCSS = (colors) => {
-    return `linear-gradient(35deg, ${colors.join(", ")})`;
+    // return `linear-gradient(250deg, ${colors.join(", ")})`;
+    return `linear-gradient(to bottom, ${colors.join(", ")})`;
   };
 
   return (
@@ -53,7 +54,7 @@ export const ColourfulText: React.FC<ColourfulTextProps> = ({
             opacity: [1, 0.8, 1],
           }}
           transition={{
-            duration: 0.5,
+            duration: 0.4,
             delay: index * 0.05,
           }}
           className="inline-block whitespace-pre tracking-tight bg-clip-text text-transparent py-2"

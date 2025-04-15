@@ -1,4 +1,5 @@
 import Data from "../model/dataModel.js";
+import ToT from "../model/totModel.js";
 import User from "../model/userModel.js";
 
 // @desc    Create new data
@@ -25,9 +26,11 @@ const createData = async (req, res) => {
 // @access  Private/Admin & SuperAdmin
 const getAllData = async (req, res) => {
   try {
-    const data = await User.find({});
+    const users = await User.find({});
+    const tots = await ToT.find({});
+    res.status(200).json([...users, ...tots]);
     // .populate("createdBy", "name email");
-    res.json(data);
+    // res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

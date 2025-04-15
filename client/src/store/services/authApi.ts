@@ -1,4 +1,3 @@
-// src/store/services/authApi.ts
 import { api } from "../api";
 import { setCredentials } from "../slices/authSlice";
 
@@ -51,41 +50,43 @@ export const authApi = api.injectEndpoints({
     }),
     getProfile: builder.query<User, void>({
       query: () => "/auth/profile",
+      providesTags: ["Profile"], // Correctly providing a tag for profile data
     }),
     getAllUsers: builder.query<User[], void>({
       query: () => "/auth/users",
+      providesTags: [{ type: "Users", id: "LIST" }], // Correctly providing tags for user list
     }),
     getPendingUsers: builder.query<User[], void>({
       query: () => "/auth/pending",
+      providesTags: [{ type: "Users", id: "LIST" }],
     }),
     approveUser: builder.mutation<User, string>({
       query: (id) => ({
         url: `/auth/approve/${id}`,
         method: "PUT",
       }),
-      // Invalidate relevant queries to refetch data after this mutation
-      invalidatesTags: [{ type: "Users", id: "LIST" }],
+      invalidatesTags: [{ type: "Users", id: "LIST" }], // Invalidating the user list after approval
     }),
     revokeUser: builder.mutation<User, string>({
       query: (id) => ({
         url: `/auth/revoke/${id}`,
         method: "PUT",
       }),
-      invalidatesTags: [{ type: "Users", id: "LIST" }],
+      invalidatesTags: [{ type: "Users", id: "LIST" }], // Invalidating the user list after revocation
     }),
     promoteUser: builder.mutation<User, string>({
       query: (id) => ({
         url: `/auth/promote/${id}`,
         method: "PUT",
       }),
-      invalidatesTags: [{ type: "Users", id: "LIST" }],
+      invalidatesTags: [{ type: "Users", id: "LIST" }], // Invalidating the user list after promotion
     }),
     demoteUser: builder.mutation<User, string>({
       query: (id) => ({
         url: `/auth/demote/${id}`,
         method: "PUT",
       }),
-      invalidatesTags: [{ type: "Users", id: "LIST" }],
+      invalidatesTags: [{ type: "Users", id: "LIST" }], // Invalidating the user list after demotion
     }),
   }),
   overrideExisting: false,

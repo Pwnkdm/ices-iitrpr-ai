@@ -3,11 +3,11 @@ import dotenv from "dotenv";
 import connectDB from "./config/dbConfig.js";
 import cors from "cors";
 const app = express();
-import userRouter from "./routes/userRoute.js";
-import totRouter from "./routes/totRoute.js";
-import authRoutes from "./routes/authRoutes.js";
-import dataRoutes from "./routes/dataRoutes.js";
-import getDashboard from "./routes/dashboardRoutes.js";
+import userRouter from "./routes/user.Route.js";
+import totRouter from "./routes/tot.Route.js";
+import authRoutes from "./routes/auth.Routes.js";
+import dataRoutes from "./routes/data.Routes.js";
+import getDashboard from "./routes/dashboard.Routes.js";
 
 dotenv.config({ path: "./config.env" });
 app.use(
