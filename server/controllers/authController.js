@@ -144,6 +144,24 @@ const demoteUser = async (req, res) => {
   }
 };
 
+// @desc    Delete user
+// @route   DELETE /api/auth/delete/:id
+// @access  Private/SuperAdmin
+const deleteUser = async (req, res) => {
+  try {
+    const _id = req?.params?.id;
+    const deletedUser = await Admin.findByIdAndDelete(_id);
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    res.send({ message: "User deleted successfully!" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // @desc    Get all users (for superadmins)
 // @route   GET /api/auth/users
 // @access  Private/SuperAdmin
@@ -266,4 +284,5 @@ export {
   approveUser,
   revokeAccess,
   getPendingUsers,
+  deleteUser,
 };

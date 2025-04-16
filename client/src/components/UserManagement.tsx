@@ -7,9 +7,12 @@ import {
   useRevokeUserMutation,
   usePromoteUserMutation,
   useDemoteUserMutation,
+  useDeleteUserMutation,
 } from "../store/services/authApi";
 import BackButton from "./ui/backButton";
 import { toast } from "react-toastify";
+import { MdDelete } from "react-icons/md";
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
 const UserManagement: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"pending" | "all">("pending");
@@ -23,20 +26,47 @@ const UserManagement: React.FC = () => {
   const [revokeUser, { isLoading: revokeLoading }] = useRevokeUserMutation();
   const [promoteUser, { isLoading: promoteLoading }] = usePromoteUserMutation();
   const [demoteUser, { isLoading: demoteLoading }] = useDemoteUserMutation();
+  const [deleteUser, { isLoading: deleteuserLoading }] =
+    useDeleteUserMutation();
 
   const handleApprove = async (id: string) => {
     try {
-      await approveUser(id).unwrap();
+      await approveUser(id)
+        .unwrap()
+        .then((res) => {
+          toast.success(res?.message || "User has approved successfully!");
+        });
     } catch (err) {
       console.error("Failed to approve user:", err);
       toast.error(err?.data?.message || "Failed to approve user");
     }
   };
 
+  const handleDeleteUser = async (id: string) => {
+    if (
+      window.confirm("Are you sure you want to delete this user permanantly?")
+    ) {
+      try {
+        await deleteUser(id)
+          .unwrap()
+          .then((res) => {
+            toast.success(res?.message || "User deleted successfully!");
+          });
+      } catch (err) {
+        console.error("Failed to delete user:", err);
+        toast.error(err?.data?.message || "Failed to delete user");
+      }
+    }
+  };
+
   const handleRevoke = async (id: string) => {
     if (window.confirm("Are you sure you want to revoke this user's access?")) {
       try {
-        await revokeUser(id).unwrap();
+        await revokeUser(id)
+          .unwrap()
+          .then((res) => {
+            toast.success(res?.message || "User access rovoked.");
+          });
       } catch (err) {
         console.error("Failed to revoke user:", err);
         toast.error(err?.data?.message || "Failed to revoke user");
@@ -46,7 +76,11 @@ const UserManagement: React.FC = () => {
 
   const handlePromote = async (id: string) => {
     try {
-      await promoteUser(id).unwrap();
+      await promoteUser(id)
+        .unwrap()
+        .then((res) => {
+          toast.success(res?.message || "User pramoted as super admin.");
+        });
     } catch (err) {
       console.error("Failed to promote user:", err);
       toast.error(err?.data?.message || "Failed to promote user");
@@ -55,7 +89,11 @@ const UserManagement: React.FC = () => {
 
   const handleDemote = async (id: string) => {
     try {
-      await demoteUser(id).unwrap();
+      await demoteUser(id)
+        .unwrap()
+        .then((res) => {
+          toast.success(res?.message || "User demoted to admin.");
+        });
     } catch (err) {
       console.error("Failed to demote user:", err);
       toast.error(err?.data?.message || "Failed to demote user");
@@ -68,7 +106,8 @@ const UserManagement: React.FC = () => {
     approveLoading ||
     revokeLoading ||
     promoteLoading ||
-    demoteLoading
+    demoteLoading ||
+    deleteuserLoading
   ) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -82,12 +121,12 @@ const UserManagement: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div className="relative border border-neutral-200 flex justify-between items-center p-2 rounded shadow-sm mb-6">
+      <div className="relative border border-neutral-200 flex justify-between items-center p-4 rounded shadow-sm mb-6">
         <BackButton />
-        <h2 className="absolute left-1/2 transform -translate-x-1/2 text-xl sm:text-2xl font-bold text-center">
+
+        <h2 className="absolute left-1/2 transform -translate-x-1/2 text-sm sm:text-sm md:text-2xl lg:text-2xl xl:text-2xl font-bold text-center">
           User Management
         </h2>
-        <div className="w-[60px]"></div>
       </div>
 
       {/* Tab Navigation */}
@@ -154,12 +193,20 @@ const UserManagement: React.FC = () => {
                       <tr key={user._id} className="hover:bg-gray-50">
                         <td className="px-6 py-4 font-medium">{user.name}</td>
                         <td className="px-6 py-4">{user.email}</td>
-                        <td className="px-6 py-4">
+                        <td className="px-6 py-4 flex flex-wrap gap-2">
                           <button
                             onClick={() => handleApprove(user._id)}
-                            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-sm"
                           >
+                            <IoCheckmarkDoneSharp className="text-lg" />
                             Approve
+                          </button>
+                          <button
+                            onClick={() => handleDeleteUser(user._id)}
+                            className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 text-sm"
+                          >
+                            <MdDelete className="text-lg" />
+                            Delete
                           </button>
                         </td>
                       </tr>

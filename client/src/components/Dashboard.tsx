@@ -45,20 +45,22 @@ const Dashboard: React.FC = () => {
         </h3>
         {dashboardData?.user && (
           <div className="space-y-4 text-sm sm:text-base">
-            <div className="flex items-center space-x-2 bg-blue-50 hover:bg-blue-100 rounded-lg p-3 transition duration-300 ease-in-out">
+            <div className="flex items-center space-x-2 bg-blue-50 hover:bg-blue-100 rounded-lg p-3 transition duration-300 ease-in-out max-w-auto">
               <span className="font-semibold text-blue-700">Name:</span>
-              <span className="text-blue-600">{dashboardData?.user?.name}</span>
+              <span className="text-blue-600 truncate">
+                {dashboardData?.user?.name}
+              </span>
             </div>
-            <div className="flex items-center space-x-2 bg-green-50 hover:bg-green-100 rounded-lg p-3 transition duration-300 ease-in-out">
+            <div className="flex items-center space-x-2 bg-green-50 hover:bg-green-100 rounded-lg p-3 transition duration-300 ease-in-out max-w-auto">
               <span className="font-semibold text-green-700">Email:</span>
-              <span className="text-green-600">
+              <span className="text-green-600 truncate">
                 {dashboardData?.user?.email}
               </span>
             </div>
 
             {/* Role Section with Dynamic Colors */}
             <div
-              className={`flex items-center space-x-2 rounded-lg p-3 transition duration-300 ease-in-out ${
+              className={`flex items-center space-x-2 rounded-lg p-3 transition duration-300 ease-in-out max-w-auto ${
                 dashboardData?.user?.role === "superadmin"
                   ? "bg-yellow-50 hover:bg-yellow-100"
                   : dashboardData?.user?.role === "admin"
@@ -78,7 +80,7 @@ const Dashboard: React.FC = () => {
                 Role:
               </span>
               <span
-                className={`${
+                className={`truncate ${
                   dashboardData?.user?.role === "superadmin"
                     ? "text-yellow-600"
                     : dashboardData?.user?.role === "admin"

@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useRegisterMutation } from "../store/services/authApi";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 
 const Register: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [register, { isLoading, error }] = useRegisterMutation();
   const navigate = useNavigate();
 
@@ -30,6 +32,10 @@ const Register: React.FC = () => {
         toast.error(singleMessage);
       }
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword); // Toggle password visibility
   };
 
   return (
@@ -76,7 +82,7 @@ const Register: React.FC = () => {
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none  dark:bg-gray-700 dark:text-white"
             />
           </div>
-          <div className="form-group mb-6">
+          <div className="form-group mb-6 relative">
             <label
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
@@ -84,13 +90,24 @@ const Register: React.FC = () => {
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"} // Toggle between 'text' and 'password'
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none  dark:bg-gray-700 dark:text-white"
             />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute top-[70%] right-3 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
+            >
+              {showPassword ? (
+                <FaEyeSlash size={20} /> // Eye Slash Icon for hiding
+              ) : (
+                <FaEye size={20} /> // Eye Icon for showing
+              )}
+            </button>
           </div>
           <button
             type="submit"

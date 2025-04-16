@@ -16,6 +16,7 @@ import {
   revokeAccess,
   getPendingUsers,
   getProfile,
+  deleteUser,
 } from "../controllers/authController.js";
 
 router.post(
@@ -39,5 +40,6 @@ router.put("/approve/:id", protect, checkRole(["superadmin"]), approveUser);
 router.put("/revoke/:id", protect, checkRole(["superadmin"]), revokeAccess);
 router.put("/promote/:id", protect, checkRole(["superadmin"]), promoteUser);
 router.put("/demote/:id", protect, checkRole(["superadmin"]), demoteUser);
+router.delete("/delete/:id", protect, checkRole(["superadmin"]), deleteUser);
 
 export default router;

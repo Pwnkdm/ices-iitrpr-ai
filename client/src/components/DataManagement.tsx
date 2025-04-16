@@ -102,12 +102,12 @@ const DataManagement: React.FC = () => {
   return (
     <div className="w-full mx-auto p-2 sm:p-4 md:p-6 rounded h-screen flex flex-col">
       {/* Header */}
-      <div className="relative border border-neutral-200 flex justify-between items-center p-2 rounded mb-4 shadow-sm">
+      <div className="relative border border-neutral-200 flex justify-between items-center p-4 rounded mb-4 shadow-sm">
         <BackButton />
-        <h2 className="text-xl sm:text-2xl font-bold text-center absolute left-1/2 transform -translate-x-1/2">
+
+        <h2 className="text-sm sm:text-sm md:text-2xl lg:text-2xl xl:text-2xl font-bold text-center absolute left-1/2 transform -translate-x-1/2">
           User Data Management
         </h2>
-        <div className="w-[60px]"></div>
       </div>
 
       {/* Search and filters */}

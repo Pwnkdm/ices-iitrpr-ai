@@ -50,11 +50,11 @@ export const authApi = api.injectEndpoints({
     }),
     getProfile: builder.query<User, void>({
       query: () => "/auth/profile",
-      providesTags: ["Profile"], // Correctly providing a tag for profile data
+      providesTags: ["Profile"],
     }),
     getAllUsers: builder.query<User[], void>({
       query: () => "/auth/users",
-      providesTags: [{ type: "Users", id: "LIST" }], // Correctly providing tags for user list
+      providesTags: [{ type: "Users", id: "LIST" }],
     }),
     getPendingUsers: builder.query<User[], void>({
       query: () => "/auth/pending",
@@ -65,28 +65,35 @@ export const authApi = api.injectEndpoints({
         url: `/auth/approve/${id}`,
         method: "PUT",
       }),
-      invalidatesTags: [{ type: "Users", id: "LIST" }], // Invalidating the user list after approval
+      invalidatesTags: [{ type: "Users", id: "LIST" }],
     }),
     revokeUser: builder.mutation<User, string>({
       query: (id) => ({
         url: `/auth/revoke/${id}`,
         method: "PUT",
       }),
-      invalidatesTags: [{ type: "Users", id: "LIST" }], // Invalidating the user list after revocation
+      invalidatesTags: [{ type: "Users", id: "LIST" }],
     }),
     promoteUser: builder.mutation<User, string>({
       query: (id) => ({
         url: `/auth/promote/${id}`,
         method: "PUT",
       }),
-      invalidatesTags: [{ type: "Users", id: "LIST" }], // Invalidating the user list after promotion
+      invalidatesTags: [{ type: "Users", id: "LIST" }],
     }),
     demoteUser: builder.mutation<User, string>({
       query: (id) => ({
         url: `/auth/demote/${id}`,
         method: "PUT",
       }),
-      invalidatesTags: [{ type: "Users", id: "LIST" }], // Invalidating the user list after demotion
+      invalidatesTags: [{ type: "Users", id: "LIST" }],
+    }),
+    deleteUser: builder.mutation<User, string>({
+      query: (id) => ({
+        url: `/auth/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "Users", id: "LIST" }],
     }),
   }),
   overrideExisting: false,
@@ -102,4 +109,5 @@ export const {
   useRevokeUserMutation,
   usePromoteUserMutation,
   useDemoteUserMutation,
+  useDeleteUserMutation,
 } = authApi;
