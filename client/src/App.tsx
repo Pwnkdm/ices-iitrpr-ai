@@ -53,7 +53,6 @@ function App() {
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
-  console.log(!profile?.role && !isAuthenticated, "state");
 
   return (
     <Router>

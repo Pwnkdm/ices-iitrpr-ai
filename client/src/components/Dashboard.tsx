@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
   };
 
   if (isError) {
-    return navigate("/unauthorized");
+    return navigate("/login");
   }
 
   if (isDashboardLoading) {

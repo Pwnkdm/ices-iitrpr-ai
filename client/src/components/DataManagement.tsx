@@ -7,6 +7,7 @@ import {
 import { useGetProfileQuery } from "../store/services/authApi";
 import CopyText from "./ui/CopyText";
 import BackButton from "./ui/backButton";
+import { toast } from "react-toastify";
 
 // Define user type based on API response
 interface UserData {
@@ -25,7 +26,7 @@ interface UserData {
 
 const DataManagement: React.FC = () => {
   const { data: profile } = useGetProfileQuery();
-  const { data: allData = [], isLoading } = useGetAllDataQuery();
+  const { data: allData = [], isLoading, refetch } = useGetAllDataQuery();
   const [deleteData] = useDeleteDataMutation();
   const isSuperadmin = profile?.role === "superadmin";
 
@@ -74,9 +75,15 @@ const DataManagement: React.FC = () => {
   const handleDelete = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
-        await deleteData(id).unwrap();
+        await deleteData(id)
+          .unwrap()
+          .then(() => {
+            refetch();
+            toast.success("Entry deleted Successfully!");
+          });
       } catch (err) {
         console.error("Failed to delete data:", err);
+        toast.error(err?.data?.message || "Error while deleting entry:{");
       }
     }
   };

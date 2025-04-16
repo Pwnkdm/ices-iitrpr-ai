@@ -4,7 +4,7 @@ import Admin from "../model/adminModel.js";
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "30d",
+    expiresIn: "1d",
   });
 };
 
@@ -159,7 +159,6 @@ const getUsers = async (req, res) => {
 const getProfile = async (req, res) => {
   try {
     const profile = await req.user;
-    console.log(profile, "profile");
 
     res.json(profile);
   } catch (error) {
