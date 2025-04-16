@@ -9,6 +9,7 @@ import {
   useDemoteUserMutation,
 } from "../store/services/authApi";
 import BackButton from "./ui/backButton";
+import { toast } from "react-toastify";
 
 const UserManagement: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"pending" | "all">("pending");
@@ -18,16 +19,17 @@ const UserManagement: React.FC = () => {
   const { data: pendingUsers, isLoading: isPendingUsersLoading } =
     useGetPendingUsersQuery();
 
-  const [approveUser] = useApproveUserMutation();
-  const [revokeUser] = useRevokeUserMutation();
-  const [promoteUser] = usePromoteUserMutation();
-  const [demoteUser] = useDemoteUserMutation();
+  const [approveUser, { isLoading: approveLoading }] = useApproveUserMutation();
+  const [revokeUser, { isLoading: revokeLoading }] = useRevokeUserMutation();
+  const [promoteUser, { isLoading: promoteLoading }] = usePromoteUserMutation();
+  const [demoteUser, { isLoading: demoteLoading }] = useDemoteUserMutation();
 
   const handleApprove = async (id: string) => {
     try {
       await approveUser(id).unwrap();
     } catch (err) {
       console.error("Failed to approve user:", err);
+      toast.error(err?.data?.message || "Failed to approve user");
     }
   };
 
@@ -37,6 +39,7 @@ const UserManagement: React.FC = () => {
         await revokeUser(id).unwrap();
       } catch (err) {
         console.error("Failed to revoke user:", err);
+        toast.error(err?.data?.message || "Failed to revoke user");
       }
     }
   };
@@ -46,6 +49,7 @@ const UserManagement: React.FC = () => {
       await promoteUser(id).unwrap();
     } catch (err) {
       console.error("Failed to promote user:", err);
+      toast.error(err?.data?.message || "Failed to promote user");
     }
   };
 
@@ -54,15 +58,23 @@ const UserManagement: React.FC = () => {
       await demoteUser(id).unwrap();
     } catch (err) {
       console.error("Failed to demote user:", err);
+      toast.error(err?.data?.message || "Failed to demote user");
     }
   };
 
-  if (isAllUsersLoading || isPendingUsersLoading) {
+  if (
+    isAllUsersLoading ||
+    isPendingUsersLoading ||
+    approveLoading ||
+    revokeLoading ||
+    promoteLoading ||
+    demoteLoading
+  ) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="text-lg font-medium flex flex-col items-center">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-          Loading users...
+          Processing...
         </div>
       </div>
     );

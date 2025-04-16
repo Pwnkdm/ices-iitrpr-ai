@@ -27,7 +27,7 @@ interface UserData {
 const DataManagement: React.FC = () => {
   const { data: profile } = useGetProfileQuery();
   const { data: allData = [], isLoading, refetch } = useGetAllDataQuery();
-  const [deleteData] = useDeleteDataMutation();
+  const [deleteData, { isLoading: deleteLoading }] = useDeleteDataMutation();
   const isSuperadmin = profile?.role === "superadmin";
 
   // Pagination
@@ -88,7 +88,7 @@ const DataManagement: React.FC = () => {
     }
   };
 
-  if (isLoading) {
+  if (isLoading || deleteLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-lg font-medium flex flex-col items-center">
