@@ -1,4 +1,5 @@
 import Data from "../model/dataModel.js";
+import ToT from "../model/totModel.js";
 import User from "../model/userModel.js";
 
 // @desc    Create new data
@@ -25,9 +26,11 @@ const createData = async (req, res) => {
 // @access  Private/Admin & SuperAdmin
 const getAllData = async (req, res) => {
   try {
-    const data = await User.find({});
+    const users = await User.find({});
+    const tots = await ToT.find({});
+    res.status(200).json([...users, ...tots]);
     // .populate("createdBy", "name email");
-    res.json(data);
+    // res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -81,14 +84,26 @@ const updateData = async (req, res) => {
 // @access  Private/SuperAdmin
 const deleteData = async (req, res) => {
   try {
-    const data = await Data.findById(req.params.id);
+    const id = req.params.id;
+
+    // Try to find the document in User collection
+    let data = await User.findById(id);
 
     if (data) {
       await data.deleteOne();
-      res.json({ message: "Data removed" });
-    } else {
-      res.status(404).json({ message: "Data not found" });
+      return res.json({ message: "User data removed" });
     }
+
+    // If not found in User, try in Tot collection
+    data = await ToT.findById(id);
+
+    if (data) {
+      await data.deleteOne();
+      return res.json({ message: "Tot data removed" });
+    }
+
+    // If not found in either
+    res.status(404).json({ message: "Data not found in any collection" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

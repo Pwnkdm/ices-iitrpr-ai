@@ -9,10 +9,10 @@ const createSuperAdmin = async () => {
     await mongoose.connect(process.env.DB_URI);
 
     // Check if superadmin already exists
-    const superAdminExists = await Admin.findOne({ role: "superadmin" });
+    const superAdminExists = await Admin.findOne({ role: "supremeadmin" });
 
     if (superAdminExists) {
-      console.log("Superadmin already exists");
+      console.log("supremeadmin already exists");
       mongoose.disconnect();
       return;
     }
@@ -21,7 +21,7 @@ const createSuperAdmin = async () => {
     const email = process.argv[2] || process.env.SUPERADMIN_EMAIL;
     const password = process.argv[3] || process.env.SUPERADMIN_PASSWORD;
     const name =
-      process.argv[4] || process.env.SUPERADMIN_NAME || "Super Admin";
+      process.argv[4] || process.env.SUPERADMIN_NAME || "Supreme Admin";
 
     if (!email || !password) {
       console.error(
@@ -35,10 +35,10 @@ const createSuperAdmin = async () => {
       name,
       email,
       password,
-      role: "superadmin",
+      role: "supremeadmin",
     });
 
-    console.log(`Superadmin created successfully: ${superAdmin.email}`);
+    console.log(`supremeadmin created successfully: ${superAdmin.email}`);
     mongoose.disconnect();
   } catch (error) {
     console.error(`Error: ${error.message}`);

@@ -4,7 +4,7 @@ import Admin from "../model/adminModel.js";
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "30d",
+    expiresIn: "1d",
   });
 };
 
@@ -156,6 +156,16 @@ const getUsers = async (req, res) => {
   }
 };
 
+const getProfile = async (req, res) => {
+  try {
+    const profile = await req.user;
+
+    res.json(profile);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // @desc    Approve user to admin role
 // @route   PUT /api/auth/approve/:id
 // @access  Private/SuperAdmin
@@ -252,6 +262,7 @@ export {
   promoteUser,
   demoteUser,
   getUsers,
+  getProfile,
   approveUser,
   revokeAccess,
   getPendingUsers,

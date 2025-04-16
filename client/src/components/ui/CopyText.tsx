@@ -32,7 +32,7 @@ const CopyIcon: React.FC<CopyIconProps> = ({
 
   return (
     // Fixed width and height for the container
-    <div className="relative flex items-center justify-center w-8 h-8 border-gray-300 border rounded ml-2">
+    <div className="relative flex items-center justify-center w-6 h-6 border-gray-300 border rounded ml-2">
       {/* Copy Icon Button */}
       <motion.div
         onClick={copyToClipboard}
@@ -43,9 +43,9 @@ const CopyIcon: React.FC<CopyIconProps> = ({
         exit={{ opacity: 0 }}
       >
         {isCopied ? (
-          <MdCheck className="h-5 w-5" />
+          <MdCheck className="h-4 w-4" />
         ) : (
-          <MdOutlineContentCopy className="h-5 w-5" />
+          <MdOutlineContentCopy className="h-4 w-4" />
         )}
       </motion.div>
 

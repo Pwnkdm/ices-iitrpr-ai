@@ -15,6 +15,7 @@ import {
   approveUser,
   revokeAccess,
   getPendingUsers,
+  getProfile,
 } from "../controllers/authController.js";
 
 router.post(
@@ -32,6 +33,7 @@ router.post(
 
 // Superadmin only routes
 router.get("/users", protect, checkRole(["superadmin"]), getUsers);
+router.get("/profile", protect, checkRole(["superadmin"]), getProfile);
 router.get("/pending", protect, checkRole(["superadmin"]), getPendingUsers);
 router.put("/approve/:id", protect, checkRole(["superadmin"]), approveUser);
 router.put("/revoke/:id", protect, checkRole(["superadmin"]), revokeAccess);
