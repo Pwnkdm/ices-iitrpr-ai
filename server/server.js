@@ -30,7 +30,13 @@ app.use("/api/data", dataRoutes);
 app.use("/api/dashboard", getDashboard);
 
 app.get("/", (req, res) => {
-  res.send("API is running...");
+  res.send(`
+    <div style="font-family: Arial, sans-serif; text-align: center; margin-top: 20vh;">
+      <h1 style="color: #4CAF50;">🚀 API is running...</h1>
+      <p style="color: #555;">Welcome to your backend.</p>
+      <p style="color: #555;">Happy Coding!</p>
+    </div>
+  `);
 });
 
 const PORT = process.env.PORT || 5000;

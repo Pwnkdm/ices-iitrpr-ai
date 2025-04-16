@@ -65,8 +65,8 @@ export const dataApi = api.injectEndpoints({
 
 export const {
   useGetAllDataQuery,
-  useGetDataByIdQuery,
-  useCreateDataMutation,
-  useUpdateDataMutation,
+  useGetDataByIdQuery, // not in use
+  useCreateDataMutation, // not in use
+  useUpdateDataMutation, // not in use
   useDeleteDataMutation,
 } = dataApi;

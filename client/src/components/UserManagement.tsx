@@ -99,6 +99,13 @@ const UserManagement: React.FC = () => {
       toast.error(err?.data?.message || "Failed to demote user");
     }
   };
+  console.log(allUsers, "poiu");
+
+  function disableBtnsForSA() {
+    const superAdmins =
+      allUsers && allUsers?.filter((user) => user.role === "superadmin");
+    return superAdmins.length > 1;
+  }
 
   if (
     isAllUsersLoading ||
@@ -294,22 +301,29 @@ const UserManagement: React.FC = () => {
                                 Promote
                               </button>
                             )}
-                            {user.role === "superadmin" && (
-                              <button
-                                onClick={() => handleDemote(user._id)}
-                                className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-                              >
-                                Demote
-                              </button>
-                            )}
-                            {user.role !== "pending" && (
-                              <button
-                                onClick={() => handleRevoke(user._id)}
-                                className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                              >
-                                Revoke
-                              </button>
-                            )}
+
+                            {user.role === "superadmin" &&
+                              disableBtnsForSA() && (
+                                <button
+                                  onClick={() => handleDemote(user._id)}
+                                  className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                                >
+                                  Demote
+                                </button>
+                              )}
+
+                            {user.role !== "pending" &&
+                              !(
+                                user.role === "superadmin" &&
+                                !disableBtnsForSA()
+                              ) && (
+                                <button
+                                  onClick={() => handleRevoke(user._id)}
+                                  className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                >
+                                  Revoke
+                                </button>
+                              )}
                           </div>
                         </td>
                       </tr>
