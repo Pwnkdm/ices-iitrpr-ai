@@ -26,7 +26,7 @@ router.post(
 );
 router.post(
   "/login",
-  loginLimiter,
+  // loginLimiter,
   validateRequest(schemas.userLogin),
   loginUser
 );
