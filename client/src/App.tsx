@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { lazy, Suspense, useEffect } from "react";
+import BarLoader from "react-spinners/BarLoader";
 
 import Navbar from "./components/Navbar.tsx";
 const HomePage = lazy(() => import("./components/HomePage.tsx"));
@@ -69,7 +70,7 @@ function AppContent() {
       <Suspense
         fallback={
           <div className="flex items-center justify-center h-screen text-xl font-bold text-black">
-            Page Loading...
+            <BarLoader />
           </div>
         }
       >

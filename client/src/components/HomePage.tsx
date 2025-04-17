@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { CardHoverEffect } from "./CardHoverEffect";
+import BarLoader from "react-spinners/BarLoader";
 
 // Lazy-loaded components
 const HeroPage = lazy(() => import("./HeroPage"));
@@ -52,7 +53,7 @@ const HomePage = () => {
 
   const Fallback = () => (
     <div className="text-center text-black py-10 text-xl font-bold flex justify-center items-center h-screen">
-      Loading...
+      <BarLoader />
     </div>
   );
 
