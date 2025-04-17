@@ -5,21 +5,22 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import Navbar from "./components/Navbar.tsx";
-import HomePage from "./components/HomePage.tsx";
-import { useEffect } from "react";
-import { SignupPage } from "./components/SignupPage.tsx";
 import { ToastContainer } from "react-toastify";
-import { ToT } from "./components/ToT.tsx";
+import { lazy, Suspense, useEffect } from "react";
+
+import Navbar from "./components/Navbar.tsx";
+const HomePage = lazy(() => import("./components/HomePage.tsx"));
+const SignupPage = lazy(() => import("./components/SignupPage.tsx"));
+const ToT = lazy(() => import("./components/ToT.tsx"));
 
 // Admin components
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
-import UserManagement from "./components/UserManagement";
-import DataManagement from "./components/DataManagement.tsx";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Unauthorized from "./components/Unauthorized";
+const Login = lazy(() => import("./components/Login.tsx"));
+const Register = lazy(() => import("./components/Register.tsx"));
+const Dashboard = lazy(() => import("./components/Dashboard.tsx"));
+const UserManagement = lazy(() => import("./components/UserManagement.tsx"));
+const DataManagement = lazy(() => import("./components/DataManagement.tsx"));
+const ProtectedRoute = lazy(() => import("./components/ProtectedRoute.tsx"));
+const Unauthorized = lazy(() => import("./components/Unauthorized.tsx"));
 
 const ScrollToHash = () => {
   const { hash } = useLocation();
@@ -29,7 +30,7 @@ const ScrollToHash = () => {
       setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
-          const offset = 100; // Adjust this value based on the height of your Navbar
+          const offset = 100;
           const elementPosition =
             element.getBoundingClientRect().top + window.scrollY;
           const offsetPosition = elementPosition - offset;
@@ -39,55 +40,67 @@ const ScrollToHash = () => {
             behavior: "smooth",
           });
         }
-      }, 0); // Small delay to ensure the DOM is updated
+      }, 0);
     }
   }, [hash]);
 
   return null;
 };
 
+// 👇 AppContent is wrapped inside Router
 function App() {
-  // const { data: profile } = useGetProfileQuery();
-  // const isAuthenticated = useSelector(
-  //   (state: RootState) => state.auth.isAuthenticated
-  // );
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
   const showNavbar = ["/", "/sign-up", "/tot"].includes(location.pathname);
 
   return (
-    <Router>
+    <>
       {showNavbar && <Navbar />}
       <ToastContainer />
       <ScrollToHash />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/sign-up" element={<SignupPage />} />
-        <Route path="/tot" element={<ToT />} />
 
-        {/* admin routes below  */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center h-screen text-xl font-bold text-black">
+            Page Loading...
+          </div>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/sign-up" element={<SignupPage />} />
+          <Route path="/tot" element={<ToT />} />
 
-        {/* Protected routes for all authenticated users */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
+          {/* Admin Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
 
-        {/* Routes for admins and superadmins */}
-        <Route
-          element={<ProtectedRoute allowedRoles={["admin", "superadmin"]} />}
-        >
-          <Route path="/data" element={<DataManagement />} />
-        </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
 
-        {/* Routes only for superadmins */}
-        <Route element={<ProtectedRoute allowedRoles={["superadmin"]} />}>
-          <Route path="/users" element={<UserManagement />} />
-        </Route>
+          <Route
+            element={<ProtectedRoute allowedRoles={["admin", "superadmin"]} />}
+          >
+            <Route path="/data" element={<DataManagement />} />
+          </Route>
 
-        <Route path="/" element={<Navigate to="/dashboard" />} />
-      </Routes>
-    </Router>
+          <Route element={<ProtectedRoute allowedRoles={["superadmin"]} />}>
+            <Route path="/users" element={<UserManagement />} />
+          </Route>
+
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      </Suspense>
+    </>
   );
 }
 

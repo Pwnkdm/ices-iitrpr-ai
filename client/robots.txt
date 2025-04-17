@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /dashboard
+Disallow: /login
+Disallow: /register
+Disallow: /users
+Disallow: /data
+
+// Replace with actual domain and also change the domain in sitemap.xml file
+Sitemap: https://aitechnocrat.vercel.app/sitemap.xml
