@@ -75,31 +75,36 @@ const UserManagement: React.FC = () => {
   };
 
   const handlePromote = async (id: string) => {
-    try {
-      await promoteUser(id)
-        .unwrap()
-        .then((res) => {
-          toast.success(res?.message || "User pramoted as super admin.");
-        });
-    } catch (err) {
-      console.error("Failed to promote user:", err);
-      toast.error(err?.data?.message || "Failed to promote user");
+    if (
+      confirm("Are you sure you want to pramote this user as a Super Admin?")
+    ) {
+      try {
+        await promoteUser(id)
+          .unwrap()
+          .then((res) => {
+            toast.success(res?.message || "User pramoted as super admin.");
+          });
+      } catch (err) {
+        console.error("Failed to promote user:", err);
+        toast.error(err?.data?.message || "Failed to promote user");
+      }
     }
   };
 
   const handleDemote = async (id: string) => {
-    try {
-      await demoteUser(id)
-        .unwrap()
-        .then((res) => {
-          toast.success(res?.message || "User demoted to admin.");
-        });
-    } catch (err) {
-      console.error("Failed to demote user:", err);
-      toast.error(err?.data?.message || "Failed to demote user");
+    if (confirm("Are you sure you want to demote this user to admin?")) {
+      try {
+        await demoteUser(id)
+          .unwrap()
+          .then((res) => {
+            toast.success(res?.message || "User demoted to admin.");
+          });
+      } catch (err) {
+        console.error("Failed to demote user:", err);
+        toast.error(err?.data?.message || "Failed to demote user");
+      }
     }
   };
-  console.log(allUsers, "poiu");
 
   function disableBtnsForSA() {
     const superAdmins =
@@ -203,14 +208,14 @@ const UserManagement: React.FC = () => {
                         <td className="px-6 py-4 flex flex-wrap gap-2">
                           <button
                             onClick={() => handleApprove(user._id)}
-                            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-sm"
+                            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 hover:rounded-3xl transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-sm"
                           >
                             <IoCheckmarkDoneSharp className="text-lg" />
                             Approve
                           </button>
                           <button
                             onClick={() => handleDeleteUser(user._id)}
-                            className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 text-sm"
+                            className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 hover:rounded-3xl transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 text-sm"
                           >
                             <MdDelete className="text-lg" />
                             Delete
@@ -296,7 +301,7 @@ const UserManagement: React.FC = () => {
                             {user.role === "admin" && (
                               <button
                                 onClick={() => handlePromote(user._id)}
-                                className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 hover:rounded-3xl transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                               >
                                 Promote
                               </button>
@@ -306,24 +311,20 @@ const UserManagement: React.FC = () => {
                               disableBtnsForSA() && (
                                 <button
                                   onClick={() => handleDemote(user._id)}
-                                  className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                                  className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 hover:rounded-3xl transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                                 >
                                   Demote
                                 </button>
                               )}
 
-                            {user.role !== "pending" &&
-                              !(
-                                user.role === "superadmin" &&
-                                !disableBtnsForSA()
-                              ) && (
-                                <button
-                                  onClick={() => handleRevoke(user._id)}
-                                  className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                                >
-                                  Revoke
-                                </button>
-                              )}
+                            {user.role === "admin" && (
+                              <button
+                                onClick={() => handleRevoke(user._id)}
+                                className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 hover:rounded-3xl transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                              >
+                                Revoke
+                              </button>
+                            )}
                           </div>
                         </td>
                       </tr>

@@ -16,9 +16,11 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(logout());
-    dispatch(api.util.resetApiState());
-    navigate("/login");
+    if (window.confirm("Are you sure you want to logout?")) {
+      dispatch(logout());
+      dispatch(api.util.resetApiState());
+      navigate("/login");
+    }
   };
 
   if (isError) {
@@ -106,13 +108,15 @@ const Dashboard: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => navigate("/users")}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800  hover:rounded-3xl transition-all duration-300 ease-in-out
+"
               >
                 Manage Users
               </button>
               <button
                 onClick={() => navigate("/data")}
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-800  hover:rounded-3xl transition-all duration-300 ease-in-out
+"
               >
                 Manage Data
               </button>
@@ -121,14 +125,16 @@ const Dashboard: React.FC = () => {
           {dashboardData?.user?.role === "admin" && (
             <button
               onClick={() => navigate("/data")}
-              className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
+              className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-800  hover:rounded-3xl transition-all duration-300 ease-in-out
+"
             >
               View Data
             </button>
           )}
           <button
             onClick={handleLogout}
-            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800  hover:rounded-3xl transition-all duration-300 ease-in-out
+"
           >
             Logout
           </button>

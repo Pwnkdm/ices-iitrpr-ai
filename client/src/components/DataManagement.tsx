@@ -218,7 +218,7 @@ const DataManagement: React.FC = () => {
                     <td className="px-2 py-2 border text-center">
                       <button
                         onClick={() => handleDelete(user._id)}
-                        className="text-white bg-red-500 hover:bg-red-600 text-xs px-2 py-1 rounded transition"
+                        className="text-white bg-red-500 hover:bg-red-600 text-xs px-2 py-1 rounded hover:rounded-3xl transition-all duration-300 ease-in-out"
                       >
                         Delete
                       </button>
