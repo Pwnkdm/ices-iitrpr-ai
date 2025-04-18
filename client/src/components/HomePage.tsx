@@ -1,52 +1,47 @@
-import React, { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Box } from "@mui/material";
-import { useLocation } from "react-router-dom"; // To listen to changes in the URL
-import HeroPage from "./HeroPage";
-import Curriculum from "./Curriculam";
-import FAQs from "./FAQs";
-import ContactUs from "./ContactUs";
-import Instructors from "./Instructors";
-import BrochureDownload from "./BrochureDownload";
-import Coordinator from "./Coordinator";
+import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { CardHoverEffect } from "./CardHoverEffect";
+import BarLoader from "react-spinners/BarLoader";
+
+// Lazy-loaded components
+const HeroPage = lazy(() => import("./HeroPage"));
+const Curriculum = lazy(() => import("./Curriculam"));
+const FAQs = lazy(() => import("./FAQs"));
+const ContactUs = lazy(() => import("./ContactUs"));
+const Instructors = lazy(() => import("./Instructors"));
+const BrochureDownload = lazy(() => import("./BrochureDownload"));
+const Coordinator = lazy(() => import("./Coordinator"));
 
 const HomePage = () => {
-  // Get the current hash from the URL (used to highlight or scroll to sections)
   const { hash } = useLocation();
 
-  // Define a function to update the URL based on the section ID
   const updateURL = (sectionId: string) => {
-    window.history.pushState({}, "", `#${sectionId}`); // Updates the URL with the section ID
+    window.history.pushState({}, "", `#${sectionId}`);
   };
 
-  // Set up the Intersection Observer to track section visibility
   useEffect(() => {
-    const sections = document.querySelectorAll("section"); // Get all sections
-
+    const sections = document.querySelectorAll("section");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const sectionId = entry.target.id;
-            updateURL(sectionId); // Update the URL when the section is visible
+            updateURL(entry.target.id);
           }
         });
       },
       {
         rootMargin: "0px",
-        threshold: 0.5, // 50% visibility before triggering
+        threshold: 0.5,
       }
     );
 
-    // Observe all sections
     sections.forEach((section) => observer.observe(section));
 
-    return () => {
-      observer.disconnect(); // Cleanup observer on component unmount
-    };
+    return () => observer.disconnect();
   }, []);
 
-  // Scroll to section based on the current URL hash (if any)
   useEffect(() => {
     if (hash) {
       const section = document.querySelector(hash);
@@ -56,53 +51,56 @@ const HomePage = () => {
     }
   }, [hash]);
 
+  const Fallback = () => (
+    <div className="text-center text-black py-10 text-xl font-bold flex justify-center items-center h-screen">
+      <BarLoader />
+    </div>
+  );
+
   return (
-    <Box
-      sx={{
-        minHeight: "200vh",
-        padding: 0,
-        paddingTop: 10,
-        fontFamily: "Lexend",
-      }}
-    >
-      {/* Hero Section */}
-      <section id="overview" sx={{ marginTop: 0, padding: 0, width: "100vw" }}>
-        <HeroPage />
-      </section>
+    <Box sx={{ minHeight: "200vh", pt: 10, fontFamily: "Lexend" }}>
+      <Helmet>
+        <title>AI Technocrat Programme - ICES, ICE & IIT Ropar</title>
+        <meta
+          name="description"
+          content="Register as a student or teacher for the AI Technocrat Programme conducted by ICES, ICE, and IIT Ropar."
+        />
+        <meta
+          name="keywords"
+          content="AI, Technocrat, ICES, IIT Ropar, Student Registration, Teacher Registration"
+        />
+      </Helmet>
 
-      {/* Why This Course Section */}
-      <section
-        id="why_this_course"
-        sx={{ marginTop: 0, padding: 0, width: "100vw" }}
-      >
-        <CardHoverEffect />
-      </section>
+      <Suspense fallback={<Fallback />}>
+        <section id="overview">
+          <HeroPage />
+        </section>
 
-      {/* Curriculum Section */}
-      <section id="curriculum" sx={{ marginTop: 10, padding: 0 }}>
-        <Curriculum />
-      </section>
+        <section id="why_this_course">
+          <CardHoverEffect />
+        </section>
 
-      {/* Instructor Section */}
-      <section id="instructors" sx={{ marginTop: 10, padding: 0 }}>
-        <Instructors />
-      </section>
+        <section id="curriculum">
+          <Curriculum />
+        </section>
 
-      {/* brochure Section */}
-      <section id="brochure" sx={{ marginTop: 10 }}>
-        <BrochureDownload />
-      </section>
+        <section id="instructors">
+          <Instructors />
+        </section>
 
-      {/* FAQs Section */}
-      <section id="faqs" sx={{ marginTop: 10, padding: 0 }}>
-        <FAQs />
-        <Coordinator />
-      </section>
+        <section id="brochure">
+          <BrochureDownload />
+        </section>
 
-      {/* Contact Section */}
-      <section id="contact" sx={{ padding: 0 }}>
-        <ContactUs />
-      </section>
+        <section id="faqs">
+          <FAQs />
+          <Coordinator />
+        </section>
+
+        <section id="contact">
+          <ContactUs />
+        </section>
+      </Suspense>
     </Box>
   );
 };
