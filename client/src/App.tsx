@@ -10,9 +10,9 @@ import { lazy, Suspense, useEffect } from "react";
 import BarLoader from "react-spinners/BarLoader";
 
 import Navbar from "./components/Navbar.tsx";
+import { SignupPage } from "./components/SignupPage.tsx";
+import { ToT } from "./components/ToT.tsx";
 const HomePage = lazy(() => import("./components/HomePage.tsx"));
-const SignupPage = lazy(() => import("./components/SignupPage.tsx"));
-const ToT = lazy(() => import("./components/ToT.tsx"));
 
 // Admin components
 const Login = lazy(() => import("./components/Login.tsx"));
